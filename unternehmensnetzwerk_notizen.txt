@@ -8,7 +8,7 @@ St. Gallen hat 5 Mitarbeiter		 IPv4 Adressen		10.2.0.0/8
 Buchs hat 5 Mitarbeiter				 IPv4 Adressen		10.3.0.0/8
 Transfer												10.4.0.0/8
 
-Vlan 10								Gesch‰ftsleitung		10.*.10.*
+Vlan 10								Gesch√§ftsleitung		10.*.10.*
 Vlan 20								Buchhaltung				10.*.20.*
 Vlan 30								Entwicklung				10.*.30.*
 									Transfer				10.*.40.*
@@ -23,7 +23,7 @@ St. Gallen hat 5 Mitarbeiter		 IPv6 Adressen		2001:620:3101:2::/64
 Buchs hat 5 Mitarbeiter				 IPv6 Adressen		2001:620:3101:3::/64
 
 
-Vlan 10								Gesch‰ftsleitung		10.*.10.*
+Vlan 10								Gesch√§ftsleitung		10.*.10.*
 Vlan 20								Buchhaltung				10.*.20.*
 Vlan 30								Entwicklung				10.*.30.*
 Vlan 99								Management				10.*.99.*
@@ -34,8 +34,9 @@ Vlan 99								Management				10.*.99.*
 
 auf S1/2 & A1/2 nur management vlans mit ip      
 auf D1/2 geswichte ports ohne ip, auf switch selbst alle vlans mit ip (wegen stack wahrscheinlich nur 1IP pro vlan)
-C1/2 loopback addressen f¸r fernwartung
-
+C1/2 loopback addressen f√ºr fernwartung
+wenn fernzugriff konfiguriert, dann muss der zugriff mit acl oder anzahl zugriffe 
+device backups
 
 
 
