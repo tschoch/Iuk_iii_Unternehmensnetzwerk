@@ -35,8 +35,10 @@ Vlan 99								Management				10.*.99.*
 auf S1/2 & A1/2 nur management vlans mit ip      
 auf D1/2 geswichte ports ohne ip, auf switch selbst alle vlans mit ip (wegen stack wahrscheinlich nur 1IP pro vlan)
 C1/2 loopback addressen für fernwartung
-wenn fernzugriff konfiguriert, dann muss der zugriff mit acl oder anzahl zugriffe 
-device backups
+wenn fernzugriff konfiguriert, dann muss der zugriff mit acl oder anzahl zugriffe verhindert werden
+
+Weitere Überlegungen:
+	-device backups
 
 
 
