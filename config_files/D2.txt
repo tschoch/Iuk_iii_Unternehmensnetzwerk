@@ -1,0 +1,4 @@
+enable
+conf t
+hostname C2
+no ip domain-lookup
