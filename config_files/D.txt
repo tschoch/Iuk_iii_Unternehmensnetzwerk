@@ -20,33 +20,37 @@ interface port-channel 2
 	exit
 
 interface port-channel 3
-	no shutdown
 	switchport mode trunk
 	switchport trunk native vlan 99
+	no shutdown
 	exit
 
 interface port-channel 4
-	no shutdown
 	switchport mode trunk
 	switchport trunk native vlan 99
+	no shutdown
 	exit
 	
 interface g1/0/22
+	no switchport
 	channel-group 1 mode active
 	no shutdown
 	exit
 
 interface g2/0/21
+	no switchport
 	channel-group 1 mode active
 	no shutdown
 	exit
 
 interface g1/0/21
+	no switchport
 	channel-group 2 mode active
 	no shutdown
 	exit
 
 interface g2/0/22
+	no switchport
 	channel-group 2 mode active
 	no shutdown
 	exit
