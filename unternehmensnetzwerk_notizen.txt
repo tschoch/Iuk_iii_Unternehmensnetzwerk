@@ -42,8 +42,10 @@ Weitere Überlegungen:
 	
 	
 lacp funktioniert auf gestackten switches, PAgP  funktioniert nicht auf gestackten switches(gestackte switches müssen active sein, mit desirable funktionierts nicht)
-auf port-channel no switchport kommando funktioniert nicht, es erscheint die Fehlermeldung not a convertible port
 
+auf port-channel no switchport kommando funktioniert nicht, es erscheint die Fehlermeldung not a convertible port
+http://www.groupstudy.com/archives/cisco/200511/msg00242.html 12.11.2015 no switchport
+falls nicht funktioniert vlan pro port-channel 
 
 
 
