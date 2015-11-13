@@ -23,13 +23,14 @@ interface port-channel 3
 	no shutdown
 	switchport mode trunk
 	switchport trunk native vlan 99
-
+	exit
 
 interface port-channel 4
 	no shutdown
 	switchport mode trunk
 	switchport trunk native vlan 99
-
+	exit
+	
 interface g1/0/22
 	channel-group 1 mode active
 	no shutdown
