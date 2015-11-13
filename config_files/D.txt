@@ -3,6 +3,32 @@ conf t
 hostname D
 no ip domain-lookup
 
+interface port-channel 1
+	no switchport
+	ip address 10.1.40.25 255.255.255.252
+	ipv6 address 2001:620:3101:1043::2/64
+	ipv6 address FE80::6 link-local
+	no shutdown
+	exit
+
+interface port-channel 2
+	no switchport
+	ip address 10.1.40.10 255.255.255.252
+	ipv6 address 2001:620:3101:1042::2/64
+	ipv6 address FE80::6 link-local
+	no shutdown
+	exit
+
+interface port-channel 3
+	no shutdown
+	switchport mode trunk
+	switchport trunk native vlan 99
+
+
+interface port-channel 4
+	no shutdown
+	switchport mode trunk
+	switchport trunk native vlan 99
 
 interface g1/0/22
 	channel-group 1 mode active
@@ -44,32 +70,7 @@ interface g2/0/24
 	no shutdown
 	exit
 
-interface port-channel 1
-	no switchport
-	ip address 10.1.40.25 255.255.255.252
-	ipv6 address 2001:620:3101:1043::2/64
-	ipv6 address FE80::6 link-local
-	no shutdown
-	exit
 
-interface port-channel 2
-	no switchport
-	ip address 10.1.40.10 255.255.255.252
-	ipv6 address 2001:620:3101:1042::2/64
-	ipv6 address FE80::6 link-local
-	no shutdown
-	exit
-
-interface port-channel 3
-	no shutdown
-	switchport mode trunk
-	switchport trunk native vlan 99
-
-
-interface port-channel 4
-	no shutdown
-	switchport mode trunk
-	switchport trunk native vlan 99
 
 
 
