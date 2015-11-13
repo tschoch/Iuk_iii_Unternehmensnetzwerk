@@ -20,12 +20,14 @@ interface port-channel 2
 	exit
 
 interface port-channel 3
+	switchport trunk encapsulation dot1q
 	switchport mode trunk
 	switchport trunk native vlan 99
 	no shutdown
 	exit
 
 interface port-channel 4
+	switchport trunk encapsulation dot1q
 	switchport mode trunk
 	switchport trunk native vlan 99
 	no shutdown
