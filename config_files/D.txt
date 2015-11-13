@@ -5,42 +5,42 @@ no ip domain-lookup
 
 
 interface g1/0/22
-	channel-group 1 mode desirable
+	channel-group 1 mode active
 	no shutdown
 	exit
 
 interface g2/0/21
-	channel-group 1 mode desirable
+	channel-group 1 mode active
 	no shutdown
 	exit
 
 interface g1/0/21
-	channel-group 2 mode desirable
+	channel-group 2 mode active
 	no shutdown
 	exit
 
 interface g2/0/22
-	channel-group 2 mode desirable
+	channel-group 2 mode active
 	no shutdown
 	exit
 
 interface g1/0/24
-	channel-group 3 mode desirable
+	channel-group 3 mode active
 	no shutdown
 	exit
 
 interface g2/0/23
-	channel-group 3 mode desirable
+	channel-group 3 mode active
 	no shutdown
 	exit
 
 interface g1/0/23
-	channel-group 4 mode desirable
+	channel-group 4 mode active
 	no shutdown
 	exit
 	
 interface g2/0/24
-	channel-group 4 mode desirable
+	channel-group 4 mode active
 	no shutdown
 	exit
 
