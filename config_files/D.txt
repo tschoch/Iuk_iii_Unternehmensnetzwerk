@@ -2,31 +2,75 @@ enable
 conf t
 hostname D
 no ip domain-lookup
-interface g1/0/21
-no switchport
-ip address 10.1.40.10 255.255.255.252
-ipv6 address 2001:620:3101:1042::2/64
-ipv6 address FE80::6 link-local
-no shutdown
-exit
-interface g2/0/22
-no switchport
-ip address 10.1.40.10 255.255.255.252
-ipv6 address 2001:620:3101:1042::2/64
-ipv6 address FE80::6 link-local
-no shutdown
-exit
+
+
 interface g1/0/22
-no switchport
-ip address 10.1.40.25 255.255.255.252
-ipv6 address 2001:620:3101:1043::2/64
-ipv6 address FE80::6 link-local
-no shutdown
-exit
+	channel-group 1 mode desirable
+	no shutdown
+	exit
+
 interface g2/0/21
-no switchport
-ip address 10.1.40.25 255.255.255.252
-ipv6 address 2001:620:3101:1043::2/64
-ipv6 address FE80::6 link-local
-no shutdown
-exit
+	channel-group 1 mode desirable
+	no shutdown
+	exit
+
+interface g1/0/21
+	channel-group 2 mode desirable
+	no shutdown
+	exit
+
+interface g2/0/22
+	channel-group 2 mode desirable
+	no shutdown
+	exit
+
+interface g1/0/24
+	channel-group 3 mode desirable
+	no shutdown
+	exit
+
+interface g2/0/23
+	channel-group 3 mode desirable
+	no shutdown
+	exit
+
+interface g1/0/23
+	channel-group 4 mode desirable
+	no shutdown
+	exit
+	
+interface g2/0/24
+	channel-group 4 mode desirable
+	no shutdown
+	exit
+
+interface port-channel 1
+	no switchport
+	ip address 10.1.40.25 255.255.255.252
+	ipv6 address 2001:620:3101:1043::2/64
+	ipv6 address FE80::6 link-local
+	no shutdown
+	exit
+
+interface port-channel 2
+	no switchport
+	ip address 10.1.40.10 255.255.255.252
+	ipv6 address 2001:620:3101:1042::2/64
+	ipv6 address FE80::6 link-local
+	no shutdown
+	exit
+
+interface port-channel 3
+	no shutdown
+	switchport mode trunk
+	switchport trunk native vlan 99
+
+
+interface port-channel 4
+	no shutdown
+	switchport mode trunk
+	switchport trunk native vlan 99
+
+
+
+
