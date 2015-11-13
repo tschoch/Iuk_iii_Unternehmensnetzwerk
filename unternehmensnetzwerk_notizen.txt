@@ -39,6 +39,12 @@ wenn fernzugriff konfiguriert, dann muss der zugriff mit acl oder anzahl zugriff
 
 Weitere Überlegungen:
 	-device backups
+	
+	
+lacp funktioniert auf gestackten switches, PAgP  funktioniert nicht auf gestackten switches(gestackte switches müssen active sein, mit desirable funktionierts nicht)
+auf port-channel no switchport kommando funktioniert nicht, es erscheint die Fehlermeldung not a convertible port
+
+
 
 
 
