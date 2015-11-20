@@ -58,6 +58,8 @@ Port Channels auf allen Switches und Router konfigurieren
 Vlan auf Switches erstellen
 Management Ip-Adresse erstellt
 Passwörter ganz am schluss setzten, da sonst nur im weg.
+Glasfaserkabel zwischen C1 und C2 verbunden, haben mit Auge geschaut welches Kabel geleuchtet hat, dann gekreuzt 
+eingesetzt.
 
 
 Management Ip- Adressen					
