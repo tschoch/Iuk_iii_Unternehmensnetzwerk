@@ -14,7 +14,7 @@ end
 
 conf t
 vlan 10
-name Geschäftsleitung
+name Geschaeftsleitung
 interface vlan 10
 no shutdown
 end
