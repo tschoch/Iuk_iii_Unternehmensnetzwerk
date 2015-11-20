@@ -37,6 +37,7 @@ vlan 35
 name native
 interface vlan 35
 no shutdown
+end
 
 conf t
 interface port-channel 3
