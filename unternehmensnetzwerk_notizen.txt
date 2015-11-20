@@ -4,26 +4,26 @@ Distribution Layer 3 Switches sind gestackt
 ---IPv4---
 
 Chur hat 70 Mitarbeiter				 IPv4 Adressen		10.1.0.0/8
-St. Gallen hat 5 Mitarbeiter		 IPv4 Adressen		10.2.0.0/8
+St. Gallen hat 5 Mitarbeiter			 IPv4 Adressen		10.2.0.0/8
 Buchs hat 5 Mitarbeiter				 IPv4 Adressen		10.3.0.0/8
-Transfer												10.4.0.0/8
+Transfer								10.4.0.0/8
 
-Vlan 10								Geschäftsleitung		10.*.10.*
+Vlan 10								Geschäftsleitung			10.*.10.*
 Vlan 20								Buchhaltung				10.*.20.*
 Vlan 30								Entwicklung				10.*.30.*
-									Transfer				10.*.40.*
+								Transfer				10.*.40.*
 Vlan 99								Management				10.*.99.*
 
 ---IPv6---
 
  2001:620:3101::/48
  
-Chur hat 70 Mitarbeiter				 IPv6 Adressen		2001:620:3101:1::/64
-St. Gallen hat 5 Mitarbeiter		 IPv6 Adressen		2001:620:3101:2::/64
-Buchs hat 5 Mitarbeiter				 IPv6 Adressen		2001:620:3101:3::/64
+Chur hat 70 Mitarbeiter						 IPv6 Adressen				2001:620:3101:1::/64
+St. Gallen hat 5 Mitarbeiter					 IPv6 Adressen				2001:620:3101:2::/64
+Buchs hat 5 Mitarbeiter						 IPv6 Adressen				2001:620:3101:3::/64
 
 
-Vlan 10								Geschäftsleitung		10.*.10.*
+Vlan 10								Geschäftsleitung			10.*.10.*
 Vlan 20								Buchhaltung				10.*.20.*
 Vlan 30								Entwicklung				10.*.30.*
 Vlan 99								Management				10.*.99.*
@@ -53,5 +53,10 @@ falls nicht funktioniert vlan pro port-channel
 umbedingt zuerst port-channel erstellen, bevor ein interface dem channel-port channel hinzugefügt worden ist. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
+20.11.2015
+Port Channels auf allen Switches und Router konfigurieren
+Vlan auf Switches erstellen
+Management Ip-Adresse 10.0.99.99 
+Management Ipv6-Adresse ?
 
 
