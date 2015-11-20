@@ -29,7 +29,7 @@ conf t
 vlan 30
 name Entwicklung
 interface vlan 30
-no shut down
+no shutdown
 end
 
 conf t
