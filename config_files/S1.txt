@@ -1,4 +1,8 @@
+enable
 conf t
+hostname S1
+no ip domain-lookup
+
 vlan 99
 name management
 interface vlan 99
