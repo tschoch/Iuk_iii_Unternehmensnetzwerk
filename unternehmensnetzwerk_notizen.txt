@@ -56,7 +56,9 @@ umbedingt zuerst port-channel erstellen, bevor ein interface dem channel-port ch
 20.11.2015
 Port Channels auf allen Switches und Router konfigurieren
 Vlan auf Switches erstellen
-Management Ip-Adresse 10.0.99.99 
-Management Ipv6-Adresse ?
+Management Ip-Adresse erstellt
+Passwörter ganz am schluss setzten, da sonst nur im weg.
+
+
 
 
