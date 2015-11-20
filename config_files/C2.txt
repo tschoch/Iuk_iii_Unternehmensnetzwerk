@@ -3,6 +3,35 @@ conf t
 hostname C2
 no ip domain-lookup
 
+conf t
+vlan 99
+name management
+interface vlan 99
+ip address 10.0.99.40 255.255.255.0
+ipv6 address 2001:620:3101:1099::40/64
+no shut down
+end
+
+conf t
+vlan 10
+name Geschäftsleitung
+interface vlan 10
+no shut down
+end
+
+conf t
+vlan 20
+name Buchhaltung
+interface vlan 20
+no shut down
+end
+
+conf t
+vlan 30
+name Entwicklung
+interface vlan 30
+no shut down
+end
 
 interface port-channel 1
 	no switchport
