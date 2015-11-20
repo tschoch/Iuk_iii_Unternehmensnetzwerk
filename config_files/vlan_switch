@@ -1,0 +1,29 @@
+conf t
+vlan 99
+name management
+interface vlan 99
+ip address 10.0.99.99 255.255.255.0
+no shut down
+end
+
+conf t
+vlan 10
+name Geschäftsleitung
+interface vlan 10
+no shut down
+end
+
+conf t
+vlan 20
+name Buchhaltung
+interface vlan 20
+no shut down
+end
+
+conf t
+vlan 30
+name Entwicklung
+interface vlan 30
+no shut down
+end
+
