@@ -3,7 +3,6 @@ conf t
 hostname C2
 no ip domain-lookup
 
-conf t
 vlan 99
 name management
 interface vlan 99
