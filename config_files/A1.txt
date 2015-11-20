@@ -4,6 +4,36 @@ hostname A1
 no ip domain-lookup
 
 conf t
+vlan 99
+name management
+interface vlan 99
+ip address 10.0.99.10 255.255.255.0
+ipv6 address 2001:620:3101:1099::10/64
+no shut down
+end
+
+conf t
+vlan 10
+name Geschäftsleitung
+interface vlan 10
+no shut down
+end
+
+conf t
+vlan 20
+name Buchhaltung
+interface vlan 20
+no shut down
+end
+
+conf t
+vlan 30
+name Entwicklung
+interface vlan 30
+no shut down
+end
+
+conf t
 interface port-channel 3
 	switchport trunk encapsulation dot1q
 	switchport mode trunk
