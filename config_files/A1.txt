@@ -33,10 +33,16 @@ no shutdown
 end
 
 conf t
+vlan 35
+name native
+interface vlan 35
+no shutdown
+
+conf t
 interface port-channel 3
 	switchport trunk encapsulation dot1q
 	switchport mode trunk
-	switchport trunk native vlan 99
+	switchport trunk native vlan 35
 	no shutdown
 	exit
 	
