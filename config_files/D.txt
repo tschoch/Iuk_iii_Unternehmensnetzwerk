@@ -32,6 +32,13 @@ interface vlan 30
 no shutdown
 end
 
+conf t
+vlan 35
+name native
+interface vlan 35
+no shutdown
+end
+
 interface port-channel 1
 	no switchport
 	ip address 10.1.40.25 255.255.255.252
@@ -51,14 +58,14 @@ interface port-channel 2
 interface port-channel 3
 	switchport trunk encapsulation dot1q
 	switchport mode trunk
-	switchport trunk native vlan 99
+	switchport trunk native vlan 35
 	no shutdown
 	exit
 
 interface port-channel 4
 	switchport trunk encapsulation dot1q
 	switchport mode trunk
-	switchport trunk native vlan 99
+	switchport trunk native vlan 35
 	no shutdown
 	exit
 	
