@@ -3,19 +3,49 @@ conf t
 hostname C1
 no ip domain-lookup
 
+conf t
+vlan 99
+name management
+interface vlan 99
+ip address 10.0.99.30 255.255.255.0
+ipv6 address 2001:620:3101:1099::30/64
+no shut down
+end
+
+conf t
+vlan 10
+name Geschäftsleitung
+interface vlan 10
+no shut down
+end
+
+conf t
+vlan 20
+name Buchhaltung
+interface vlan 20
+no shut down
+end
+
+conf t
+vlan 30
+name Entwicklung
+interface vlan 30
+no shut down
+end
+
 interface port-channel 2
 	no switchport
-  ip address 10.1.40.9 255.255.255.252
-  ipv6 address 2001:620:3101:1042::1/64
-  ipv6 address FE80::1 link-local
+  	ip address 10.1.40.9 255.255.255.252
+  	ipv6 address 2001:620:3101:1042::1/64
+  	ipv6 address FE80::1 link-local
 	no shutdown
 	exit
 
 interface port-channel 5
 	no switchport
-  ip address 10.1.40.16 255.255.255.252
-  ipv6 address 2001:620:3101:1044::1/64
-  ipv6 address FE80::4 link-local
+	 ip address 10.1.40.16 255.255.255.252
+	ipv6 address 2001:620:3101:1044::1/64
+  	ipv6 address FE80::4 link-local
 	no shutdown
 	exit
 
@@ -28,12 +58,12 @@ interface range g0/22-23
 
 
 interface g0/24
-no switchport
-ip address 10.1.40.2 255.255.255.252
-ipv6 address 2001:620:3101:1040::2/64
-ipv6 address FE80::4 link-local
-no shutdown
-exit
+	no switchport
+	ip address 10.1.40.2 255.255.255.252
+	ipv6 address 2001:620:3101:1040::2/64
+	ipv6 address FE80::4 link-local
+	no shutdown
+	exit
 
 interface g0/26
 	no switchport
