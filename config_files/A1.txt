@@ -1,1 +1,22 @@
+enable
+conf t
+hostname A1
+no ip domain-lookup
 
+conf t
+interface port-channel 3
+	switchport trunk encapsulation dot1q
+	switchport mode trunk
+	switchport trunk native vlan 99
+	no shutdown
+	exit
+	
+interface g0/1
+	channel-group 3 mode passive
+	no shutdown
+	exit
+	
+interface g0/2
+	channel-group 3 mode passive
+	no shutdown
+	exit
