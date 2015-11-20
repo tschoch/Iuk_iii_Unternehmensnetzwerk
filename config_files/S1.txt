@@ -40,7 +40,7 @@ no shutdown
 end
 
 conf t 
-interface g/01
+interface g0/1
 switchport mode trunk
 switchport trunk native vlan 35
 no shutdown
