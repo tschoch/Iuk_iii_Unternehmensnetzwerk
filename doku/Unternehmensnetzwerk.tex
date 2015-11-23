@@ -1,0 +1,82 @@
+\documentclass[12pt,a4paper,titlepage]{article}
+\usepackage{graphicx}
+\usepackage[ngerman]{babel} 
+\usepackage[ansinew]{inputenc} 
+\usepackage{setspace}
+\usepackage{tabularx}
+\usepackage[a4paper,left=2cm,right=2cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\fancyhf{} 
+\renewcommand{\headrulewidth}{0.4pt} 
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\sectionmark}[1]{\markright{#1}}
+\renewcommand{\subsectionmark}[1]{}
+\renewcommand{\subsubsectionmark}[1]{}
+\lhead{\nouppercase{\rightmark}}
+\rhead{\thepage}
+\lfoot{Benjamin Mosberger, Tobias Schoch}
+
+%--------Titelseite----------
+\begin{document}
+\newgeometry{left=0cm,right=0cm, top=1cm} 
+\thispagestyle{empty}
+\begin{center}
+	\includegraphics[height=2cm]{logo_ntb.png}
+	\hspace*{6cm}
+	\includegraphics[height=1.6cm]{logo_htw.png}\\
+	\vspace{5cm}
+	\Large{NTB - Interstaatliche Hochschule für Technik Buchs}\\
+	\vspace{3cm}
+	\Huge{IuK\_III\_U-Konzeption und Aufbau eines Unternehmensnetzwerkes}\\
+	\vspace{8cm}
+	\Large{}
+	\doublespacing
+	\begin{tabular}{lll}
+		\textbf{Studierende:} & Benjamin Mosberger, &Tobias Schoch \\ 
+		\textbf{Dozent:} & Beat Bigger \\
+		\textbf{Datum:} & Herbstsemester 2015
+	\end{tabular}	
+\end{center}
+\restoregeometry
+\pagebreak
+
+%--------Abstract----------
+\setcounter{page}{1}
+\onehalfspacing 
+
+\section{Zusammenfassung}
+Die Aufgabe dieser Projektarbeit ist ein Unternehmensnetzwerk im Labor der HTW Chur  zu planen, aufzubauen und zu Dokumentieren. 
+
+\vspace{-1,2em}
+
+\section*{Abstract}
+Das ganze auf Englisch.
+\pagebreak
+
+%--------Inhaltsverzeichnis----------
+\tableofcontents 
+\pagebreak
+
+%--------Inhalt----------
+\section{Ausgangslage} 
+\subsection{Fallbeispiel } 
+\subsection{Praktikumsausrüstung} 
+\section{Konzept}
+\subsection{IP Addresskonzept } 
+\subsection{Routingkonzept} 
+\subsection{Securitykonzept} 
+\subsubsection{ACL}
+\subsubsection{Layer 2 Security}
+\subsection{Serverservices}
+\subsection{Netzwerkplan}
+\section{Planung}
+\section{Umsetzung}
+\end{document}
+
+
+
+
+
+
+
