@@ -41,7 +41,7 @@ end
 
 interface port-channel 1
 	no switchport
-	ip address 10.1.40.25 255.255.255.252
+	ip address 10.1.40.18 255.255.255.252
 	ipv6 address 2001:620:3101:1043::2/64
 	ipv6 address FE80::6 link-local
 	no shutdown
