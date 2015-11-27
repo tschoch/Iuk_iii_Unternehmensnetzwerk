@@ -2,21 +2,25 @@ enable
 conf t
 hostname R1
 no ip domain-lookup
+ipv6 unicast-routing
 ipv6 router ospf 1
+exit
 
 interface s0/1/0
       ip address 10.4.40.1 255.255.255.252
       ipv6 address 2001:620:3101:4041::1/64
       ipv6 address FE80::1 link-local
       clock rate 128000	
+      ipv6 enable
       ipv6 ospf 1 area 0	
       no shutdown
       exit
 
 interface g0/0
-      ip address 10.4.1.40 255.255.255.252
+      ip address 10.1.40.1 255.255.255.252
       ipv6 address 2001:620:3101:1040::1/64
       ipv6 address FE80::1 link-local
+      ipv6 enable
       ipv6 ospf 1 area 0	
       no shutdown
       exit
@@ -25,8 +29,9 @@ interface g0/1
       ip address 10.1.40.5 255.255.255.252
       ipv6 address 2001:620:3101:1041::1/64
       ipv6 address FE80::1 link-local
+      ipv6 enable
+      ipv6 ospf 1 area 0
       no shutdown
-      ipv6 ospf 1 area 0	
       exit
 
 router ospf 1
