@@ -114,7 +114,10 @@ interface g2/0/24
 	exit
 
 
-
+router ospf 1
+	network 10.1.40.8 0.0.0.3 area 0
+	network 10.1.40.16 0.0.0.3 area 0
+	exit
 
 
 
