@@ -1,6 +1,6 @@
 Beide Core Layer 3 Switches sind mit Gigabit Glasfaser verbunden
 Distribution Layer 3 Switches sind gestackt
-20.11.15 exeltabele grüne poe noch zu poe5 wechseln
+
 
 ---IPv4---
 
