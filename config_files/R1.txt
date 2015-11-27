@@ -2,29 +2,33 @@ enable
 conf t
 hostname R1
 no ip domain-lookup
+
 interface s0/1/0
-ip address 10.4.40.1 255.255.255.252
-ipv6 address 2001:620:3101:4041::1/64
-ipv6 address FE80::1 link-local
-clock rate 128000	
-no shutdown
-exit
+      ip address 10.4.40.1 255.255.255.252
+      ipv6 address 2001:620:3101:4041::1/64
+      ipv6 address FE80::1 link-local
+      clock rate 128000	
+      no shutdown
+      exit
+
 interface g0/0
-ip address 10.4.1.40 255.255.255.252
-ipv6 address 2001:620:3101:1040::1/64
-ipv6 address FE80::1 link-local
-no shutdown
-exit
+      ip address 10.4.1.40 255.255.255.252
+      ipv6 address 2001:620:3101:1040::1/64
+      ipv6 address FE80::1 link-local
+      no shutdown
+      exit
+
 interface g0/1
-ip address 10.1.40.5 255.255.255.252
-ipv6 address 2001:620:3101:1041::1/64
-ipv6 address FE80::1 link-local
-no shutdown
-exit
+      ip address 10.1.40.5 255.255.255.252
+      ipv6 address 2001:620:3101:1041::1/64
+      ipv6 address FE80::1 link-local
+      no shutdown
+      exit
 
 router ospf 1
-network 10.1.40.0 0.0.0.3 area 0
-network 10.1.40.4 0.0.0.3 area 0
-network 10.4.40.0 0.0.0.3 area 0
+      network 10.1.40.0 0.0.0.3 area 0
+      network 10.1.40.4 0.0.0.3 area 0
+      network 10.4.40.0 0.0.0.3 area 0
+      exit
 
  
