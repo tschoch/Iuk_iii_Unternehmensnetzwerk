@@ -40,3 +40,8 @@ interface g0/0.99
       
 interface g0/0
       no shutdown
+      exit
+      
+router ospf 1
+      network 10.4.40.4 0.0.0.3 area 0
+      exit
