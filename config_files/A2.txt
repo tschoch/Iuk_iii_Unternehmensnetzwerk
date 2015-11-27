@@ -6,8 +6,8 @@ no ip domain-lookup
 vlan 99
 name management
 interface vlan 99
-ip address 10.0.99.20 255.255.255.0
-ipv6 address 2001:620:3101:1099::20/64
+ip address 10.1.99.20 255.255.255.0
+ipv6 address 2001:620:3101:1199::2/64
 no shutdown
 end
 
