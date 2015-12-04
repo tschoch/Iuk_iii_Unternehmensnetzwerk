@@ -2,6 +2,10 @@ Beide Core Layer 3 Switches sind mit Gigabit Glasfaser verbunden
 Distribution Layer 3 Switches sind gestackt
 
 
+4.12.15-------
+auf D ip addressen portchannel 1/2 getauscht in exel tabelle noch normal
+
+
 ---IPv4---
 
 Chur hat 70 Mitarbeiter				 IPv4 Adressen		10.1.0.0/16
