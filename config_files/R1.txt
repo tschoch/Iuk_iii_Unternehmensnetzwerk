@@ -44,6 +44,67 @@ router ospf 1
 
 ip route 0.0.0.0 0.0.0.0 195.176.242.14
 
+conf t
+ip dhcp pool C_10
+network 10.1.10.0 255.255.255.0
+dns-server 195.176.242.202 195.176.242.233
+default-router 10.1.10.1
+exit
 
+conf t
+ip dhcp pool C_20
+network 10.1.20.0 255.255.255.0
+dns-server 195.176.242.202 195.176.242.233
+default-router 10.1.20.1
+exit
+
+conf t
+ip dhcp pool C_30
+network 10.1.30.0 255.255.255.0
+dns-server 195.176.242.202 195.176.242.233
+default-router 10.1.30.1
+exit
+
+conf t
+ip dhcp pool B_10
+network 10.2.10.0 255.255.255.0
+dns-server 195.176.242.202 195.176.242.233
+default-router 10.2.10.1
+exit
+
+conf t
+ip dhcp pool B_20
+network 10.2.20.0 255.255.255.0
+dns-server 195.176.242.202 195.176.242.233
+default-router 10.2.20.1
+exit
+
+conf t
+ip dhcp pool B_30
+network 10.2.30.0 255.255.255.0
+dns-server 195.176.242.202 195.176.242.233
+default-router 10.2.30.1
+exit
+
+conf t
+ip dhcp pool S_10
+network 10.3.10.0 255.255.255.0
+dns-server 195.176.242.202 195.176.242.233
+default-router 10.3.10.1
+exit
+
+conf t
+ip dhcp pool S_20
+network 10.3.20.0 255.255.255.0
+dns-server 195.176.242.202 195.176.242.233
+default-router 10.3.20.1
+exit
+
+conf t
+ip dhcp pool S_30
+network 10.3.30.0 255.255.255.0
+dns-server 195.176.242.202 195.176.242.233
+default-router 10.3.30.1
+exit
 	
  
