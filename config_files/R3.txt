@@ -61,10 +61,9 @@ router ospf 1
 	network 10.3.20.0 0.0.0.255 area 0
 	network 10.3.30.0 0.0.0.255 area 0
 	network 10.3.99.0 0.0.0.255 area 0
-	passive-interface g0/10
-	passive-interface g0/20
-	passive-interface g0/30
-	passive-interface g0/99
-	
+	passive-interface g0/0.10
+	passive-interface g0/0.20
+	passive-interface g0/0.30
+	passive-interface g0/0.99
 	exit
       
