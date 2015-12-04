@@ -2,6 +2,7 @@ enable
 conf t
 hostname D
 no ip domain-lookup
+ip routing
 ipv6 unicast-routing
 ipv6 router ospf 1
 exit
