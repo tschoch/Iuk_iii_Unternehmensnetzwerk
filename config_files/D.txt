@@ -67,7 +67,6 @@ interface port-channel 3
 	switchport trunk encapsulation dot1q
 	switchport mode trunk
 	switchport trunk native vlan 35
-	ip ospf passive-interface
 	no shutdown
 	exit
 
@@ -75,7 +74,6 @@ interface port-channel 4
 	switchport trunk encapsulation dot1q
 	switchport mode trunk
 	switchport trunk native vlan 35
-	ip ospf passive-interface
 	no shutdown
 	exit
 	
@@ -131,6 +129,8 @@ router ospf 1
 	network 10.1.20.0 0.0.0.255 area 0
 	network 10.1.30.0 0.0.0.255 area 0
 	network 10.1.99.0 0.0.0.255 area 0
+	ip ospf passive-interface port-channel 3
+	ip ospf passive-interface port-channel 4
 	exit
 
 
