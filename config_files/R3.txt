@@ -17,7 +17,6 @@ interface s0/0/0
       
 interface g0/0.10
       encapsulation dot1q 10
-      ip ospf passive-interface
       ip address 10.3.10.1 255.255.255.0
       ipv6 address 2001:620:3101:3010::3/64
       ipv6 address FE80::3 link-local
@@ -27,7 +26,6 @@ interface g0/0.10
       
 interface g0/0.20
       encapsulation dot1q 20
-      ip ospf passive-interface
       ip address 10.3.20.1 255.255.255.0
       ipv6 address 2001:620:3101:3020::3/64
       ipv6 address FE80::3 link-local
@@ -37,7 +35,6 @@ interface g0/0.20
       
 interface g0/0.30
       encapsulation dot1q 30
-      ip ospf passive-interface
       ip address 10.3.30.1 255.255.255.0
       ipv6 address 2001:620:3101:3030::3/64
       ipv6 address FE80::3 link-local
@@ -47,7 +44,6 @@ interface g0/0.30
       
 interface g0/0.99
       encapsulation dot1q 99
-      ip ospf passive-interface
       ip address 10.3.99.1 255.255.255.0
       ipv6 address 2001:620:3101:3099::3/64
       ipv6 address FE80::3 link-local
@@ -60,10 +56,15 @@ interface g0/0
       exit
       
 router ospf 1
-      network 10.4.40.4 0.0.0.3 area 0
+      	network 10.4.40.4 0.0.0.3 area 0
 	network 10.3.10.0 0.0.0.255 area 0
 	network 10.3.20.0 0.0.0.255 area 0
 	network 10.3.30.0 0.0.0.255 area 0
 	network 10.3.99.0 0.0.0.255 area 0
+	ip ospf passive-interface g0/10
+	ip ospf passive-interface g0/20
+	ip ospf passive-interface g0/30
+	ip ospf passive-interface g0/99
+	
 	exit
       
