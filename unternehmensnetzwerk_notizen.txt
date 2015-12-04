@@ -4,16 +4,18 @@ Distribution Layer 3 Switches sind gestackt
 
 ---IPv4---
 
-Chur hat 70 Mitarbeiter				 IPv4 Adressen		10.1.0.0/8
-St. Gallen hat 5 Mitarbeiter			 IPv4 Adressen		10.2.0.0/8
-Buchs hat 5 Mitarbeiter				 IPv4 Adressen		10.3.0.0/8
-Transfer								10.4.0.0/8
+Chur hat 70 Mitarbeiter				 IPv4 Adressen		10.1.0.0/16
+St. Gallen hat 5 Mitarbeiter			 IPv4 Adressen		10.2.0.0/16
+Buchs hat 5 Mitarbeiter				 IPv4 Adressen		10.3.0.0/6
+Transfer								10.4.0.0/16
 
-Vlan 10								Geschäftsleitung			10.*.10.*
-Vlan 20								Buchhaltung				10.*.20.*
-Vlan 30								Entwicklung				10.*.30.*
-								Transfer				10.*.40.*
-Vlan 99								Management				10.*.99.*
+Vlan 10								Geschäftsleitung			10.*.10.*/24
+Vlan 20								Buchhaltung				10.*.20.*/24
+Vlan 30								Entwicklung				10.*.30.*/24
+								Transfer				10.*.40.*/24
+Vlan 99								Management				10.*.99.*/24
+
+Bei Vlans sind die verfügbaren Hosts nur bei den letzten 4 Bits verfügbar.
 
 ---IPv6---
 
@@ -62,8 +64,12 @@ Passwörter ganz am schluss setzten, da sonst nur im weg.
 Glasfaserkabel zwischen C1 und C2 verbunden, haben mit Auge geschaut welches Kabel geleuchtet hat, dann gekreuzt 
 eingesetzt.
 
+04.12.2016
 
+ip routing auf c1 aktivieren, auf c2 nicht mehr nötig gewesen.
 	
+Abgabetermin am 11.Januar 2016 per E-Mail an Beat Bigger 
+Template musste gewechselt werden um IPv6 zu aktivieren 
 
 
 
