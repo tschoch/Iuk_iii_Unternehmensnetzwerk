@@ -71,6 +71,18 @@ ip routing auf c1 aktivieren, auf c2 nicht mehr nötig gewesen.
 Abgabetermin am 11.Januar 2016 per E-Mail an Beat Bigger 
 Template musste gewechselt werden um IPv6 zu aktivieren 
 
+interface vlan 10
+ip address 10.1.10.1 255.255.255.0
+
+
+interface vlan 20
+ip address 10.1.20.1 255.255.255.0
+
+interface vlan 30
+ip address 10.1.30.1 255.255.255.0
+
+interface vlan 99
+ip address 10.1.99.1 255.255.255.0
 
 
 
