@@ -88,4 +88,6 @@ ip address 10.1.99.1 255.255.255.0
 für redundante verbindung zum dhcp server auf r1 muss auf r1 ein loopback interface inklusive ip adresse angelegt werden.
 Auf D kann dann die Loopbackadresse als DHCP helper address angegeben werden, diese ist dann auch immer verfügbar
 
+10.12.2015
+Die gestackten Switches waren falsch angenommen, D1 ist 2/ und D2 ist 1/ . Deshalb hat OSPF auf diese Interfaces nicht funktioniert.
 
