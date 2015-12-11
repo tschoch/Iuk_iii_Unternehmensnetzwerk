@@ -108,6 +108,6 @@ default-router 10.3.30.1
 exit
 	
  interface lo 0
-      ip address 10.1.0.0 255.255.255.252
+      ip address 10.1.0.1 255.255.255.252
       no shutdown
       exit
