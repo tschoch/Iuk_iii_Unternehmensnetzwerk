@@ -12,6 +12,7 @@ interface s0/0/0
       ipv6 address FE80::2 link-local
       ipv6 enable
       ipv6 ospf 1 area 0	
+      ip helper-address 10.4.40.1
       no shutdown
       exit
       
