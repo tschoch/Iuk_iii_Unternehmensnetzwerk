@@ -11,7 +11,8 @@ interface s0/0/0
       ipv6 address 2001:620:3101:4040::3/64
       ipv6 address FE80::3 link-local
       ipv6 enable
-      ipv6 ospf 1 area 0	
+      ipv6 ospf 1 area 0
+      ip helper-address 10.4.40.1
       no shutdown
       exit
       
