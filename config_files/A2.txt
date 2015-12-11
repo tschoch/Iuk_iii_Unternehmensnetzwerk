@@ -2,7 +2,7 @@ enable
 conf t
 hostname A2
 no ip domain-lookup
-ip default-gateway 10.1.99.20
+ip default-gateway 10.0.99.50
 
 vlan 99
 name management
