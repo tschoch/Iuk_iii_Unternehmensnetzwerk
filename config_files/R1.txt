@@ -107,4 +107,7 @@ dns-server 195.176.242.202 195.176.242.233
 default-router 10.3.30.1
 exit
 	
- 
+ interface lo 0
+      ip address 10.1.0.0 255.255.255.252
+      no shutdown
+      exit
