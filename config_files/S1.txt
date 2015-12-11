@@ -7,8 +7,8 @@ ip default-gateway 10.2.99.1
 vlan 99
 name management
 interface vlan 99
-ip address 10.0.99.60 255.255.255.0
-ipv6 address 2001:620:3101:2099::10/64
+ip address 10.2.99.10 255.255.255.0
+ipv6 address 2001:620:3101:2199::1/64
 no shutdown
 end
 
