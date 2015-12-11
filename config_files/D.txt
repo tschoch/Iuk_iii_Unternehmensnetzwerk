@@ -142,7 +142,7 @@ interface vlan 10
 	ipv6 address 2001:620:3101:1010::1/64
 	ipv6 address FE80::6 link-local
 	ipv6 enable
-
+	ip helper-address 10.1.0.1
 	exit
 
 interface vlan 20
@@ -151,7 +151,7 @@ interface vlan 20
 	ipv6 address 2001:620:3101:1020::1/64
 	ipv6 address FE80::6 link-local
 	ipv6 enable
-
+	ip helper-address 10.1.0.1
 	exit
 
 interface vlan 30
@@ -160,7 +160,7 @@ interface vlan 30
 	ipv6 address 2001:620:3101:1030::1/64
 	ipv6 address FE80::6 link-local
 	ipv6 enable
-
+	ip helper-address 10.1.0.1
 	exit
 
 interface vlan 99
