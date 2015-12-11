@@ -172,10 +172,10 @@ interface vlan 99
 	exit
 	
 	
-interface port-channel 1
+interface port-channel 4
 	ip helper-address 10.1.0.0
 	exit
 
-interface port-channel 2
+interface port-channel 3
 	ip helper-address 10.1.0.0
 	exit
