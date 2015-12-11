@@ -81,7 +81,3 @@ router ospf 1
 	passive-interface g0/0.30
 	passive-interface g0/0.99
 	exit
-
-router ospf 1
-	network 10.1.0.0 0.0.0.3 area 0
-
