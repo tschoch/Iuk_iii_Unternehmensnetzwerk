@@ -158,8 +158,9 @@ ip nat inside source list 110 pool stgallen20 overload
 ip nat inside source list 111 pool stgallen30 overload
 ip nat inside source list 112 pool stgallen99 overload
 
-interface fe 0
+interface f 0/0/0
 ip nat outside 
+no shutdown
 exit
 
 interface s0/1/0
