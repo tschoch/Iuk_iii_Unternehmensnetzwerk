@@ -49,11 +49,13 @@ interface port-channel 4
 	
 interface g0/1
 	channel-group 4 mode passive
+	switchport trunk native vlan 35
 	no shutdown
 	exit
 	
 interface g0/2
 	channel-group 4 mode passive
+	switchport trunk native vlan 35
 	no shutdown
 	exit
 
