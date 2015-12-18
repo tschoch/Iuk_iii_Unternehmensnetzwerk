@@ -119,103 +119,145 @@ Nat konfigurieren. nat ip adresse muss doppelt eingegeben werden. acl für nat m
 
 
 
--------A1/A2--------
+----d---
 
-ip access-list extended 113
-	permit ip 10.1.10.0 0.0.0.255 10.2.10.0 0.0.0.255
-	permit ip 10.1.10.0 0.0.0.255 10.3.10.0 0.0.0.255
-	permit tcp 10.1.10.0 0.0.0.255 any eq www
+
+ipv6 access-list c10
+	deny ip 10.1.20.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.1.10.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
 exit
-
-
 interface vlan 10
-	ip access-group 113 out
-exit
+ipv6 traffic-filter c10 in
+end
 
-ip access-list extended 114
-	permit ip 10.1.20.0 0.0.0.255 10.2.20.0 0.0.0.255
-	permit ip 10.1.20.0 0.0.0.255 10.3.20.0 0.0.0.255
-	permit tcp 10.1.20.0 0.0.0.255 any eq www
-exit
 
+ipv6 access-list c20
+deny ip 10.1.10.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.1.20.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
+exit
 interface vlan 20
-	ip access-group 114 out
-exit
+ipv6 traffic-filter c20 in
+end
 
-ip access-list extended 115
-	permit ip 10.1.30.0 0.0.0.255 10.2.30.0 0.0.0.255
-	permit ip 10.1.30.0 0.0.0.255 10.3.30.0 0.0.0.255
-	permit tcp 10.1.30.0 0.0.0.255 any eq www
+ipv6 access-list c30
+deny ip 10.1.10.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.1.20.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.1.30.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
 exit
-
 interface vlan 30
-	ip access-group 115 out
+ipv6 traffic-filter c30 in
+end
+
+
+
+
+-----r2-----
+
+ipv6 access-list b10
+deny ip 10.1.20.0 0.0.0.255 10.2.10.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.2.10.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.2.10.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.2.10.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.2.10.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.2.10.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
 exit
+interface g0/0.10
+ipv6 traffic-filter b10 in
+end
 
-
--------S2--------
-
-ip access-list extended 119
-permit ip 10.3.10.0 0.0.0.255 10.1.10.0 0.0.0.255
-permit ip 10.3.10.0 0.0.0.255 10.2.10.0 0.0.0.255
-permit tcp 10.3.10.0 0.0.0.255 any eq www
+ipv6 access-list b20
+deny ip 10.1.10.0 0.0.0.255 10.2.20.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.2.20.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.2.20.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.2.20.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.2.20.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.2.20.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
 exit
+interface g0/0.20
+ipv6 traffic-filter b20 in
+end
 
-interface vlan 10
-ip access-group 119 out
+
+ipv6 access-list b30
+deny ip 10.1.10.0 0.0.0.255 10.2.30.0 0.0.0.255
+	deny ip 10.1.20.0 0.0.0.255 10.2.30.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.2.30.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.2.30.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.2.30.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.2.30.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
 exit
+interface g0/0.30
+ipv6 traffic-filter b30 in
+end
 
-ip access-list extended 120
-permit ip 10.3.20.0 0.0.0.255 10.1.20.0 0.0.0.255
-permit ip 10.3.20.0 0.0.0.255 10.2.20.0 0.0.0.255
-permit tcp 10.3.20.0 0.0.0.255 any eq www
+
+
+
+-----r3-----
+
+ipv6 access-list s10
+	deny ip 10.1.20.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.3.10.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
 exit
+interface interface g0/0.10
+ipv6 traffic-filter s10 in
+end
 
-interface vlan 20
-ip access-group 120 out
+ipv6 access-list s20
+deny ip 10.1.10.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.3.20.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
 exit
+interface g0/0.20
+ipv6 traffic-filter s20 in
+end
 
-ip access-list extended 121
-permit ip 10.3.30.0 0.0.0.255 10.1.30.0 0.0.0.255
-permit ip 10.3.30.0 0.0.0.255 10.2.30.0 0.0.0.255
-permit tcp 10.3.30.0 0.0.0.255 any eq www
+
+ipv6 access-list s30
+deny ip 10.1.10.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.1.20.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.3.30.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
 exit
-
-interface vlan 30
-ip access-group 121 out
-exit
-
-
-
----------S1-----------
-ip access-list extended 116
-permit ip 10.2.10.0 0.0.0.255 10.1.10.0 0.0.0.255
-permit ip 10.2.10.0 0.0.0.255 10.3.10.0 0.0.0.255
-permit tcp 10.2.10.0 0.0.0.255 any eq www
-exit
-
-interface vlan 10
-ip access-group 116 out
-exit
-
-ip access-list extended 117
-permit ip 10.2.20.0 0.0.0.255 10.1.20.0 0.0.0.255
-permit ip 10.2.20.0 0.0.0.255 10.3.20.0 0.0.0.255
-permit tcp 10.2.20.0 0.0.0.255 any eq www
-exit
-
-interface vlan 20
-ip access-group 117 out
-exit
-
-ip access-list extended 118
-permit ip 10.2.30.0 0.0.0.255 10.1.30.0 0.0.0.255
-permit ip 10.2.30.0 0.0.0.255 10.3.30.0 0.0.0.255
-permit tcp 10.2.30.0 0.0.0.255 any eq www
-exit
-
-interface vlan 30
-ip access-group 118 out
-exit
-
+interface g0/0.30
+ipv6 traffic-filter s30 in
+end
 
