@@ -73,40 +73,6 @@ router ospf 1
       
 
 
-
-ip access-list extended 119
-permit ip 10.3.10.0 0.0.0.255 10.1.10.0 0.0.0.255
-permit ip 10.3.10.0 0.0.0.255 10.2.10.0 0.0.0.255
-permit tcp 10.3.10.0 0.0.0.255 any eq www
-permit host 0.0.0.0 host 255.255.255.255
-exit
-
-interface vlan 10
-ip access-group 119 in
-exit
-
-ip access-list extended 120
-permit ip 10.3.20.0 0.0.0.255 10.1.20.0 0.0.0.255
-permit ip 10.3.20.0 0.0.0.255 10.2.20.0 0.0.0.255
-permit tcp 10.3.20.0 0.0.0.255 any eq www
-permit host 0.0.0.0 host 255.255.255.255
-exit
-
-interface vlan 20
-ip access-group 120 in
-exit
-
-ip access-list extended 121
-permit ip 10.3.30.0 0.0.0.255 10.1.30.0 0.0.0.255
-permit ip 10.3.30.0 0.0.0.255 10.2.30.0 0.0.0.255
-permit tcp 10.3.30.0 0.0.0.255 any eq www
-permit host 0.0.0.0 host 255.255.255.255
-exit
-
-interface vlan 30
-ip access-group 121 in
-exit
-
 ip access-list extended 119
 	deny ip 10.1.20.0 0.0.0.255 10.3.10.0 0.0.0.255
 	deny ip 10.1.30.0 0.0.0.255 10.3.10.0 0.0.0.255
@@ -114,7 +80,7 @@ ip access-list extended 119
 	deny ip 10.2.30.0 0.0.0.255 10.3.10.0 0.0.0.255
 	deny ip 10.3.20.0 0.0.0.255 10.3.10.0 0.0.0.255
 	deny ip 10.3.30.0 0.0.0.255 10.3.10.0 0.0.0.255
-	permit any any
+	permit ip any any
 	permit tcp any any
 exit
 
@@ -129,7 +95,7 @@ ip access-list extended 120
 	deny ip 10.2.30.0 0.0.0.255 10.3.20.0 0.0.0.255
 	deny ip 10.3.10.0 0.0.0.255 10.3.20.0 0.0.0.255
 	deny ip 10.3.30.0 0.0.0.255 10.3.20.0 0.0.0.255
-	permit any any
+	permit ip any any
 	permit tcp any any
 exit
 
@@ -144,7 +110,7 @@ ip access-list extended 121
 	deny ip 10.2.20.0 0.0.0.255 10.3.30.0 0.0.0.255
 	deny ip 10.3.10.0 0.0.0.255 10.3.30.0 0.0.0.255
 	deny ip 10.3.20.0 0.0.0.255 10.3.30.0 0.0.0.255
-	permit any any
+	permit ip any any
 	permit tcp any any
 exit
 
