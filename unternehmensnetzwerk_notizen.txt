@@ -113,5 +113,5 @@ Die gestackten Switches waren falsch angenommen, D1 ist 2/ und D2 ist 1/ . Desha
 
 Native Vlan mismatch auf A2 auf physischen Ports mussten die nativ vlans noch angepasst werden. 
 sobald die ports g0/1 und g0/2 die nativ vlan eingegeben wurden gingen die ports up,
-Nat konfigurieren.
+Nat konfigurieren. nat ip adresse muss doppelt eingegeben werden. acl für nat muss umkonfiguriert werden.
 
