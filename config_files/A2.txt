@@ -59,3 +59,18 @@ interface g0/2
 	no shutdown
 	exit
 
+interface f0/1
+  switchport mode trunk
+  switchport access vlan 10
+exit
+  
+interface f0/2
+  switchport mode trunk
+  switchport access vlan 20
+exit
+  
+interface f0/2
+  switchport mode trunk
+  switchport access vlan 30
+exit
+  
