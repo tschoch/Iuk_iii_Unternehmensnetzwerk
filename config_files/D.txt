@@ -175,11 +175,16 @@ interface vlan 99
 	
 	
 	
+
 ip access-list extended 113
-	permit ip 10.1.10.0 0.0.0.255 10.2.10.0 0.0.0.255
-	permit ip 10.1.10.0 0.0.0.255 10.3.10.0 0.0.0.255
-	permit tcp 10.1.10.0 0.0.0.255 any eq www
-	permit host 0.0.0.0 host 255.255.255.255
+	deny ip 10.1.20.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.1.10.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.1.10.0 0.0.0.255
+	permit ip any any
+	permit tcp any any
 exit
 
 
@@ -188,10 +193,14 @@ interface vlan 10
 exit
 
 ip access-list extended 114
-	permit ip 10.1.20.0 0.0.0.255 10.2.20.0 0.0.0.255
-	permit ip 10.1.20.0 0.0.0.255 10.3.20.0 0.0.0.255
-	permit tcp 10.1.20.0 0.0.0.255 any eq www
-	permit host 0.0.0.0 host 255.255.255.255
+	deny ip 10.1.10.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.1.20.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.1.20.0 0.0.0.255
+	permit any any
+	permit tcp any any
 exit
 
 interface vlan 20
@@ -199,12 +208,17 @@ interface vlan 20
 exit
 
 ip access-list extended 115
-	permit ip 10.1.30.0 0.0.0.255 10.2.30.0 0.0.0.255
-	permit ip 10.1.30.0 0.0.0.255 10.3.30.0 0.0.0.255
-	permit tcp 10.1.30.0 0.0.0.255 any eq www
-	permit host 0.0.0.0 host 255.255.255.255
+	deny ip 10.1.10.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.1.20.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.1.30.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.1.30.0 0.0.0.255
+	permit any any
+	permit tcp any any
 exit
 
 interface vlan 30
 	ip access-group 115 in
 exit
+
