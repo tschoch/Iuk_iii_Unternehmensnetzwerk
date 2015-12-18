@@ -172,3 +172,36 @@ interface vlan 99
 	ip helper-address 10.1.0.1
 	exit
 	
+	
+	
+	
+ip access-list extended 113
+	permit ip 10.1.10.0 0.0.0.255 10.2.10.0 0.0.0.255
+	permit ip 10.1.10.0 0.0.0.255 10.3.10.0 0.0.0.255
+	permit tcp 10.1.10.0 0.0.0.255 any eq www
+exit
+
+
+interface vlan 10
+	ip access-group 113 in
+exit
+
+ip access-list extended 114
+	permit ip 10.1.20.0 0.0.0.255 10.2.20.0 0.0.0.255
+	permit ip 10.1.20.0 0.0.0.255 10.3.20.0 0.0.0.255
+	permit tcp 10.1.20.0 0.0.0.255 any eq www
+exit
+
+interface vlan 20
+	ip access-group 114 in
+exit
+
+ip access-list extended 115
+	permit ip 10.1.30.0 0.0.0.255 10.2.30.0 0.0.0.255
+	permit ip 10.1.30.0 0.0.0.255 10.3.30.0 0.0.0.255
+	permit tcp 10.1.30.0 0.0.0.255 any eq www
+exit
+
+interface vlan 30
+	ip access-group 115 in
+exit
