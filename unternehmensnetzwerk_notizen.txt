@@ -115,3 +115,107 @@ Native Vlan mismatch auf A2 auf physischen Ports mussten die nativ vlans noch an
 sobald die ports g0/1 und g0/2 die nativ vlan eingegeben wurden gingen die ports up,
 Nat konfigurieren. nat ip adresse muss doppelt eingegeben werden. acl für nat muss umkonfiguriert werden.
 
+
+
+
+
+-------A1/A2--------
+
+ip access-list extended 113
+	permit ip 10.1.10.0 0.0.0.255 10.2.10.0 0.0.0.255
+	permit ip 10.1.10.0 0.0.0.255 10.3.10.0 0.0.0.255
+	permit tcp 10.1.10.0 0.0.0.255 any eq www
+exit
+
+
+interface vlan 10
+	ip access-group 113 out
+exit
+
+ip access-list extended 114
+	permit ip 10.1.20.0 0.0.0.255 10.2.20.0 0.0.0.255
+	permit ip 10.1.20.0 0.0.0.255 10.3.20.0 0.0.0.255
+	permit tcp 10.1.20.0 0.0.0.255 any eq www
+exit
+
+interface vlan 20
+	ip access-group 114 out
+exit
+
+ip access-list extended 115
+	permit ip 10.1.30.0 0.0.0.255 10.2.30.0 0.0.0.255
+	permit ip 10.1.30.0 0.0.0.255 10.3.30.0 0.0.0.255
+	permit tcp 10.1.30.0 0.0.0.255 any eq www
+exit
+
+interface vlan 30
+	ip access-group 115 out
+exit
+
+
+-------S2--------
+
+ip access-list extended 119
+permit ip 10.3.10.0 0.0.0.255 10.1.10.0 0.0.0.255
+permit ip 10.3.10.0 0.0.0.255 10.2.10.0 0.0.0.255
+permit tcp 10.3.10.0 0.0.0.255 any eq www
+exit
+
+interface vlan 10
+ip access-group 119 out
+exit
+
+ip access-list extended 120
+permit ip 10.3.20.0 0.0.0.255 10.1.20.0 0.0.0.255
+permit ip 10.3.20.0 0.0.0.255 10.2.20.0 0.0.0.255
+permit tcp 10.3.20.0 0.0.0.255 any eq www
+exit
+
+interface vlan 20
+ip access-group 120 out
+exit
+
+ip access-list extended 121
+permit ip 10.3.30.0 0.0.0.255 10.1.30.0 0.0.0.255
+permit ip 10.3.30.0 0.0.0.255 10.2.30.0 0.0.0.255
+permit tcp 10.3.30.0 0.0.0.255 any eq www
+exit
+
+interface vlan 30
+ip access-group 121 out
+exit
+
+
+
+---------S1-----------
+ip access-list extended 116
+permit ip 10.2.10.0 0.0.0.255 10.1.10.0 0.0.0.255
+permit ip 10.2.10.0 0.0.0.255 10.3.10.0 0.0.0.255
+permit tcp 10.2.10.0 0.0.0.255 any eq www
+exit
+
+interface vlan 10
+ip access-group 116 out
+exit
+
+ip access-list extended 117
+permit ip 10.2.20.0 0.0.0.255 10.1.20.0 0.0.0.255
+permit ip 10.2.20.0 0.0.0.255 10.3.20.0 0.0.0.255
+permit tcp 10.2.20.0 0.0.0.255 any eq www
+exit
+
+interface vlan 20
+ip access-group 117 out
+exit
+
+ip access-list extended 118
+permit ip 10.2.30.0 0.0.0.255 10.1.30.0 0.0.0.255
+permit ip 10.2.30.0 0.0.0.255 10.3.30.0 0.0.0.255
+permit tcp 10.2.30.0 0.0.0.255 any eq www
+exit
+
+interface vlan 30
+ip access-group 118 out
+exit
+
+
