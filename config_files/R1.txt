@@ -175,3 +175,5 @@ exit
 interface g0/1
 ip nat inside
 exit
+
+ipv6 route ::/0 f0/0/0
