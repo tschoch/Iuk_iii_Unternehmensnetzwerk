@@ -91,7 +91,7 @@ ip access-list extended 116
 	deny ip 10.2.30.0 0.0.0.255 10.2.10.0 0.0.0.255
 	deny ip 10.3.20.0 0.0.0.255 10.2.10.0 0.0.0.255
 	deny ip 10.3.30.0 0.0.0.255 10.2.10.0 0.0.0.255
-	permit any any
+	permit ip any any
 	permit tcp any any
 exit
 
@@ -106,7 +106,7 @@ ip access-list extended 117
 	deny ip 10.2.30.0 0.0.0.255 10.2.20.0 0.0.0.255
 	deny ip 10.3.10.0 0.0.0.255 10.2.20.0 0.0.0.255
 	deny ip 10.3.30.0 0.0.0.255 10.2.20.0 0.0.0.255
-	permit any any
+	permit ip any any
 	permit tcp any any
 exit
 
@@ -121,7 +121,7 @@ ip access-list extended 118
 	deny ip 10.2.20.0 0.0.0.255 10.2.30.0 0.0.0.255
 	deny ip 10.3.10.0 0.0.0.255 10.2.30.0 0.0.0.255
 	deny ip 10.3.20.0 0.0.0.255 10.2.30.0 0.0.0.255
-	permit any any
+	permit ip any any
 	permit tcp any any
 exit
 
