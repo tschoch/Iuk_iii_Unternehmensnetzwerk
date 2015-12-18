@@ -107,5 +107,11 @@ für redundante verbindung zum dhcp server auf r1 muss auf r1 ein loopback inter
 Auf D kann dann die Loopbackadresse als DHCP helper address angegeben werden, diese ist dann auch immer verfügbar
 
 10.12.2015
-Die gestackten Switches waren falsch angenommen, D1 ist 2/ und D2 ist 1/ . Deshalb hat OSPF auf diese Interfaces nicht funktioniert.
+Die gestackten Switches waren falsch angenommen, D1 ist 2/ und D2 ist 1/ . Deshalb hat OSPF auf diese Interfaces nicht funktioniert. umkonfigurieren
+
+18.12.2015:
+
+Native Vlan mismatch auf A2 auf physischen Ports mussten die nativ vlans noch angepasst werden. 
+sobald die ports g0/1 und g0/2 die nativ vlan eingegeben wurden gingen die ports up,
+Nat konfigurieren.
 
