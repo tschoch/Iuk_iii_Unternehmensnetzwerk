@@ -46,36 +46,3 @@ switchport mode trunk
 switchport trunk native vlan 35
 no shutdown
 end
-
-
-
-ip access-list extended 119
-permit ip 10.3.10.0 0.0.0.255 10.1.10.0 0.0.0.255
-permit ip 10.3.10.0 0.0.0.255 10.2.10.0 0.0.0.255
-permit tcp 10.3.10.0 0.0.0.255 any eq www
-exit
-
-interface vlan 10
-ip access-group 119 out
-exit
-
-ip access-list extended 120
-permit ip 10.3.20.0 0.0.0.255 10.1.20.0 0.0.0.255
-permit ip 10.3.20.0 0.0.0.255 10.2.20.0 0.0.0.255
-permit tcp 10.3.20.0 0.0.0.255 any eq www
-exit
-
-interface vlan 20
-ip access-group 120 out
-exit
-
-ip access-list extended 121
-permit ip 10.3.30.0 0.0.0.255 10.1.30.0 0.0.0.255
-permit ip 10.3.30.0 0.0.0.255 10.2.30.0 0.0.0.255
-permit tcp 10.3.30.0 0.0.0.255 any eq www
-exit
-
-interface vlan 30
-ip access-group 121 out
-exit
-
