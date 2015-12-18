@@ -132,18 +132,18 @@ ip nat pool stgallen20 195.176.242.26 195.176.242.26 netmask 255.255.255.240
 ip nat pool stgallen30 195.176.242.27 195.176.242.27 netmask 255.255.255.240 
 ip nat pool stgallen99 195.176.242.28 195.176.242.28 netmask 255.255.255.240 
 
-access-list 110 permit 10.1.10.0 0.0.0.255
-access-list 120 permit 10.1.20.0 0.0.0.255
-access-list 130 permit 10.1.30.0 0.0.0.255
-access-list 199 permit 10.1.99.0 0.0.0.255
-access-list 210 permit 10.2.10.0 0.0.0.255
-access-list 220 permit 10.2.20.0 0.0.0.255
-access-list 230 permit 10.2.30.0 0.0.0.255
-access-list 299 permit 10.2.99.0 0.0.0.255
-access-list 310 permit 10.3.10.0 0.0.0.255
-access-list 320 permit 10.3.20.0 0.0.0.255
-access-list 330 permit 10.3.30.0 0.0.0.255
-access-list 399 permit 10.3.99.0 0.0.0.255
+access-list 110 permit ip 10.1.10.0 0.0.0.255 host 195.176.242.17
+access-list 120 permit ip 10.1.20.0 0.0.0.255 host 195.176.242.18
+access-list 130 permit ip 10.1.30.0 0.0.0.255 host 195.176.242.19
+access-list 199 permit ip 10.1.99.0 0.0.0.255 host 195.176.242.20
+access-list 210 permit ip 10.2.10.0 0.0.0.255 host 195.176.242.21
+access-list 220 permit ip 10.2.20.0 0.0.0.255 host 195.176.242.22
+access-list 230 permit ip 10.2.30.0 0.0.0.255 host 195.176.242.23
+access-list 299 permit ip 10.2.99.0 0.0.0.255 host 195.176.242.24
+access-list 310 permit ip 10.3.10.0 0.0.0.255 host 195.176.242.25
+access-list 320 permit ip 10.3.20.0 0.0.0.255 host 195.176.242.26
+access-list 330 permit ip 10.3.30.0 0.0.0.255 host 195.176.242.27
+access-list 399 permit ip 10.3.99.0 0.0.0.255 host 195.176.242.28
 
 ip nat inside source list 110 pool chur10 overload
 ip nat inside source list 120 pool chur20 overload
