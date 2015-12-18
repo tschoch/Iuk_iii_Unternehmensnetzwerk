@@ -106,3 +106,48 @@ exit
 interface vlan 30
 ip access-group 121 in
 exit
+
+ip access-list extended 119
+	deny ip 10.1.20.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.3.10.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.3.10.0 0.0.0.255
+	permit any any
+	permit tcp any any
+exit
+
+interface g0/0.10
+ip access-group 119 in
+exit
+
+ip access-list extended 120
+	deny ip 10.1.10.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.1.30.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.2.30.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.3.20.0 0.0.0.255
+	deny ip 10.3.30.0 0.0.0.255 10.3.20.0 0.0.0.255
+	permit any any
+	permit tcp any any
+exit
+
+interface g0/0.20
+ip access-group 120 in
+exit
+
+ip access-list extended 121
+	deny ip 10.1.10.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.1.20.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.2.10.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.2.20.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.3.10.0 0.0.0.255 10.3.30.0 0.0.0.255
+	deny ip 10.3.20.0 0.0.0.255 10.3.30.0 0.0.0.255
+	permit any any
+	permit tcp any any
+exit
+
+interface g0/0.30
+ip access-group 121 in
+exit
