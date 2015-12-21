@@ -95,6 +95,7 @@ interface GigabitEthernet0/0.30
  ipv6 address FE80::2 link-local
  ipv6 address 2001:620:3101:2030::2/64
  ipv6 enable
+ ipv6 traffic-filter b30 in
  ipv6 ospf 1 area 0
 !
 interface GigabitEthernet0/0.99
@@ -187,8 +188,20 @@ ipv6 access-list b10
 ipv6 access-list b20
  deny ipv6 2001:620:3101:2020::/64 2001:620:3101:1010::/64
  deny ipv6 2001:620:3101:2020::/64 2001:620:3101:1030::/64
+ deny ipv6 2001:620:3101:2020::/64 2001:620:3101:2010::/64
+ deny ipv6 2001:620:3101:2020::/64 2001:620:3101:2030::/64
  deny ipv6 2001:620:3101:2020::/64 2001:620:3101:3010::/64
  deny ipv6 2001:620:3101:2020::/64 2001:620:3101:3030::/64
+ permit ipv6 any any
+ permit tcp any any
+!
+ipv6 access-list b30
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:1010::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:1020::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:2010::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:2020::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:3010::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:3020::/64
  permit ipv6 any any
  permit tcp any any
 !
@@ -212,3 +225,4 @@ line vty 0 4
 scheduler allocate 20000 1000
 !
 end
+
