@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 9722 bytes
+Current configuration : 9902 bytes
 !
-! Last configuration change at 02:32:04 UTC Wed Mar 30 2011
+! Last configuration change at 03:14:25 UTC Wed Mar 30 2011
 ! NVRAM config last updated at 01:29:25 UTC Wed Mar 30 2011
 !
 version 15.0
@@ -271,26 +271,33 @@ interface Vlan1
 interface Vlan10
  description GeschC$ftsleitung
  ip address 10.1.10.1 255.255.255.0
+ ip access-group 113 in
  ip helper-address 10.1.0.1
  ipv6 address FE80::6 link-local
  ipv6 address 2001:620:3101:1010::1/64
  ipv6 enable
+ ipv6 nd ra interval 10
+ ipv6 traffic-filter c10 in
 !
 interface Vlan20
  description Buchaltung
  ip address 10.1.20.1 255.255.255.0
+ ip access-group 114 in
  ip helper-address 10.1.0.1
  ipv6 address FE80::6 link-local
  ipv6 address 2001:620:3101:1020::1/64
  ipv6 enable
+ ipv6 traffic-filter c20 in
 !
 interface Vlan30
  description Entwicklung
  ip address 10.1.30.1 255.255.255.0
+ ip access-group 115 in
  ip helper-address 10.1.0.1
  ipv6 address FE80::6 link-local
  ipv6 address 2001:620:3101:1030::1/64
  ipv6 enable
+ ipv6 traffic-filter c30 in
 !
 interface Vlan35
  no ip address
@@ -386,3 +393,4 @@ line vty 5 15
  login
 !
 end
+
