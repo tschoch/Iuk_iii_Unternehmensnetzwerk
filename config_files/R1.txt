@@ -1,150 +1,187 @@
-enable
-conf t
+Building configuration...
+
+Current configuration : 5533 bytes
+!
+! Last configuration change at 09:40:32 UTC Mon Dec 21 2015
+version 15.3
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
 hostname R1
-no ip domain-lookup
-ipv6 unicast-routing
-ipv6 router ospf 1
-exit
-
-interface s0/1/0
-      ip address 10.4.40.1 255.255.255.252
-      ipv6 address 2001:620:3101:4041::1/64
-      ipv6 address FE80::1 link-local
-      clock rate 128000	
-      ipv6 enable
-      ipv6 ospf 1 area 0	
-      no shutdown
-      exit
-
-interface g0/0
-      ip address 10.1.40.1 255.255.255.252
-      ipv6 address 2001:620:3101:1040::1/64
-      ipv6 address FE80::1 link-local
-      ipv6 enable
-      ipv6 ospf 1 area 0	
-      no shutdown
-      exit
-
-interface g0/1
-      ip address 10.1.40.5 255.255.255.252
-      ipv6 address 2001:620:3101:1041::1/64
-      ipv6 address FE80::1 link-local
-      ipv6 enable
-      ipv6 ospf 1 area 0
-      no shutdown
-      exit
-
-router ospf 1
-      network 10.1.40.0 0.0.0.3 area 0
-      network 10.1.40.4 0.0.0.3 area 0
-      network 10.4.40.0 0.0.0.3 area 0
-      default-information originate	
-      exit
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+ip cef
+!
+!
+!
+!
 
 
-ip route 0.0.0.0 0.0.0.0 195.176.242.14
-
-conf t
+!
+!
 ip dhcp pool C_10
-network 10.1.10.0 255.255.255.0
-dns-server 195.176.242.202 195.176.242.233
-default-router 10.1.10.1
-exit
-
-conf t
+ network 10.1.10.0 255.255.255.0
+ dns-server 195.176.242.202 195.176.242.233
+ default-router 10.1.10.1
+!
 ip dhcp pool C_20
-network 10.1.20.0 255.255.255.0
-dns-server 195.176.242.202 195.176.242.233
-default-router 10.1.20.1
-exit
-
-conf t
+ network 10.1.20.0 255.255.255.0
+ dns-server 195.176.242.202 195.176.242.233
+ default-router 10.1.20.1
+!
 ip dhcp pool C_30
-network 10.1.30.0 255.255.255.0
-dns-server 195.176.242.202 195.176.242.233
-default-router 10.1.30.1
-exit
-
-conf t
+ network 10.1.30.0 255.255.255.0
+ dns-server 195.176.242.202 195.176.242.233
+ default-router 10.1.30.1
+!
 ip dhcp pool B_10
-network 10.2.10.0 255.255.255.0
-dns-server 195.176.242.202 195.176.242.233
-default-router 10.2.10.1
-exit
-
-conf t
+ network 10.2.10.0 255.255.255.0
+ dns-server 195.176.242.202 195.176.242.233
+ default-router 10.2.10.1
+!
 ip dhcp pool B_20
-network 10.2.20.0 255.255.255.0
-dns-server 195.176.242.202 195.176.242.233
-default-router 10.2.20.1
-exit
-
-conf t
+ network 10.2.20.0 255.255.255.0
+ dns-server 195.176.242.202 195.176.242.233
+ default-router 10.2.20.1
+!
 ip dhcp pool B_30
-network 10.2.30.0 255.255.255.0
-dns-server 195.176.242.202 195.176.242.233
-default-router 10.2.30.1
-exit
-
-conf t
+ network 10.2.30.0 255.255.255.0
+ dns-server 195.176.242.202 195.176.242.233
+ default-router 10.2.30.1
+!
 ip dhcp pool S_10
-network 10.3.10.0 255.255.255.0
-dns-server 195.176.242.202 195.176.242.233
-default-router 10.3.10.1
-exit
-
-conf t
+ network 10.3.10.0 255.255.255.0
+ dns-server 195.176.242.202 195.176.242.233
+ default-router 10.3.10.1
+!
 ip dhcp pool S_20
-network 10.3.20.0 255.255.255.0
-dns-server 195.176.242.202 195.176.242.233
-default-router 10.3.20.1
-exit
-
-conf t
+ network 10.3.20.0 255.255.255.0
+ dns-server 195.176.242.202 195.176.242.233
+ default-router 10.3.20.1
+!
 ip dhcp pool S_30
-network 10.3.30.0 255.255.255.0
-dns-server 195.176.242.202 195.176.242.233
-default-router 10.3.30.1
-exit
-	
- interface lo 0
-      ip address 10.1.0.1 255.255.255.252
-      no shutdown
-      exit
-
-
+ network 10.3.30.0 255.255.255.0
+ dns-server 195.176.242.202 195.176.242.233
+ default-router 10.3.30.1
+!
+!
+!
+no ip domain lookup
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+license udi pid CISCO1941/K9 sn FGL154627TB
+license boot module c1900 technology-package datak9
+!
+!
+!
+redundancy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ ip address 10.1.0.1 255.255.255.252
+!
+interface Embedded-Service-Engine0/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet0/0
+ ip address 10.1.40.1 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+ ipv6 address FE80::1 link-local
+ ipv6 address 2001:620:3101:1040::1/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+!
+interface GigabitEthernet0/1
+ ip address 10.1.40.5 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+ ipv6 address FE80::1 link-local
+ ipv6 address 2001:620:3101:1041::1/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+!
+interface FastEthernet0/0/0
+ ip address 195.176.242.1 255.255.255.240
+ ip nat outside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+!
+interface Serial0/1/0
+ ip address 10.4.40.1 255.255.255.252
+ ip nat inside
+ ip virtual-reassembly in
+ ipv6 address FE80::1 link-local
+ ipv6 address 2001:620:3101:4041::1/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+ clock rate 128000
+!
+interface Serial0/1/1
+ no ip address
+ shutdown
+ clock rate 2000000
+!
 router ospf 1
-	network 10.1.0.0 0.0.0.3 area 0
-
-
-conf t
-
+ network 10.1.0.0 0.0.0.3 area 0
+ network 10.1.40.0 0.0.0.3 area 0
+ network 10.1.40.4 0.0.0.3 area 0
+ network 10.4.40.0 0.0.0.3 area 0
+ default-information originate
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+!
 ip nat pool chur10 195.176.242.17 195.176.242.17 netmask 255.255.255.240
-ip nat pool chur20 195.176.242.18 195.176.242.18 netmask 255.255.255.240 
+ip nat pool chur20 195.176.242.18 195.176.242.18 netmask 255.255.255.240
 ip nat pool chur30 195.176.242.19 195.176.242.19 netmask 255.255.255.240
-ip nat pool chur99 195.176.242.20 195.176.242.20 netmask 255.255.255.240 
-ip nat pool buchs10 195.176.242.21 195.176.242.21 netmask 255.255.255.240 
-ip nat pool buchs20 195.176.242.22 195.176.242.22 netmask 255.255.255.240 
-ip nat pool buchs30 195.176.242.23 195.176.242.23 netmask 255.255.255.240 
-ip nat pool buchs99 195.176.242.24 195.176.242.24 netmask 255.255.255.240 
-ip nat pool stgallen10 195.176.242.25 195.176.242.25 netmask 255.255.255.240 
-ip nat pool stgallen20 195.176.242.26 195.176.242.26 netmask 255.255.255.240 
-ip nat pool stgallen30 195.176.242.27 195.176.242.27 netmask 255.255.255.240 
-ip nat pool stgallen99 195.176.242.28 195.176.242.28 netmask 255.255.255.240 
-
-access-list 101 permit ip 10.1.10.0 0.0.0.255 any
-access-list 102 permit ip 10.1.20.0 0.0.0.255 any
-access-list 103 permit ip 10.1.30.0 0.0.0.255 any
-access-list 104 permit ip 10.1.99.0 0.0.0.255 any
-access-list 105 permit ip 10.2.10.0 0.0.0.255 any
-access-list 106 permit ip 10.2.20.0 0.0.0.255 any
-access-list 107 permit ip 10.2.30.0 0.0.0.255 any
-access-list 108 permit ip 10.2.99.0 0.0.0.255 any
-access-list 109 permit ip 10.3.10.0 0.0.0.255 any
-access-list 110 permit ip 10.3.20.0 0.0.0.255 any
-access-list 111 permit ip 10.3.30.0 0.0.0.255 any
-access-list 112 permit ip 10.3.99.0 0.0.0.255 any
-
+ip nat pool chur99 195.176.242.20 195.176.242.20 netmask 255.255.255.240
+ip nat pool buchs10 195.176.242.21 195.176.242.21 netmask 255.255.255.240
+ip nat pool buchs20 195.176.242.22 195.176.242.22 netmask 255.255.255.240
+ip nat pool buchs30 195.176.242.23 195.176.242.23 netmask 255.255.255.240
+ip nat pool buchs99 195.176.242.24 195.176.242.24 netmask 255.255.255.240
+ip nat pool stgallen10 195.176.242.25 195.176.242.25 netmask 255.255.255.240
+ip nat pool stgallen20 195.176.242.26 195.176.242.26 netmask 255.255.255.240
+ip nat pool stgallen30 195.176.242.27 195.176.242.27 netmask 255.255.255.240
+ip nat pool stgallen99 195.176.242.28 195.176.242.28 netmask 255.255.255.240
 ip nat inside source list 101 pool chur10 overload
 ip nat inside source list 102 pool chur20 overload
 ip nat inside source list 103 pool chur30 overload
@@ -157,23 +194,44 @@ ip nat inside source list 109 pool stgallen10 overload
 ip nat inside source list 110 pool stgallen20 overload
 ip nat inside source list 111 pool stgallen30 overload
 ip nat inside source list 112 pool stgallen99 overload
+ip route 0.0.0.0 0.0.0.0 195.176.242.14
+!
+ipv6 route ::/0 FastEthernet0/0/0
+ipv6 router ospf 1
+!
+!
+!
+access-list 101 permit ip 10.1.10.0 0.0.0.255 any
+access-list 102 permit ip 10.1.20.0 0.0.0.255 any
+access-list 103 permit ip 10.1.30.0 0.0.0.255 any
+access-list 104 permit ip 10.1.99.0 0.0.0.255 any
+access-list 105 permit ip 10.2.10.0 0.0.0.255 any
+access-list 106 permit ip 10.2.20.0 0.0.0.255 any
+access-list 107 permit ip 10.2.30.0 0.0.0.255 any
+access-list 108 permit ip 10.2.99.0 0.0.0.255 any
+access-list 109 permit ip 10.3.10.0 0.0.0.255 any
+access-list 110 permit ip 10.3.20.0 0.0.0.255 any
+access-list 111 permit ip 10.3.30.0 0.0.0.255 any
+access-list 112 permit ip 10.3.99.0 0.0.0.255 any
+!
+control-plane
+!
+!
+!
+line con 0
+line aux 0
+line 2
+ no activation-character
+ no exec
+ transport preferred none
+ transport input all
+ transport output lat pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+line vty 0 4
+ login
+ transport input all
+!
+scheduler allocate 20000 1000
+!
+end
 
-interface f 0/0/0
-ip address 195.176.242.1 255.255.255.240
-ip nat outside 
-no shutdown
-exit
-
-interface s0/1/0
-ip nat inside
-exit
-
-interface g0/0
-ip nat inside
-exit
-
-interface g0/1
-ip nat inside
-exit
-
-ipv6 route ::/0 f0/0/0
