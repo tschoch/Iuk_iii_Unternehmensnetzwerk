@@ -1,76 +1,163 @@
-enable
-conf t
+Building configuration...
+
+Current configuration : 3465 bytes
+!
+! Last configuration change at 01:03:33 UTC Mon Mar 1 1993
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
 hostname A2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+system mtu routing 1500
+!
+!
 no ip domain-lookup
-ip default-gateway 10.1.99.50
-
-vlan 99
-name management
-interface vlan 99
-ip address 10.1.99.20 255.255.255.0
-ipv6 address 2001:620:3101:1199::2/64
-no shutdown
+!
+!
+crypto pki trustpoint TP-self-signed-2645771520
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2645771520
+ revocation-check none
+ rsakeypair TP-self-signed-2645771520
+!
+!
+crypto pki certificate chain TP-self-signed-2645771520
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 32363435 37373135 3230301E 170D3933 30333031 30303031
+  30315A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 36343537
+  37313532 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100B348 1052BDFA 98D099A1 2333D5CF CE22F1EA A307C556 BC370D52 8E01836A
+  4827B5C5 4DCF0E16 6DF2C109 0782FFFC BB3DE50D 5F503802 16D10900 976E972C
+  9B6839A0 45D2DA97 07BD36FD B70DDB9B 3B637CDB 8C7E2F8A 0EE1BCC9 F163C723
+  797B78A0 D957B9C7 DF65B1AA A45F4D5D 4F2485D9 04469E04 BBAC9AD8 7E22C7D0
+  84550203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603
+  551D2304 18301680 14040C89 3C6EC960 EFD9FBB3 778A59F1 19A91960 CD301D06
+  03551D0E 04160414 040C893C 6EC960EF D9FBB377 8A59F119 A91960CD 300D0609
+  2A864886 F70D0101 05050003 81810072 B270DE70 08319944 44B14D3E 856AD5C8
+  6951EDAE 5428714B E5CA9716 4320291C A7D2EAC2 2DBAEC61 909146EF D4C8ACFC
+  39A34F1A 8627619A 9499F303 3F23DEC5 E93DB7F7 C5075E89 7DD12EB1 5762887A
+  F4BD6256 2BC07BF4 3148F385 C63A3015 0284E2CD C16C9C5B F68ED06A 4C6103E3
+  2582AF84 47785907 8E639A9A DC6327
+        quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+!
+interface Port-channel4
+ switchport trunk native vlan 35
+!
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport access vlan 30
+ switchport mode trunk
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+ switchport trunk native vlan 35
+ channel-group 4 mode passive
+!
+interface GigabitEthernet0/2
+ switchport trunk native vlan 35
+ channel-group 4 mode passive
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ no ip address
+!
+interface Vlan20
+ no ip address
+!
+interface Vlan30
+ no ip address
+!
+interface Vlan35
+ no ip address
+!
+interface Vlan99
+ ip address 10.1.99.20 255.255.255.0
+ ipv6 address 2001:620:3101:1199::2/64
+!
+ip default-gateway 10.1.99.1
+ip http server
+ip http secure-server
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
 end
-
-conf t
-vlan 10
-name Geschaeftsleitung
-interface vlan 10
-no shutdown
-end
-
-conf t
-vlan 20
-name Buchhaltung
-interface vlan 20
-no shutdown
-end
-
-conf t
-vlan 30
-name Entwicklung
-interface vlan 30
-no shutdown
-end
-
-conf t
-vlan 35
-name native
-interface vlan 35
-no shutdown
-end
-
-conf t
-interface port-channel 4
-	switchport mode trunk
-	switchport trunk native vlan 35
-	no shutdown
-	exit
-	
-interface g0/1
-	channel-group 4 mode passive
-	switchport trunk native vlan 35
-	no shutdown
-	exit
-	
-interface g0/2
-	channel-group 4 mode passive
-	switchport trunk native vlan 35
-	no shutdown
-	exit
-
-interface f0/1
-  switchport mode trunk
-  switchport access vlan 10
-exit
-  
-interface f0/2
-  switchport mode trunk
-  switchport access vlan 20
-exit
-  
-interface f0/2
-  switchport mode trunk
-  switchport access vlan 30
-exit
-  
