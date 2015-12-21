@@ -1,8 +1,11 @@
 Building configuration...
+[OK]
+R1#show run
+Building configuration...
 
-Current configuration : 5533 bytes
+Current configuration : 5940 bytes
 !
-! Last configuration change at 09:40:32 UTC Mon Dec 21 2015
+! Last configuration change at 12:33:36 UTC Mon Dec 21 2015
 version 15.3
 service timestamps debug datetime msec
 service timestamps log datetime msec
@@ -75,6 +78,9 @@ ip dhcp pool S_30
 !
 no ip domain lookup
 ipv6 unicast-routing
+ipv6 dhcp pool pool
+ dns-server 2001:620:100:1000::202
+!
 ipv6 cef
 !
 multilink bundle-name authenticated
@@ -104,6 +110,7 @@ redundancy
 interface Loopback0
  ip address 10.1.0.1 255.255.255.252
  ipv6 address 2001:620:3101:1001::1/64
+ ipv6 ospf 1 area 0
 !
 interface Embedded-Service-Engine0/0
  no ip address
@@ -118,6 +125,9 @@ interface GigabitEthernet0/0
  ipv6 address FE80::1 link-local
  ipv6 address 2001:620:3101:1040::1/64
  ipv6 enable
+ ipv6 nd other-config-flag
+ ipv6 nd ra interval 10
+ ipv6 dhcp server pool
  ipv6 ospf 1 area 0
 !
 interface GigabitEthernet0/1
@@ -129,6 +139,9 @@ interface GigabitEthernet0/1
  ipv6 address FE80::1 link-local
  ipv6 address 2001:620:3101:1041::1/64
  ipv6 enable
+ ipv6 nd other-config-flag
+ ipv6 nd ra interval 10
+ ipv6 dhcp server pool
  ipv6 ospf 1 area 0
 !
 interface FastEthernet0/0/0
@@ -137,6 +150,7 @@ interface FastEthernet0/0/0
  ip virtual-reassembly in
  duplex auto
  speed auto
+ ipv6 address 2001:620:100:1001::1/64
 !
 interface FastEthernet0/0/1
  no ip address
@@ -151,6 +165,8 @@ interface Serial0/1/0
  ipv6 address FE80::1 link-local
  ipv6 address 2001:620:3101:4041::1/64
  ipv6 enable
+ ipv6 nd other-config-flag
+ ipv6 dhcp server pool
  ipv6 ospf 1 area 0
  clock rate 128000
 !
@@ -197,8 +213,9 @@ ip nat inside source list 111 pool stgallen30 overload
 ip nat inside source list 112 pool stgallen99 overload
 ip route 0.0.0.0 0.0.0.0 195.176.242.14
 !
-ipv6 route ::/0 FastEthernet0/0/0
+ipv6 route ::/0 FastEthernet0/0/0 2001:620:100:1001::FFFF
 ipv6 router ospf 1
+ default-information originate
 !
 !
 !
@@ -235,4 +252,3 @@ line vty 0 4
 scheduler allocate 20000 1000
 !
 end
-
