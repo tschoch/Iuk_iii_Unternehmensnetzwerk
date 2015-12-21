@@ -278,6 +278,7 @@ interface Vlan10
  ipv6 enable
  ipv6 nd ra interval 10
  ipv6 traffic-filter c10 in
+ ipv6 ospf 1 area 0
 !
 interface Vlan20
  description Buchaltung
@@ -288,6 +289,7 @@ interface Vlan20
  ipv6 address 2001:620:3101:1020::1/64
  ipv6 enable
  ipv6 traffic-filter c20 in
+ ipv6 ospf 1 area 0
 !
 interface Vlan30
  description Entwicklung
@@ -298,6 +300,7 @@ interface Vlan30
  ipv6 address 2001:620:3101:1030::1/64
  ipv6 enable
  ipv6 traffic-filter c30 in
+ ipv6 ospf 1 area 0
 !
 interface Vlan35
  no ip address
@@ -309,6 +312,7 @@ interface Vlan99
  ipv6 address FE80::6 link-local
  ipv6 address 2001:620:3101:1099::1/64
  ipv6 enable
+ ipv6 ospf 1 area 0
 !
 router ospf 1
  passive-interface Port-channel3
