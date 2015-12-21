@@ -1,7 +1,8 @@
 Building configuration...
 
-Current configuration : 5289 bytes
+Current configuration : 6636 bytes
 !
+! Last configuration change at 12:13:15 UTC Mon Dec 21 2015
 version 15.2
 service timestamps debug datetime msec
 service timestamps log datetime msec
@@ -67,8 +68,10 @@ interface GigabitEthernet0/0.10
  ip helper-address 10.1.0.1
  ipv6 address FE80::3 link-local
  ipv6 address 2001:620:3101:3010::3/64
- ipv6 dhcp relay destination 2001:620:3101:1001::1 S0/0/0
  ipv6 enable
+ ipv6 nd other-config-flag
+ ipv6 nd ra interval 10
+ ipv6 dhcp relay destination 2001:620:3101:1001::1 Serial0/0/0
  ipv6 traffic-filter s10 in
  ipv6 ospf 1 area 0
 !
@@ -79,8 +82,10 @@ interface GigabitEthernet0/0.20
  ip helper-address 10.1.0.1
  ipv6 address FE80::3 link-local
  ipv6 address 2001:620:3101:3020::3/64
- ipv6 dhcp relay destination 2001:620:3101:1001::1 S0/0/0
  ipv6 enable
+ ipv6 nd other-config-flag
+ ipv6 nd ra interval 10
+ ipv6 dhcp relay destination 2001:620:3101:1001::1 Serial0/0/0
  ipv6 traffic-filter s20 in
  ipv6 ospf 1 area 0
 !
@@ -91,8 +96,10 @@ interface GigabitEthernet0/0.30
  ip helper-address 10.1.0.1
  ipv6 address FE80::3 link-local
  ipv6 address 2001:620:3101:3030::3/64
- ipv6 dhcp relay destination 2001:620:3101:1001::1 S0/0/0
  ipv6 enable
+ ipv6 nd other-config-flag
+ ipv6 nd ra interval 10
+ ipv6 dhcp relay destination 2001:620:3101:1001::1 Serial0/0/0
  ipv6 traffic-filter s30 in
  ipv6 ospf 1 area 0
 !
@@ -102,8 +109,10 @@ interface GigabitEthernet0/0.99
  ip helper-address 10.1.0.1
  ipv6 address FE80::3 link-local
  ipv6 address 2001:620:3101:3099::3/64
- ipv6 dhcp relay destination 2001:620:3101:1001::1 S0/0/0
  ipv6 enable
+ ipv6 nd other-config-flag
+ ipv6 nd ra interval 10
+ ipv6 dhcp relay destination 2001:620:3101:1001::1 Serial0/0/0
  ipv6 ospf 1 area 0
 !
 interface GigabitEthernet0/1
@@ -171,6 +180,23 @@ ipv6 router ospf 1
 !
 !
 ipv6 access-list s10
+ permit ipv6 any any
+ permit tcp any any
+ deny ipv6 2001:620:3101:3010::/64 2001:620:3101:1020::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:1030::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:2010::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:2030::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:3010::/64
+ deny ipv6 2001:620:3101:3030::/64 2001:620:3101:2020::/64
+ deny ipv6 2001:620:3101:3030::/64 2001:620:3101:3010::/64
+ deny ipv6 2001:620:3101:3030::/64 2001:620:3101:3020::/64
+ deny ipv6 2001:620:3101:3010::/64 2001:620:3101:1030::/64
+ deny ipv6 2001:620:3101:3010::/64 2001:620:3101:2020::/64
+ deny ipv6 2001:620:3101:3010::/64 2001:620:3101:2030::/64
+ deny ipv6 2001:620:3101:3010::/64 2001:620:3101:3020::/64
+ deny ipv6 2001:620:3101:3010::/64 2001:620:3101:3030::/64
+!
+ipv6 access-list s103
  permit ipv6 any any
  permit tcp any any
  deny ipv6 2001:620:3101:3010::/64 2001:620:3101:1020::/64
