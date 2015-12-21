@@ -166,7 +166,7 @@ ipv6 router ospf 1
 !
 !
 !
-ipv6 access-list s103
+ipv6 access-list s10
  permit ipv6 any any
  permit tcp any any
  deny ipv6 2001:620:3101:3010::/64 2001:620:3101:1020::/64
