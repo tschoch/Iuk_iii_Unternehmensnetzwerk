@@ -1,67 +1,205 @@
-enable
-conf t
+Building configuration...
+
+Current configuration : 3981 bytes
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
 hostname S1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+system mtu routing 1500
+!
+!
 no ip domain-lookup
+!
+!
+crypto pki trustpoint TP-self-signed-2841246592
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2841246592
+ revocation-check none
+ rsakeypair TP-self-signed-2841246592
+!
+!
+crypto pki certificate chain TP-self-signed-2841246592
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 32383431 32343635 3932301E 170D3933 30333031 30303031
+  30335A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 38343132
+  34363539 3230819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  810092BD C439D4B8 3E6400CE F22E0D7C B0659E81 46FC30EA 3A63F217 CC84B8A2
+  AC15A566 8A2DE1FD E54089F2 8678FD6E F4C1333F BF3849B6 EC7C94A8 AA0B3C76
+  02CB82F3 27C18728 78355F95 E563ACF5 6B6445BD 7014F645 F73F0359 30C606B1
+  0EEF9E6D 745AE77C 4C326B10 F019095D 43928DCF 5C94635B B0EAA8A8 8300E01C
+  88990203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603
+  551D2304 18301680 1446A630 EE8C2F5E 9970331E 95B5D4CD F88B0273 48301D06
+  03551D0E 04160414 46A630EE 8C2F5E99 70331E95 B5D4CDF8 8B027348 300D0609
+  2A864886 F70D0101 05050003 8181000C 332E03DE 79AB91B2 3AB8C476 2BAF57FF
+  E40682B6 BEADC2C6 5FF7C56B 1848B8B6 1DAFF02C 755640D2 462F44AD 60AEAF1A
+  8A05A92D 54530FBA 47BF4F0A 067095F1 273AB7FA 68F1CECD F5449555 E77489FA
+  B41D6A16 CD0C0C78 7D9B56E1 A48E5B90 F1302BA9 6C3230EB E0FA2551 22CE0BAC
+  46D2584A 914DD724 FCE035F4 00675D
+        quit
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/1
+ switchport access vlan 10
+ switchport mode trunk
+!
+interface FastEthernet0/2
+ switchport access vlan 30
+ switchport mode trunk
+!
+interface FastEthernet0/3
+!
+interface FastEthernet0/4
+!
+interface FastEthernet0/5
+!
+interface FastEthernet0/6
+!
+interface FastEthernet0/7
+!
+interface FastEthernet0/8
+!
+interface FastEthernet0/9
+!
+interface FastEthernet0/10
+!
+interface FastEthernet0/11
+!
+interface FastEthernet0/12
+!
+interface FastEthernet0/13
+!
+interface FastEthernet0/14
+!
+interface FastEthernet0/15
+!
+interface FastEthernet0/16
+!
+interface FastEthernet0/17
+!
+interface FastEthernet0/18
+!
+interface FastEthernet0/19
+!
+interface FastEthernet0/20
+!
+interface FastEthernet0/21
+!
+interface FastEthernet0/22
+!
+interface FastEthernet0/23
+!
+interface FastEthernet0/24
+!
+interface FastEthernet0/25
+!
+interface FastEthernet0/26
+!
+interface FastEthernet0/27
+!
+interface FastEthernet0/28
+!
+interface FastEthernet0/29
+!
+interface FastEthernet0/30
+!
+interface FastEthernet0/31
+!
+interface FastEthernet0/32
+!
+interface FastEthernet0/33
+!
+interface FastEthernet0/34
+!
+interface FastEthernet0/35
+!
+interface FastEthernet0/36
+!
+interface FastEthernet0/37
+!
+interface FastEthernet0/38
+!
+interface FastEthernet0/39
+!
+interface FastEthernet0/40
+!
+interface FastEthernet0/41
+!
+interface FastEthernet0/42
+!
+interface FastEthernet0/43
+!
+interface FastEthernet0/44
+!
+interface FastEthernet0/45
+!
+interface FastEthernet0/46
+!
+interface FastEthernet0/47
+!
+interface FastEthernet0/48
+!
+interface GigabitEthernet0/1
+ switchport trunk native vlan 35
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ no ip address
+!
+interface Vlan20
+ no ip address
+!
+interface Vlan30
+ no ip address
+!
+interface Vlan35
+ no ip address
+!
+interface Vlan99
+ ip address 10.2.99.10 255.255.255.0
+ ipv6 address 2001:620:3101:2199::1/64
+!
 ip default-gateway 10.2.99.1
-
-vlan 99
-name management
-interface vlan 99
-ip address 10.2.99.10 255.255.255.0
-ipv6 address 2001:620:3101:2199::1/64
-no shutdown
+ip http server
+ip http secure-server
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
 end
-
-conf t
-vlan 10
-name Geschaeftsleitung
-interface vlan 10
-no shutdown
-end
-
-conf t
-vlan 20
-name Buchhaltung
-interface vlan 20
-no shutdown
-end
-
-conf t
-vlan 30
-name Entwicklung
-interface vlan 30
-no shutdown
-end
-
-conf t
-vlan 35
-name native
-interface vlan 35
-no shutdown
-end
-
-conf t 
-interface g0/1
-switchport mode trunk
-switchport trunk native vlan 35
-no shutdown
-end
-
-
-
-interface f0/1
-  switchport mode trunk
-  switchport access vlan 10
-exit
-  
-interface f0/2
-  switchport mode trunk
-  switchport access vlan 20
-exit
-  
-interface f0/2
-  switchport mode trunk
-  switchport access vlan 30
-exit
-  
-  
