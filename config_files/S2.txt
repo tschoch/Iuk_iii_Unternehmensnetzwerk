@@ -193,7 +193,7 @@ interface Vlan35
 interface Vlan99
  ip address 10.3.99.10 255.255.255.0
  no ip route-cache
- ipv6 address 2001:620:3101:3199::1/64
+ ipv6 address 2001:620:3101:3099::11/64
 !
 ip default-gateway 10.3.99.1
 ip http server
