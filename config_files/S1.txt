@@ -66,13 +66,15 @@ vlan internal allocation policy ascending
 !
 interface FastEthernet0/1
  switchport access vlan 10
- switchport mode trunk
+ switchport mode access
 !
 interface FastEthernet0/2
- switchport access vlan 30
- switchport mode trunk
+ switchport access vlan 20
+ switchport mode access
 !
 interface FastEthernet0/3
+ switchport access vlan 30
+ switchport mode access
 !
 interface FastEthernet0/4
 !
