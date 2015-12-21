@@ -72,6 +72,7 @@ interface GigabitEthernet0/0.10
  ip helper-address 10.1.0.1
  ipv6 address FE80::2 link-local
  ipv6 address 2001:620:3101:2010::2/64
+ ipv6 dhcp relay destination 2001:620:3101:1001::1/64 S0/0/0
  ipv6 enable
  ipv6 traffic-filter b10 in
  ipv6 ospf 1 area 0
@@ -83,6 +84,7 @@ interface GigabitEthernet0/0.20
  ip helper-address 10.1.0.1
  ipv6 address FE80::2 link-local
  ipv6 address 2001:620:3101:2020::2/64
+ ipv6 dhcp relay destination 2001:620:3101:1001::1/64 S0/0/0
  ipv6 enable
  ipv6 traffic-filter b20 in
  ipv6 ospf 1 area 0
@@ -94,6 +96,7 @@ interface GigabitEthernet0/0.30
  ip helper-address 10.1.0.1
  ipv6 address FE80::2 link-local
  ipv6 address 2001:620:3101:2030::2/64
+ ipv6 dhcp relay destination 2001:620:3101:1001::1/64 S0/0/0
  ipv6 enable
  ipv6 traffic-filter b30 in
  ipv6 ospf 1 area 0
@@ -104,6 +107,7 @@ interface GigabitEthernet0/0.99
  ip helper-address 10.1.0.1
  ipv6 address FE80::2 link-local
  ipv6 address 2001:620:3101:2099::2/64
+ ipv6 dhcp relay destination 2001:620:3101:1001::1/64 S0/0/0
  ipv6 enable
  ipv6 ospf 1 area 0
 !
