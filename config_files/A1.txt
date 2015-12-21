@@ -1,75 +1,388 @@
-enable
-conf t
-hostname A1
+Building configuration...
+
+Current configuration : 9722 bytes
+!
+! Last configuration change at 02:32:04 UTC Wed Mar 30 2011
+! NVRAM config last updated at 01:29:25 UTC Wed Mar 30 2011
+!
+version 15.0
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname D
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+switch 1 provision ws-c3750e-24td
+switch 2 provision ws-c3750e-24td
+system mtu routing 1500
+ip routing
+!
+!
+!
 no ip domain-lookup
-ip default-gateway  10.1.99.50
-
-vlan 99
-name management
-interface vlan 99
-ip address 10.1.99.10 255.255.255.0
-ipv6 address 2001:620:3101:1199::1/64
-no shutdown
+ipv6 unicast-routing
+!
+!
+crypto pki trustpoint TP-self-signed-3575911680
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-3575911680
+ revocation-check none
+ rsakeypair TP-self-signed-3575911680
+!
+!
+crypto pki certificate chain TP-self-signed-3575911680
+ certificate self-signed 01
+  3082022B 30820194 A0030201 02020101 300D0609 2A864886 F70D0101 05050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 33353735 39313136 3830301E 170D3131 30333330 30313239
+  32355A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D33 35373539
+  31313638 3030819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100CF83 94747F73 EBC54865 B6BD0F59 BB228D8D 9941CAA1 6EFAD7F9 E57C1CF4
+  31E62CA1 466209CD 04416490 0B52A0D9 80998646 788F76E6 2C2044A7 E3B28B03
+  0CD8C985 46474478 163D8321 077460FD C849A95B 2FC3A83D 9DA9AFA0 1510AD7C
+  0EA7E470 4CCFBB63 8EB13BA3 DD3ED3FD 0E24CC41 2B3BDD25 B7582D08 3CBF7A2A
+  40490203 010001A3 53305130 0F060355 1D130101 FF040530 030101FF 301F0603
+  551D2304 18301680 14B1604C B20CABEB 492956F8 4C0EA62F 7BA356AE BE301D06
+  03551D0E 04160414 B1604CB2 0CABEB49 2956F84C 0EA62F7B A356AEBE 300D0609
+  2A864886 F70D0101 05050003 81810048 46A92424 E57F6F17 26AF4DF5 934BB4EB
+  99D49716 B4A1C43A F8936AA9 E99242F2 E08CF05A 90E1DE9B F58CCE2F 68074F3B
+  4008A77D B03C26F1 25BB83FE 71718551 DA1C524F FC0954F6 43AEB2A7 839C65EC
+  016B604D A845CD2C 8D0A73E8 6E5B0D77 C799D975 5395592B 6C6013DF 5DE14128
+  E660AA46 4785F681 307F169A 4A506D
+        quit
+license boot level ipservices
+license boot level ipservices switch 1
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+!
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Port-channel1
+ no switchport
+ ip address 10.1.40.18 255.255.255.252
+ ip helper-address 10.1.0.1
+ ipv6 address FE80::6 link-local
+ ipv6 address 2001:620:3101:1043::2/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+!
+interface Port-channel2
+ no switchport
+ ip address 10.1.40.10 255.255.255.252
+ ipv6 address FE80::6 link-local
+ ipv6 address 2001:620:3101:1042::2/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+!
+interface Port-channel3
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 35
+ switchport mode trunk
+!
+interface Port-channel4
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 35
+ switchport mode trunk
+!
+interface FastEthernet0
+ no ip address
+ no ip route-cache
+ shutdown
+!
+interface GigabitEthernet1/0/1
+!
+interface GigabitEthernet1/0/2
+!
+interface GigabitEthernet1/0/3
+!
+interface GigabitEthernet1/0/4
+!
+interface GigabitEthernet1/0/5
+!
+interface GigabitEthernet1/0/6
+!
+interface GigabitEthernet1/0/7
+!
+interface GigabitEthernet1/0/8
+!
+interface GigabitEthernet1/0/9
+!
+interface GigabitEthernet1/0/10
+!
+interface GigabitEthernet1/0/11
+!
+interface GigabitEthernet1/0/12
+!
+interface GigabitEthernet1/0/13
+!
+interface GigabitEthernet1/0/14
+!
+interface GigabitEthernet1/0/15
+!
+interface GigabitEthernet1/0/16
+!
+interface GigabitEthernet1/0/17
+!
+interface GigabitEthernet1/0/18
+!
+interface GigabitEthernet1/0/19
+!
+interface GigabitEthernet1/0/20
+!
+interface GigabitEthernet1/0/21
+ no switchport
+ no ip address
+ channel-group 1 mode active
+!
+interface GigabitEthernet1/0/22
+ no switchport
+ no ip address
+ channel-group 2 mode active
+!
+interface GigabitEthernet1/0/23
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 35
+ switchport mode trunk
+ channel-group 4 mode active
+!
+interface GigabitEthernet1/0/24
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 35
+ switchport mode trunk
+ channel-group 3 mode active
+!
+interface GigabitEthernet1/0/25
+!
+interface GigabitEthernet1/0/26
+!
+interface GigabitEthernet1/0/27
+!
+interface GigabitEthernet1/0/28
+!
+interface TenGigabitEthernet1/0/1
+!
+interface TenGigabitEthernet1/0/2
+!
+interface GigabitEthernet2/0/1
+!
+interface GigabitEthernet2/0/2
+!
+interface GigabitEthernet2/0/3
+!
+interface GigabitEthernet2/0/4
+!
+interface GigabitEthernet2/0/5
+!
+interface GigabitEthernet2/0/6
+!
+interface GigabitEthernet2/0/7
+!
+interface GigabitEthernet2/0/8
+!
+interface GigabitEthernet2/0/9
+!
+interface GigabitEthernet2/0/10
+!
+interface GigabitEthernet2/0/11
+!
+interface GigabitEthernet2/0/12
+!
+interface GigabitEthernet2/0/13
+!
+interface GigabitEthernet2/0/14
+!
+interface GigabitEthernet2/0/15
+!
+interface GigabitEthernet2/0/16
+!
+interface GigabitEthernet2/0/17
+!
+interface GigabitEthernet2/0/18
+!
+interface GigabitEthernet2/0/19
+!
+interface GigabitEthernet2/0/20
+!
+interface GigabitEthernet2/0/21
+ no switchport
+ no ip address
+ channel-group 2 mode active
+!
+interface GigabitEthernet2/0/22
+ no switchport
+ no ip address
+ channel-group 1 mode active
+!
+interface GigabitEthernet2/0/23
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 35
+ switchport mode trunk
+ channel-group 3 mode active
+!
+interface GigabitEthernet2/0/24
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 35
+ switchport mode trunk
+ channel-group 4 mode active
+!
+interface GigabitEthernet2/0/25
+!
+interface GigabitEthernet2/0/26
+!
+interface GigabitEthernet2/0/27
+!
+interface GigabitEthernet2/0/28
+!
+interface TenGigabitEthernet2/0/1
+!
+interface TenGigabitEthernet2/0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ description GeschC$ftsleitung
+ ip address 10.1.10.1 255.255.255.0
+ ip helper-address 10.1.0.1
+ ipv6 address FE80::6 link-local
+ ipv6 address 2001:620:3101:1010::1/64
+ ipv6 enable
+!
+interface Vlan20
+ description Buchaltung
+ ip address 10.1.20.1 255.255.255.0
+ ip helper-address 10.1.0.1
+ ipv6 address FE80::6 link-local
+ ipv6 address 2001:620:3101:1020::1/64
+ ipv6 enable
+!
+interface Vlan30
+ description Entwicklung
+ ip address 10.1.30.1 255.255.255.0
+ ip helper-address 10.1.0.1
+ ipv6 address FE80::6 link-local
+ ipv6 address 2001:620:3101:1030::1/64
+ ipv6 enable
+!
+interface Vlan35
+ no ip address
+!
+interface Vlan99
+ description Management
+ ip address 10.1.99.1 255.255.255.0
+ ip helper-address 10.1.0.1
+ ipv6 address FE80::6 link-local
+ ipv6 address 2001:620:3101:1099::1/64
+ ipv6 address 2001:620:3101:1099::50/64
+ ipv6 enable
+!
+router ospf 1
+ passive-interface Port-channel3
+ passive-interface Port-channel4
+ network 10.1.10.0 0.0.0.255 area 0
+ network 10.1.20.0 0.0.0.255 area 0
+ network 10.1.30.0 0.0.0.255 area 0
+ network 10.1.40.8 0.0.0.3 area 0
+ network 10.1.40.16 0.0.0.3 area 0
+ network 10.1.99.0 0.0.0.255 area 0
+!
+!
+ip http server
+ip http secure-server
+!
+!
+access-list 113 deny   ip 10.1.10.0 0.0.0.255 10.1.20.0 0.0.0.255
+access-list 113 deny   ip 10.1.10.0 0.0.0.255 10.1.30.0 0.0.0.255
+access-list 113 deny   ip 10.1.10.0 0.0.0.255 10.2.20.0 0.0.0.255
+access-list 113 deny   ip 10.1.10.0 0.0.0.255 10.2.30.0 0.0.0.255
+access-list 113 deny   ip 10.1.10.0 0.0.0.255 10.3.20.0 0.0.0.255
+access-list 113 deny   ip 10.1.10.0 0.0.0.255 10.3.30.0 0.0.0.255
+access-list 113 permit ip any any
+access-list 113 permit tcp any any
+access-list 114 deny   ip 10.1.20.0 0.0.0.255 10.1.10.0 0.0.0.255
+access-list 114 deny   ip 10.1.20.0 0.0.0.255 10.1.30.0 0.0.0.255
+access-list 114 deny   ip 10.1.20.0 0.0.0.255 10.2.10.0 0.0.0.255
+access-list 114 deny   ip 10.1.20.0 0.0.0.255 10.2.30.0 0.0.0.255
+access-list 114 deny   ip 10.1.20.0 0.0.0.255 10.3.10.0 0.0.0.255
+access-list 114 deny   ip 10.1.20.0 0.0.0.255 10.3.30.0 0.0.0.255
+access-list 114 permit ip any any
+access-list 114 permit tcp any any
+access-list 115 deny   ip 10.1.30.0 0.0.0.255 10.1.10.0 0.0.0.255
+access-list 115 deny   ip 10.1.30.0 0.0.0.255 10.1.20.0 0.0.0.255
+access-list 115 deny   ip 10.1.30.0 0.0.0.255 10.2.10.0 0.0.0.255
+access-list 115 deny   ip 10.1.30.0 0.0.0.255 10.2.20.0 0.0.0.255
+access-list 115 deny   ip 10.1.30.0 0.0.0.255 10.3.10.0 0.0.0.255
+access-list 115 deny   ip 10.1.30.0 0.0.0.255 10.3.20.0 0.0.0.255
+access-list 115 permit ip any any
+access-list 115 permit tcp any any
+ipv6 router ospf 1
+!
+!
+!
+!
+ipv6 access-list c10
+ permit ipv6 any any
+ permit tcp any any
+ deny ipv6 2001:620:3101:1010::/64 2001:620:3101:1020::/64
+ deny ipv6 2001:620:3101:1010::/64 2001:620:3101:1030::/64
+ deny ipv6 2001:620:3101:1010::/64 2001:620:3101:2020::/64
+ deny ipv6 2001:620:3101:1010::/64 2001:620:3101:2030::/64
+ deny ipv6 2001:620:3101:1010::/64 2001:620:3101:3020::/64
+ deny ipv6 2001:620:3101:1010::/64 2001:620:3101:3030::/64
+!
+ipv6 access-list c20
+ deny ipv6 2001:620:3101:1020::/64 2001:620:3101:1010::/64
+ deny ipv6 2001:620:3101:1020::/64 2001:620:3101:1030::/64
+ deny ipv6 2001:620:3101:1020::/64 2001:620:3101:2010::/64
+ deny ipv6 2001:620:3101:1020::/64 2001:620:3101:2030::/64
+ deny ipv6 2001:620:3101:1020::/64 2001:620:3101:3010::/64
+ deny ipv6 2001:620:3101:1020::/64 2001:620:3101:3030::/64
+ permit ipv6 any any
+ permit tcp any any
+!
+ipv6 access-list c30
+ deny ipv6 2001:620:3101:1030::/64 2001:620:3101:1010::/64
+ deny ipv6 2001:620:3101:1030::/64 2001:620:3101:1020::/64
+ deny ipv6 2001:620:3101:1030::/64 2001:620:3101:2010::/64
+ deny ipv6 2001:620:3101:1030::/64 2001:620:3101:2020::/64
+ deny ipv6 2001:620:3101:1030::/64 2001:620:3101:3010::/64
+ deny ipv6 2001:620:3101:1030::/64 2001:620:3101:3020::/64
+ permit ipv6 any any
+ permit tcp any any
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
 end
-
-conf t
-vlan 10
-name Geschaeftsleitung
-interface vlan 10
-no shutdown
-end
-
-conf t
-vlan 20
-name Buchhaltung
-interface vlan 20
-no shutdown
-end
-
-conf t
-vlan 30
-name Entwicklung
-interface vlan 30
-no shutdown
-end
-
-conf t
-vlan 35
-name native
-interface vlan 35
-no shutdown
-end
-
-conf t
-interface port-channel 3
-	switchport mode trunk
-	switchport trunk native vlan 35
-	no shutdown
-	exit
-	
-interface g0/1
-	channel-group 3 mode passive
-	no shutdown
-	exit
-	
-interface g0/2
-	channel-group 3 mode passive
-	no shutdown
-	exit
-	
-interface f0/1
-  switchport mode trunk
-  switchport access vlan 10
-exit
-  
-interface f0/2
-  switchport mode trunk
-  switchport access vlan 20
-exit
-  
-interface f0/2
-  switchport mode trunk
-  switchport access vlan 30
-exit
-  
-	
