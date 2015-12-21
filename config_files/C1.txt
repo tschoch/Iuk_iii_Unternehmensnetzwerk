@@ -1,94 +1,201 @@
-enable
-conf t
+Building configuration...
+
+*Mar  1 01:15:09.178: %SYS-5-CONFIG_I: Configured from console by console
+Current configuration : 4311 bytes
+!
+version 12.2
+no service pad
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
 hostname C1
-no ip domain-lookup
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+!
+no aaa new-model
+system mtu routing 1500
 ip routing
+no ip domain-lookup
+!
+!
 ipv6 unicast-routing
-ipv6 router ospf 1
-exit
-
-vlan 99
-name management
-interface vlan 99
-ip address 10.0.99.30 255.255.255.0
-ipv6 address 2001:620:3101:1099::30/64
-no shutdown
-end
-
-conf t
-vlan 10
-name Geschaeftsleitung
-interface vlan 10
-no shutdown
-end
-
-conf t
-vlan 20
-name Buchhaltung
-interface vlan 20
-no shutdown
-end
-
-conf t
-vlan 30
-name Entwicklung
-interface vlan 30
-no shutdown
-end
-
-interface port-channel 2
-	no switchport
-  	ip address 10.1.40.9 255.255.255.252
-  	ipv6 address 2001:620:3101:1042::1/64
-  	ipv6 address FE80::1 link-local
-  	ipv6 enable
-      	ipv6 ospf 1 area 0	
-	no shutdown
-	exit
-
-interface port-channel 5
-	no switchport
-	ip address 10.1.40.13 255.255.255.252
-	ipv6 address 2001:620:3101:1044::1/64
-  	ipv6 address FE80::4 link-local
-  	ipv6 enable
-	ipv6 ospf 1 area 0	
-	no shutdown
-	exit
-
-
-interface range g0/22-23
-	no switchport
-	channel-group 2 mode passive
-	no shutdown
-	exit
-
-
-interface g0/24
-	no switchport
-	ip address 10.1.40.2 255.255.255.252
-	ipv6 address 2001:620:3101:1040::2/64
-	ipv6 address FE80::4 link-local
-	ipv6 enable
-      	ipv6 ospf 1 area 0	
-	no shutdown
-	exit
-
-interface g0/26
-	no switchport
-	channel-group 5 mode active
-	no shutdown
-	exit
-
-interface g0/28
-	no switchport
-	channel-group 5 mode active
-	no shutdown
-	exit
-
-
+!
+!
+crypto pki trustpoint TP-self-signed-1905751168
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-1905751168
+ revocation-check none
+ rsakeypair TP-self-signed-1905751168
+!
+!
+crypto pki certificate chain TP-self-signed-1905751168
+ certificate self-signed 01
+  3082023B 308201A4 A0030201 02020101 300D0609 2A864886 F70D0101 04050030
+  31312F30 2D060355 04031326 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 31393035 37353131 3638301E 170D3933 30333031 30303031
+  34315A17 0D323030 31303130 30303030 305A3031 312F302D 06035504 03132649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D31 39303537
+  35313136 3830819F 300D0609 2A864886 F70D0101 01050003 818D0030 81890281
+  8100BF15 E25C3D42 796F03D1 67144F31 9B7511ED B48AC9C3 D160F11C 638E12E0
+  011860E1 98C342CA 79DA0E61 4FF91D22 3E0CD9DD 27A30C2C 3F9628C5 8CC51E32
+  59D78585 D8B4AAFB 9F158886 B7C27E93 3E513F49 9BE1578E DFDECEB9 6A325D69
+  932377DD D508C1C3 EB66D1EB 6E7B6D9D 7B8BF3F0 5AD667A9 3079E776 8E532B99
+  04CB0203 010001A3 63306130 0F060355 1D130101 FF040530 030101FF 300E0603
+  551D1104 07300582 0343312E 301F0603 551D2304 18301680 14402C2B 826268CF
+  8FEE0923 9E0B8326 06181677 5C301D06 03551D0E 04160414 402C2B82 6268CF8F
+  EE09239E 0B832606 1816775C 300D0609 2A864886 F70D0101 04050003 818100AA
+  67D59E1F 363483A7 902CEB43 4B65BB8F 26D2AC41 6265B029 4BD7B535 FD4971D5
+  DEAB163F D0455BFF A1C78D16 6D283B85 9A93F0CF 397D58F7 9446B5B7 F15B12B7
+  98220590 1E46E1B7 58CA9423 8E5AA8A3 16CF51E8 F0E2EC86 A944809B 206ADBB7
+  69DDD6FA 0E2EE2B0 8DFA9F22 16E120EA A44601B7 28A29A61 88802289 22169A
+  quit
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+interface Port-channel2
+ no switchport
+ ip address 10.1.40.9 255.255.255.252
+ ipv6 address FE80::1 link-local
+ ipv6 address 2001:620:3101:1042::1/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+!
+interface Port-channel5
+ no switchport
+ ip address 10.1.40.13 255.255.255.252
+ ipv6 address FE80::4 link-local
+ ipv6 address 2001:620:3101:1044::1/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+!
+interface GigabitEthernet0/1
+ no switchport
+ ip address 192.168.1.2 255.255.255.0
+!
+interface GigabitEthernet0/2
+!
+interface GigabitEthernet0/3
+!
+interface GigabitEthernet0/4
+!
+interface GigabitEthernet0/5
+!
+interface GigabitEthernet0/6
+!
+interface GigabitEthernet0/7
+!
+interface GigabitEthernet0/8
+!
+interface GigabitEthernet0/9
+!
+interface GigabitEthernet0/10
+!
+interface GigabitEthernet0/11
+!
+interface GigabitEthernet0/12
+!
+interface GigabitEthernet0/13
+!
+interface GigabitEthernet0/14
+!
+interface GigabitEthernet0/15
+!
+interface GigabitEthernet0/16
+!
+interface GigabitEthernet0/17
+!
+interface GigabitEthernet0/18
+!
+interface GigabitEthernet0/19
+!
+interface GigabitEthernet0/20
+!
+interface GigabitEthernet0/21
+!
+interface GigabitEthernet0/22
+ no switchport
+ no ip address
+ channel-group 2 mode passive
+!
+interface GigabitEthernet0/23
+ no switchport
+ no ip address
+ channel-group 2 mode passive
+!
+interface GigabitEthernet0/24
+ no switchport
+ ip address 10.1.40.2 255.255.255.252
+ ipv6 address FE80::4 link-local
+ ipv6 address 2001:620:3101:1040::2/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+!
+interface GigabitEthernet0/25
+!
+interface GigabitEthernet0/26
+ no switchport
+ no ip address
+ channel-group 5 mode active
+!
+interface GigabitEthernet0/27
+!
+interface GigabitEthernet0/28
+ no switchport
+ no ip address
+ channel-group 5 mode active
+!
+interface Vlan1
+ no ip address
+!
+interface Vlan10
+ no ip address
+!
+interface Vlan20
+ no ip address
+!
+interface Vlan30
+ no ip address
+!
+interface Vlan99
+ ip address 10.0.99.30 255.255.255.0
+ ipv6 address 2001:620:3101:1099::30/64
+!
 router ospf 1
-	network 10.1.40.0 0.0.0.3 area 0
-	network 10.1.40.8 0.0.0.3 area 0
-	network 10.1.40.12 0.0.0.3 area 0
-	exit
+ log-adjacency-changes
+ network 10.1.40.0 0.0.0.3 area 0
+ network 10.1.40.8 0.0.0.3 area 0
+ network 10.1.40.12 0.0.0.3 area 0
+!
+ip classless
+ip http server
+ip http secure-server
+!
+!
+ip sla enable reaction-alerts
+ipv6 router ospf 1
+ log-adjacency-changes
+!
+!
+!
+!
+!
+line con 0
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+end
