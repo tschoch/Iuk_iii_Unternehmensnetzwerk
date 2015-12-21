@@ -1,14 +1,14 @@
 Building configuration...
 
-Current configuration : 6636 bytes
+Current configuration : 6092 bytes
 !
-! Last configuration change at 12:13:15 UTC Mon Dec 21 2015
-version 15.2
+! Last configuration change at 12:04:16 UTC Mon Dec 21 2015
+version 15.3
 service timestamps debug datetime msec
 service timestamps log datetime msec
 no service password-encryption
 !
-hostname R3
+hostname R2
 !
 boot-start-marker
 boot-end-marker
@@ -22,6 +22,10 @@ ip cef
 !
 !
 !
+
+
+!
+!
 !
 !
 no ip domain lookup
@@ -32,8 +36,9 @@ multilink bundle-name authenticated
 !
 !
 !
-!
-license udi pid CISCO2901/K9 sn FCZ182591H2
+license udi pid CISCO1921/K9 sn FCZ152570QZ
+license boot module c1900 technology-package securityk9
+license boot module c1900 technology-package datak9
 !
 !
 !
@@ -63,52 +68,52 @@ interface GigabitEthernet0/0
 !
 interface GigabitEthernet0/0.10
  encapsulation dot1Q 10
- ip address 10.3.10.1 255.255.255.0
- ip access-group 119 in
+ ip address 10.2.10.1 255.255.255.0
+ ip access-group 116 in
  ip helper-address 10.1.0.1
- ipv6 address FE80::3 link-local
- ipv6 address 2001:620:3101:3010::3/64
+ ipv6 address FE80::2 link-local
+ ipv6 address 2001:620:3101:2010::2/64
  ipv6 enable
  ipv6 nd other-config-flag
  ipv6 nd ra interval 10
  ipv6 dhcp relay destination 2001:620:3101:1001::1 Serial0/0/0
- ipv6 traffic-filter s10 in
+ ipv6 traffic-filter b10 in
  ipv6 ospf 1 area 0
 !
 interface GigabitEthernet0/0.20
  encapsulation dot1Q 20
- ip address 10.3.20.1 255.255.255.0
- ip access-group 120 in
+ ip address 10.2.20.1 255.255.255.0
+ ip access-group 117 in
  ip helper-address 10.1.0.1
- ipv6 address FE80::3 link-local
- ipv6 address 2001:620:3101:3020::3/64
+ ipv6 address FE80::2 link-local
+ ipv6 address 2001:620:3101:2020::2/64
  ipv6 enable
  ipv6 nd other-config-flag
  ipv6 nd ra interval 10
  ipv6 dhcp relay destination 2001:620:3101:1001::1 Serial0/0/0
- ipv6 traffic-filter s20 in
+ ipv6 traffic-filter b20 in
  ipv6 ospf 1 area 0
 !
 interface GigabitEthernet0/0.30
  encapsulation dot1Q 30
- ip address 10.3.30.1 255.255.255.0
- ip access-group 121 in
+ ip address 10.2.30.1 255.255.255.0
+ ip access-group 118 in
  ip helper-address 10.1.0.1
- ipv6 address FE80::3 link-local
- ipv6 address 2001:620:3101:3030::3/64
+ ipv6 address FE80::2 link-local
+ ipv6 address 2001:620:3101:2030::2/64
  ipv6 enable
  ipv6 nd other-config-flag
  ipv6 nd ra interval 10
  ipv6 dhcp relay destination 2001:620:3101:1001::1 Serial0/0/0
- ipv6 traffic-filter s30 in
+ ipv6 traffic-filter b30 in
  ipv6 ospf 1 area 0
 !
 interface GigabitEthernet0/0.99
  encapsulation dot1Q 99
- ip address 10.3.99.1 255.255.255.0
+ ip address 10.2.99.1 255.255.255.0
  ip helper-address 10.1.0.1
- ipv6 address FE80::3 link-local
- ipv6 address 2001:620:3101:3099::3/64
+ ipv6 address FE80::2 link-local
+ ipv6 address 2001:620:3101:2099::2/64
  ipv6 enable
  ipv6 nd other-config-flag
  ipv6 nd ra interval 10
@@ -122,26 +127,30 @@ interface GigabitEthernet0/1
  speed auto
 !
 interface Serial0/0/0
- ip address 10.4.40.6 255.255.255.252
- ipv6 address FE80::3 link-local
- ipv6 address 2001:620:3101:4040::3/64
+ ip address 10.4.40.2 255.255.255.252
+ ipv6 address FE80::2 link-local
+ ipv6 address 2001:620:3101:4041::2/64
  ipv6 enable
  ipv6 ospf 1 area 0
 !
 interface Serial0/0/1
- no ip address
- shutdown
- clock rate 2000000
+ ip address 10.4.40.5 255.255.255.252
+ ipv6 address FE80::2 link-local
+ ipv6 address 2001:620:3101:4040::2/64
+ ipv6 enable
+ ipv6 ospf 1 area 0
+ clock rate 128000
 !
 router ospf 1
  passive-interface GigabitEthernet0/0.10
  passive-interface GigabitEthernet0/0.20
  passive-interface GigabitEthernet0/0.30
  passive-interface GigabitEthernet0/0.99
- network 10.3.10.0 0.0.0.255 area 0
- network 10.3.20.0 0.0.0.255 area 0
- network 10.3.30.0 0.0.0.255 area 0
- network 10.3.99.0 0.0.0.255 area 0
+ network 10.2.10.0 0.0.0.255 area 0
+ network 10.2.20.0 0.0.0.255 area 0
+ network 10.2.30.0 0.0.0.255 area 0
+ network 10.2.99.0 0.0.0.255 area 0
+ network 10.4.40.0 0.0.0.3 area 0
  network 10.4.40.4 0.0.0.3 area 0
 !
 ip forward-protocol nd
@@ -150,79 +159,62 @@ no ip http server
 no ip http secure-server
 !
 !
-access-list 119 deny   ip 10.3.10.0 0.0.0.255 10.1.20.0 0.0.0.255
-access-list 119 deny   ip 10.3.10.0 0.0.0.255 10.1.30.0 0.0.0.255
-access-list 119 deny   ip 10.3.10.0 0.0.0.255 10.2.20.0 0.0.0.255
-access-list 119 deny   ip 10.3.10.0 0.0.0.255 10.2.30.0 0.0.0.255
-access-list 119 deny   ip 10.3.10.0 0.0.0.255 10.3.20.0 0.0.0.255
-access-list 119 deny   ip 10.3.10.0 0.0.0.255 10.3.30.0 0.0.0.255
-access-list 119 permit ip any any
-access-list 119 permit tcp any any
-access-list 120 deny   ip 10.3.20.0 0.0.0.255 10.1.10.0 0.0.0.255
-access-list 120 deny   ip 10.3.20.0 0.0.0.255 10.1.30.0 0.0.0.255
-access-list 120 deny   ip 10.3.20.0 0.0.0.255 10.2.10.0 0.0.0.255
-access-list 120 deny   ip 10.3.20.0 0.0.0.255 10.2.30.0 0.0.0.255
-access-list 120 deny   ip 10.3.20.0 0.0.0.255 10.3.10.0 0.0.0.255
-access-list 120 deny   ip 10.3.20.0 0.0.0.255 10.3.30.0 0.0.0.255
-access-list 120 permit ip any any
-access-list 120 permit tcp any any
-access-list 121 deny   ip 10.3.30.0 0.0.0.255 10.1.10.0 0.0.0.255
-access-list 121 deny   ip 10.3.30.0 0.0.0.255 10.1.20.0 0.0.0.255
-access-list 121 deny   ip 10.3.30.0 0.0.0.255 10.2.10.0 0.0.0.255
-access-list 121 deny   ip 10.3.30.0 0.0.0.255 10.2.20.0 0.0.0.255
-access-list 121 deny   ip 10.3.30.0 0.0.0.255 10.3.10.0 0.0.0.255
-access-list 121 deny   ip 10.3.30.0 0.0.0.255 10.3.20.0 0.0.0.255
-access-list 121 permit ip any any
-access-list 121 permit tcp any any
 ipv6 router ospf 1
 !
 !
 !
+access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.1.20.0 0.0.0.255
+access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.1.30.0 0.0.0.255
+access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.2.20.0 0.0.0.255
+access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.2.30.0 0.0.0.255
+access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.3.20.0 0.0.0.255
+access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.3.30.0 0.0.0.255
+access-list 116 permit ip any any
+access-list 116 permit tcp any any
+access-list 117 deny   ip 10.2.20.0 0.0.0.255 10.1.10.0 0.0.0.255
+access-list 117 deny   ip 10.2.20.0 0.0.0.255 10.1.30.0 0.0.0.255
+access-list 117 deny   ip 10.2.20.0 0.0.0.255 10.2.10.0 0.0.0.255
+access-list 117 deny   ip 10.2.20.0 0.0.0.255 10.2.30.0 0.0.0.255
+access-list 117 deny   ip 10.2.20.0 0.0.0.255 10.3.10.0 0.0.0.255
+access-list 117 deny   ip 10.2.20.0 0.0.0.255 10.3.30.0 0.0.0.255
+access-list 117 permit ip any any
+access-list 117 permit tcp any any
+access-list 118 deny   ip 10.2.30.0 0.0.0.255 10.1.10.0 0.0.0.255
+access-list 118 deny   ip 10.2.30.0 0.0.0.255 10.1.20.0 0.0.0.255
+access-list 118 deny   ip 10.2.30.0 0.0.0.255 10.2.10.0 0.0.0.255
+access-list 118 deny   ip 10.2.30.0 0.0.0.255 10.2.20.0 0.0.0.255
+access-list 118 deny   ip 10.2.30.0 0.0.0.255 10.3.10.0 0.0.0.255
+access-list 118 deny   ip 10.2.30.0 0.0.0.255 10.3.20.0 0.0.0.255
+access-list 118 permit ip any any
+access-list 118 permit tcp any any
 !
-ipv6 access-list s10
+ipv6 access-list b10
+ deny ipv6 2001:620:3101:2010::/64 2001:620:3101:1020::/64
+ deny ipv6 2001:620:3101:2010::/64 2001:620:3101:1030::/64
+ deny ipv6 2001:620:3101:2010::/64 2001:620:3101:2020::/64
+ deny ipv6 2001:620:3101:2010::/64 2001:620:3101:2030::/64
+ deny ipv6 2001:620:3101:2010::/64 2001:620:3101:3020::/64
+ deny ipv6 2001:620:3101:2010::/64 2001:620:3101:3030::/64
  permit ipv6 any any
  permit tcp any any
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:1020::/64
- deny ipv6 2001:620:3101:3020::/64 2001:620:3101:1030::/64
- deny ipv6 2001:620:3101:3020::/64 2001:620:3101:2010::/64
- deny ipv6 2001:620:3101:3020::/64 2001:620:3101:2030::/64
- deny ipv6 2001:620:3101:3020::/64 2001:620:3101:3010::/64
- deny ipv6 2001:620:3101:3030::/64 2001:620:3101:2020::/64
- deny ipv6 2001:620:3101:3030::/64 2001:620:3101:3010::/64
- deny ipv6 2001:620:3101:3030::/64 2001:620:3101:3020::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:1030::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:2020::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:2030::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:3020::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:3030::/64
 !
-ipv6 access-list s103
+ipv6 access-list b20
+ deny ipv6 2001:620:3101:2020::/64 2001:620:3101:1010::/64
+ deny ipv6 2001:620:3101:2020::/64 2001:620:3101:1030::/64
+ deny ipv6 2001:620:3101:2020::/64 2001:620:3101:3010::/64
+ deny ipv6 2001:620:3101:2020::/64 2001:620:3101:3030::/64
  permit ipv6 any any
  permit tcp any any
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:1020::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:1030::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:2020::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:2030::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:3020::/64
- deny ipv6 2001:620:3101:3010::/64 2001:620:3101:3030::/64
+ deny ipv6 2001:620:3101:2020::/64 2001:620:3101:2010::/64
+ deny ipv6 2001:620:3101:2020::/64 2001:620:3101:2030::/64
 !
-ipv6 access-list s20
+ipv6 access-list b30
  deny ipv6 2001:620:3101:3020::/64 2001:620:3101:1010::/64
- deny ipv6 2001:620:3101:3020::/64 2001:620:3101:1030::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:1020::/64
  deny ipv6 2001:620:3101:3020::/64 2001:620:3101:2010::/64
- deny ipv6 2001:620:3101:3020::/64 2001:620:3101:2030::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:2020::/64
  deny ipv6 2001:620:3101:3020::/64 2001:620:3101:3010::/64
- deny ipv6 2001:620:3101:3020::/64 2001:620:3101:3030::/64
- permit ipv6 any any
- permit tcp any any
-!
-ipv6 access-list s30
- deny ipv6 2001:620:3101:3030::/64 2001:620:3101:1010::/64
- deny ipv6 2001:620:3101:3030::/64 2001:620:3101:1020::/64
- deny ipv6 2001:620:3101:3030::/64 2001:620:3101:2010::/64
- deny ipv6 2001:620:3101:3030::/64 2001:620:3101:2020::/64
- deny ipv6 2001:620:3101:3030::/64 2001:620:3101:3010::/64
- deny ipv6 2001:620:3101:3030::/64 2001:620:3101:3020::/64
+ deny ipv6 2001:620:3101:3020::/64 2001:620:3101:3020::/64
  permit ipv6 any any
  permit tcp any any
 !
@@ -236,7 +228,8 @@ line 2
  no activation-character
  no exec
  transport preferred none
- transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+ transport input all
+ transport output lat pad telnet rlogin lapb-ta mop udptn v120 ssh
  stopbits 1
 line vty 0 4
  login
@@ -245,3 +238,4 @@ line vty 0 4
 scheduler allocate 20000 1000
 !
 end
+
