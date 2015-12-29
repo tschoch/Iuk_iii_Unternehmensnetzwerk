@@ -1,10 +1,16 @@
 \documentclass[12pt,a4paper,titlepage]{article}
 \usepackage{graphicx}
 \usepackage[ngerman]{babel} 
-\usepackage[ansinew]{inputenc} 
+\usepackage[utf8]{inputenc} 
 \usepackage{setspace}
 \usepackage{tabularx}
+\usepackage{acronym}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{titlesec}
 \usepackage[a4paper,left=2cm,right=2cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{wrapfig}
+\usepackage{float}
 \usepackage{fancyhdr}
 \pagestyle{fancy} 
 \fancyhf{} 
@@ -16,6 +22,8 @@
 \lhead{\nouppercase{\rightmark}}
 \rhead{\thepage}
 \lfoot{Benjamin Mosberger, Tobias Schoch}
+
+
 
 %--------Titelseite----------
 \begin{document}
@@ -46,24 +54,117 @@
 \onehalfspacing 
 
 \section{Zusammenfassung}
-Die Aufgabe dieser
+Die Aufgabe dieser Projektarbeit ist ein Unternehmensnetzwerk im Labor der HTW Chur zu planen, aufzubauen und zu Dokumentieren. Das ganze Netzwerk soll redundant aufgebaut werden, um ausfallsicher zu sein, und ausserdem wird IPv4 und IPv6 verwendet.
+
 
 \vspace{-1,2em}
 
 \section*{Abstract}
-Das ganze auf Englisch.
+The goal of this project is to achieve a working corporate network. Beside redundancy, the clients should be able to use IPv4 and Ipv6. Clients from a department should only be able to communicate with users from the same department, even in other sites.
+
 \pagebreak
 
-%--------Inhaltsverzeichnis----------
+%--------Inhaltsverzeichnis---------- 
 \tableofcontents 
 \pagebreak
 
+%--------Abbildungsverzeichnis----------
+\listoffigures
+
+
+%--------Tabellenverzeichnis----------
+\listoftables 
+\newpage
+
 %--------Inhalt----------
 \section{Ausgangslage} 
-\subsection{Fallbeispiel } 
+\subsection{Fallbeispiel}
+Sie sollen ein neues Netzwek für die Mittelgrosse Firma HAC Home Audio Center AG aufbauen, welche 80 Mitarbeiter an den 3 Standorten Chur, Buchs, St. Gallen beschäftigt. Die Firma hat ihren Hauptsitz mit 70 Mitarbeitern in Chur und Niederlassungen mit je 5 Mitarbeitern in Buchs und St. Gallen. Die Standorte sind durch ein Layer-3 MPLS VPN miteinander verbunden(durch einen einfachen Switch simuliert).
+\newpage
+
+
 \subsection{Praktikumsausrüstung} 
+Die Netzwerkkomponenten sind bereits vorhanden, die physische Netzstruktur aufgrund der Gebäudetopographie und der Skalierbarkeit zu einem grossen Teil vorgegeben.\\
+\newline
+Die verfügbaren Komponenten sind:\\
+\newline
+-Standort Chur:\\
+- 1x Router (Cisco 1941) mit 2x FastEthernet und 2x GigabitEthernet Anschlüssen\\
+- 2x Layer-3 Switch (Cisco 3750)\\
+- 2x Layer-3 Switch (Cisco 3560)\\
+- 2x Layer-2 Switch (Cisco 2960)\\
+\newline
+-Standort Buchs:\\
+- 1x Router (Cisco 1920)\\
+- 1x Layer-2 Switch (Cisco 2960)\\
+\newline
+-Standort St.Gallen:\\
+- 1x Router (Cisco 1921)\\
+- 1x Layer-2 Switch (Cisco 2960)\\
+\newline
+Die vorgegebene Netzwerkstruktur sieht folgendermassen aus:
+\begin{figure} [H]
+\centering
+\includegraphics{Netzwerkstruktur.png}
+\caption{Netzwerkstruktur}
+\label{abb: Netzwerksturktur}
+\end{figure}
+\newpage
+
 \section{Konzept}
-\subsection{IP Addresskonzept } 
+\subsection{Ipv4 Adresskonzept} 
+Das folgende Konzept gilt nur für IPv4, immer wenn von Adressen die Rede ist, sind nur IPv4 Adressen gemeint.
+Für das private Netz werde Adressen aus dem 10.0.0.0/8 Netz ausgewählt. Für jeden Standort und für die Netze welche nicht einem Standort zugeornet werden können wird ein /16 Netz ausgewählt, so hat jeder Standort 65534 Ip-Adressen. Dies sollte für die nahe Zukunft genügen.\\
+\newline
+Die Aufteilung sieht folgendermassen aus: \\
+\newline
+\hspace*{1cm} 
+\begin{tabular}{ll}
+    Chur & 10.\colorbox{green}{1}.0.0/16\\
+    St. Gallen & 10.\colorbox{green}{2}.0.0/16\\
+    Buchs & 10.\colorbox{green}{3}.0.0/16\\
+    Transfer & 10.\colorbox{green}{4}.0.0/16\\
+\end{tabular}\\
+\newline
+Für die Vlans werden die Netze der Standorte nochmals unterteilt, die gelben Sterne im Vlan-Plan stehen für die Standorte. Mit /24 Netzen stehen jeder Abteilund pro Standort 256 Adressen zur Verfügung.\\
+\newline
+\hspace*{1cm} 
+\begin{tabular}{lll}
+     Vlan 10 & Geschäftsleitung & 10.\colorbox{yellow}{*}.\colorbox{green}{10}.0/24\\
+     Vlan 20 & Buchhaltung & 10.\colorbox{yellow}{*}.\colorbox{green}{20}.0/24\\
+     Vlan 30 & Entwicklung & 10.\colorbox{yellow}{*}.\colorbox{green}{30}.0/24\\
+             & Transfer & 10.\colorbox{yellow}{*}.\colorbox{green}{40}.0/24\\
+     Vlan 99 & Management & 10.\colorbox{yellow}{*}.\colorbox{green}{99}.0/24\\
+\end{tabular}
+\newpage
+\subsection{Ipv6 Adresskonzept} 
+Das folgende Konzept gilt nur für IPv6, immer wenn von Adressen die Rede ist, sind nur IPv6 Adressen gemeint.
+Die Aufgabenstellung besagt, dass ein /48 Netz zur Verfügung steht, das Ziel ist nun dies in einer ähnlichen Art wie bei IPv4 zu gestalten. \\
+\newline
+Standortabhängigkeiten:\\ 
+\newline
+\hspace*{1cm} 
+\begin{tabular}{ll}
+    Chur & 2001:620:3101:\colorbox{green}{1}::/64\\
+    St. Gallen & 2001:620:3101:\colorbox{green}{2}::/64\\
+    Buchs & 2001:620:3101:\colorbox{green}{3}::/64\\
+\end{tabular}\\
+\newline
+Da es bei IPv6 keine Vlans gibt, sondern alles über Layer-3, sprich IP, geschieht. Muss auch ein “Vlan-Konzept” für IPv6 erstellt werden. Dies wird analog zu IPv4 gemacht. Die gelben Sterne stehen für die Standortadresse.\\\newline
+Netze der Abteilungen: \\
+\newline
+\hspace*{1cm} 
+\begin{tabular}{lll}
+     Vlan 10 & Geschäftsleitung & 2001:620:3101:\colorbox{yellow}{*}\colorbox{green}{010}::/64\\
+     Vlan 20 & Buchhaltung & 2001:620:3101:\colorbox{yellow}{*}\colorbox{green}{020}::/64\\
+     Vlan 30 & Entwicklung & 2001:620:3101:\colorbox{yellow}{*}\colorbox{green}{030}::/64\\
+             & Transfer & 2001:620:3101:\colorbox{yellow}{*}\colorbox{green}{040}::/64\\
+     Vlan 99 & Management & 2001:620:3101:\colorbox{yellow}{*}\colorbox{green}{099}::/64\\
+\end{tabular}
+\newpage
+
+
+
 \subsection{Routingkonzept} 
 \subsection{Securitykonzept} 
 \subsubsection{ACL}
