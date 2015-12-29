@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.23)  29 DEC 2015 22:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.23)  29 DEC 2015 22:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -644,13 +644,13 @@ expadtmp/Unternehmensnetzwerk.out)
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-<logo_ntb.png, id=64, 539.01375pt x 187.45032pt>
+<logo_ntb.png, id=60, 539.01375pt x 187.45032pt>
 File: logo_ntb.png Graphic file (type png)
  <use logo_ntb.png>
 Package pdftex.def Info: logo_ntb.png used on input line 33.
 (pdftex.def)             Requested size: 163.62994pt x 56.9055pt.
 
-<logo_htw.png, id=65, 301.125pt x 67.25125pt>
+<logo_htw.png, id=61, 301.125pt x 67.25125pt>
 File: logo_htw.png Graphic file (type png)
  <use logo_htw.png>
 Package pdftex.def Info: logo_htw.png used on input line 35.
@@ -672,11 +672,6 @@ Package babel Info: Redefining ngerman shorthand "~
 
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logo_
 ntb.png> <./logo_htw.png>]
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 56.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 56.
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -702,9 +697,9 @@ l.66
 (/Users/Benjamin/Documents/NTB/5. Semester/Iuk_III/Unternehmensnetzwerk/doku/.t
 expadtmp/Unternehmensnetzwerk.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 4.
+(Font)              <8> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 4.
+(Font)              <6> on input line 3.
 )
 \tf@toc=\write5
 \openout5 = `Unternehmensnetzwerk.toc'.
@@ -760,7 +755,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 86.
 
-<Netzwerkstruktur.png, id=109, 468.75125pt x 218.8175pt>
+<Netzwerkstruktur.png, id=104, 468.75125pt x 218.8175pt>
 File: Netzwerkstruktur.png Graphic file (type png)
 
 <use Netzwerkstruktur.png>
@@ -934,10 +929,10 @@ Package rerunfilecheck Info: File `Unternehmensnetzwerk.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 176.
  ) 
 Here is how much of TeX's memory you used:
- 7314 strings out of 493089
- 107189 string characters out of 6134842
+ 7312 strings out of 493089
+ 107169 string characters out of 6134842
  209261 words of memory out of 5000000
- 10670 multiletter control sequences out of 15000+600000
+ 10669 multiletter control sequences out of 15000+600000
  8808 words of font info for 31 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  29i,11n,43p,441b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -945,10 +940,10 @@ Here is how much of TeX's memory you used:
 ></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><
 /usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
 Output written on "/Users/Benjamin/Documents/NTB/5. Semester/Iuk_III/Unternehme
-nsnetzwerk/doku/.texpadtmp/Unternehmensnetzwerk.pdf" (9 pages, 175659 bytes).
+nsnetzwerk/doku/.texpadtmp/Unternehmensnetzwerk.pdf" (9 pages, 175508 bytes).
 PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
- 127 compressed objects within 2 object streams
- 25 named destinations out of 1000 (max. 500000)
- 136 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 143 PDF objects out of 1000 (max. 8388607)
+ 121 compressed objects within 2 object streams
+ 24 named destinations out of 1000 (max. 500000)
+ 128 words of extra memory for PDF output out of 10000 (max. 10000000)
 

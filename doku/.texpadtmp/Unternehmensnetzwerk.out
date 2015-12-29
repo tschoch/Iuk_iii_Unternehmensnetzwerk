@@ -1,15 +1,14 @@
-\BOOKMARK [1][-]{section.1}{Zusammenfassung}{}% 1
-\BOOKMARK [1][-]{section.2}{Ausgangslage}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Fallbeispiel}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Praktikumsausr\374stung}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Konzept}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Ipv4 Adresskonzept}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Ipv6 Adresskonzept}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.3}{Routingkonzept}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.4}{Securitykonzept}{section.3}% 9
-\BOOKMARK [3][-]{subsubsection.3.4.1}{ACL}{subsection.3.4}% 10
-\BOOKMARK [3][-]{subsubsection.3.4.2}{Layer 2 Security}{subsection.3.4}% 11
-\BOOKMARK [2][-]{subsection.3.5}{Serverservices}{section.3}% 12
-\BOOKMARK [2][-]{subsection.3.6}{Netzwerkplan}{section.3}% 13
-\BOOKMARK [1][-]{section.4}{Planung}{}% 14
-\BOOKMARK [1][-]{section.5}{Umsetzung}{}% 15
+\BOOKMARK [1][-]{section.1}{Ausgangslage}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Fallbeispiel}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Praktikumsausr\374stung}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Konzept}{}% 4
+\BOOKMARK [2][-]{subsection.2.1}{Ipv4 Adresskonzept}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Ipv6 Adresskonzept}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.3}{Routingkonzept}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.4}{Securitykonzept}{section.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.4.1}{ACL}{subsection.2.4}% 9
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Layer 2 Security}{subsection.2.4}% 10
+\BOOKMARK [2][-]{subsection.2.5}{Serverservices}{section.2}% 11
+\BOOKMARK [2][-]{subsection.2.6}{Netzwerkplan}{section.2}% 12
+\BOOKMARK [1][-]{section.3}{Planung}{}% 13
+\BOOKMARK [1][-]{section.4}{Umsetzung}{}% 14
