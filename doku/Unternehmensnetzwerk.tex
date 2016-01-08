@@ -12,6 +12,7 @@
 \usepackage{wrapfig}
 \usepackage{float}
 \usepackage{fancyhdr}
+\usepackage{listings}
 \pagestyle{fancy} 
 \fancyhf{} 
 \renewcommand{\headrulewidth}{0.4pt} 
@@ -22,7 +23,11 @@
 \lhead{\nouppercase{\rightmark}}
 \rhead{\thepage}
 \lfoot{Benjamin Mosberger, Tobias Schoch}
-
+\lstdefinelanguage{CISCO} 
+{ 
+sensitive=true, 
+morekeywords=[1]{}, 
+} 
 
 
 %--------Titelseite----------
@@ -76,6 +81,16 @@ The goal of this project is to achieve a working corporate network. Beside redun
 \listoftables 
 \newpage
 
+
+%--------Abkürzugsverzeichnis---------
+\section{Abkürzungen}
+\begin{acronym}[Bash]
+\acro{LACP}{Link Aggreagtion Protocol}
+\acro{PagP}{Port Aggregation Protocol}
+\end{acronym}
+\newpage
+
+
 %--------Inhalt----------
 \section{Ausgangslage} 
 \subsection{Fallbeispiel}
@@ -102,7 +117,7 @@ Die verfügbaren Komponenten sind:\\
 - 1x Router (Cisco 1921)\\
 - 1x Layer-2 Switch (Cisco 2960)\\
 \newline
-Die vorgegebene Netzwerkstruktur sieht folgendermassen aus:
+Die vorgegebene Netzwerkstruktur ist in Abbildung \ref{abb: Netzwerksturktur} zu sehen:
 \begin{figure} [H]
 \centering
 \includegraphics{Netzwerkstruktur.png}
@@ -184,10 +199,76 @@ Die ACL's werden auf den Routern R2, R3 und auf dem Switch D konfiguriert, für 
 
 \subsubsection{Layer 2 Security}
 \subsection{Serverservices}
+\subsubsection{DHCP}
+\subsubsection{DNS}
 \subsection{Netzwerkplan}
+\subsection{weitere Überlegungen}
+
+Bei genügender Zeit hätte man noch einiges erreichen können. Einige Punkte welche wichtig sind werden nun erläutert:
+\begin{itemize}
+\item Passwort setzen: Im Moment ist auf keinem Gerät ein Passwort gesetzt, da es während der Konfiguration mühsam ist immer wieder das Passwort einzugeben, deshalb sollte dies ganz am Schluss geschehen.
+\item Fernwartung: Auf allen Geräten ist eine Management Adresse konfiguriert. Wenn jetzt der Fernzugriff aktiviert würde, müssten die Anzahl Zugriffe aus dem Internet begrenzt werden, damit nicht mit Bruteforce das Passwort geknackt werden kann.
+\item OSPF Areas: Die einzelnen Standorte hätten noch mit einem eigenen OSPF Area konfiguriert werden können, dies hätte den Vorteil dass nicht alle über OSPF Teilnehmer über das ganze Netz bescheid wissen müssen und so bedeutend weniger Traffic auf den Leitungen ist.
+\item Vlan: Es hätte noch ein GästeVlan eingerichtet werden können, welches nur zum Internet zugriff hat, dies ist jedoch nicht Teil der Aufgabenstellung und könne im Bedarfsfall schnell nachgerüstet werden.
+\item Device Backups: Wenn im Moment Device Backups gemacht werden müssen, muss jeder einzelne Router und Switch mittels kopieren der running-config gebackupt werden. Dabei könnte man mit einem Kron-Script die Backups zeitgesteuert auf einen TFTP Server speichern. So spart man sich wöchentliche Arbeit und man vergisst es auch sicher nicht.
+\end{itemize}
+
+\subsection{Stack}
+Stacken ist das Zusammenschliessen zweier physischen Switches zu einem logischen. Dies ist nicht mit allen Switches möglich, doch in diesem Fall ist es bei den Beiden Distribution-Switches möglich, da diese ein Stack-Interface auf der Rückseite haben. Dies erspart eine Menge an Arbeit, wenn man weiss wie dies funktioniert. In diesem Fall war dies leider nicht der Fall, da noch nie mit gestackten Switches gearbeitet wurde, die Anweisungen zur Konfiguration des Stackes bezieht sich hier nur auf die Cisco Catalyst 3750 Switches, da nicht bekannt ist ob es noch Besonderheiten bei der Konfiguration anderer Switches gibt. Als erstes musste festgestellt werden, dass der 3750er nur \acs{LACP} und kein \acs{PagP} unterstützt.
+
+
+\newpage
 \section{Planung}
+In Abbildung \ref{abb:Zeitplan} ist der geplante und der tatsächliche Ablauf des Projektes zu sehen. 
+\begin{figure}[H]
+\begin{center}
+\includegraphics[angle=90,scale=0.7]{Zeitplan.png}
+\caption{Zeitplan}
+\label{abb:Zeitplan}
+\end{center}
+\end{figure}
 \section{Umsetzung}
+\subsubsection{Grundlegende Konfiguration Router}
+
+ \begin{lstlisting}[frame=single, captionpos=b,caption= Router Grund Konfig]
+R1(config)#hostname R1
+R1(config)#no ip domain lookup
+R1(config)#ipv6 unicast-routing
+\end{lstlisting}
+
+\subsubsection{Grundlegende Konfiguration access Switches}
+ \begin{lstlisting}[frame=single, captionpos=b,caption= Switch Grund Konfig]
+S1(config)#hostname A1
+S1(config)#no ip domain lookup
+S1(config)#spanning-tree mode pvst
+S1(config)#ip default-gateway 10.2.99.1
+S1(config)#ip http server
+S1(config)#ip http secure-server
+\end{lstlisting}
+
+\subsubsection{Routing zwischen Standorten}
+
+\subsubsection{NAT}
+
+
+\subsubsection{ACL}
+\subsubsection{DHCP}
+\subsubsection{DNS}
+\newpage
+\subsubsection{Fazit}
+Wir taten uns am Anfang schwer mit dem Addresskonzept. Als wir das Addresskonzept aufgestellt hatten, folgten weitere Probleme welche nicht zuletzt aufgrund der gestackten Switches auftraten, was zu Zeitverzögerungen führte. Dies ist auch auf dem Zeitplan in Abbildung \ref{abb:Zeitplan} zu sehen.
+
+\newpage
+
+\section {Glossar}
+\begin{acronym}[Bash]
+\acro{}{}
+\end{acronym}
+\newpage
+
 \end{document}
+
+
 
 
 
