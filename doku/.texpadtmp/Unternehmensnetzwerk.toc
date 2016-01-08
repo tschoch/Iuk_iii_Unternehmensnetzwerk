@@ -1,32 +1,31 @@
 \select@language {ngerman}
-\contentsline {section}{\numberline {1}Abk\IeC {\"u}rzungen}{4}{section.1}
-\contentsline {section}{\numberline {2}Ausgangslage}{5}{section.2}
-\contentsline {subsection}{\numberline {2.1}Fallbeispiel}{5}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Praktikumsausr\IeC {\"u}stung}{6}{subsection.2.2}
-\contentsline {section}{\numberline {3}Konzept}{7}{section.3}
-\contentsline {subsection}{\numberline {3.1}Ipv4 Adresskonzept}{7}{subsection.3.1}
-\contentsline {subsection}{\numberline {3.2}Ipv6 Adresskonzept}{8}{subsection.3.2}
-\contentsline {subsection}{\numberline {3.3}Routingkonzept}{9}{subsection.3.3}
-\contentsline {subsection}{\numberline {3.4}NAT Konzept}{9}{subsection.3.4}
-\contentsline {subsubsection}{\numberline {3.4.1}IPv4}{9}{subsubsection.3.4.1}
-\contentsline {subsubsection}{\numberline {3.4.2}IPv6}{9}{subsubsection.3.4.2}
-\contentsline {subsection}{\numberline {3.5}Securitykonzept}{10}{subsection.3.5}
-\contentsline {subsubsection}{\numberline {3.5.1}ACL}{10}{subsubsection.3.5.1}
-\contentsline {subsubsection}{\numberline {3.5.2}Layer 2 Security}{10}{subsubsection.3.5.2}
-\contentsline {subsection}{\numberline {3.6}Serverservices}{10}{subsection.3.6}
-\contentsline {subsubsection}{\numberline {3.6.1}DHCP}{10}{subsubsection.3.6.1}
-\contentsline {subsubsection}{\numberline {3.6.2}DNS}{10}{subsubsection.3.6.2}
-\contentsline {subsection}{\numberline {3.7}Netzwerkplan}{10}{subsection.3.7}
-\contentsline {subsection}{\numberline {3.8}weitere \IeC {\"U}berlegungen}{10}{subsection.3.8}
-\contentsline {subsection}{\numberline {3.9}Stack}{11}{subsection.3.9}
-\contentsline {section}{\numberline {4}Planung}{12}{section.4}
-\contentsline {section}{\numberline {5}Umsetzung}{13}{section.5}
-\contentsline {subsubsection}{\numberline {5.0.1}Grundlegende Konfiguration Router}{13}{subsubsection.5.0.1}
-\contentsline {subsubsection}{\numberline {5.0.2}Grundlegende Konfiguration access Switches}{13}{subsubsection.5.0.2}
-\contentsline {subsubsection}{\numberline {5.0.3}Routing zwischen Standorten}{13}{subsubsection.5.0.3}
-\contentsline {subsubsection}{\numberline {5.0.4}NAT}{13}{subsubsection.5.0.4}
-\contentsline {subsubsection}{\numberline {5.0.5}ACL}{13}{subsubsection.5.0.5}
-\contentsline {subsubsection}{\numberline {5.0.6}DHCP}{13}{subsubsection.5.0.6}
-\contentsline {subsubsection}{\numberline {5.0.7}DNS}{13}{subsubsection.5.0.7}
-\contentsline {subsubsection}{\numberline {5.0.8}Fazit}{14}{subsubsection.5.0.8}
-\contentsline {section}{\numberline {6}Glossar}{15}{section.6}
+\contentsline {chapter}{\numberline {1}Abk\IeC {\"u}rzungen}{4}{chapter.1}
+\contentsline {chapter}{\numberline {2}Ausgangslage}{5}{chapter.2}
+\contentsline {section}{\numberline {2.1}Fallbeispiel}{5}{section.2.1}
+\contentsline {section}{\numberline {2.2}Praktikumsausr\IeC {\"u}stung}{6}{section.2.2}
+\contentsline {chapter}{\numberline {3}Konzept}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Ipv4 Adresskonzept}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}Ipv6 Adresskonzept}{8}{section.3.2}
+\contentsline {section}{\numberline {3.3}Routingkonzept}{9}{section.3.3}
+\contentsline {section}{\numberline {3.4}NAT Konzept}{9}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}IPv4}{9}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}IPv6}{9}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Securitykonzept}{10}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}ACL}{10}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}Layer 2 Security}{10}{subsection.3.5.2}
+\contentsline {section}{\numberline {3.6}Serverservices}{10}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}DHCP}{10}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}DNS}{10}{subsection.3.6.2}
+\contentsline {section}{\numberline {3.7}Netzwerkplan}{10}{section.3.7}
+\contentsline {section}{\numberline {3.8}weitere \IeC {\"U}berlegungen}{11}{section.3.8}
+\contentsline {section}{\numberline {3.9}Stack}{11}{section.3.9}
+\contentsline {chapter}{\numberline {4}Planung}{12}{chapter.4}
+\contentsline {chapter}{\numberline {5}Umsetzung}{12}{chapter.5}
+\contentsline {subsection}{\numberline {5.0.1}Grundlegende Konfiguration Router}{13}{subsection.5.0.1}
+\contentsline {subsection}{\numberline {5.0.2}Grundlegende Konfiguration access Switches}{13}{subsection.5.0.2}
+\contentsline {subsection}{\numberline {5.0.3}Routing zwischen Standorten}{13}{subsection.5.0.3}
+\contentsline {subsection}{\numberline {5.0.4}NAT}{13}{subsection.5.0.4}
+\contentsline {subsection}{\numberline {5.0.5}ACL}{13}{subsection.5.0.5}
+\contentsline {subsection}{\numberline {5.0.6}DHCP}{13}{subsection.5.0.6}
+\contentsline {subsection}{\numberline {5.0.7}DNS}{13}{subsection.5.0.7}
+\contentsline {chapter}{\numberline {6}Fazit}{14}{chapter.6}

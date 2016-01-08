@@ -1,31 +1,30 @@
-\BOOKMARK [1][-]{section.1}{Abk\374rzungen}{}% 1
-\BOOKMARK [1][-]{section.2}{Ausgangslage}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Fallbeispiel}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Praktikumsausr\374stung}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{Konzept}{}% 5
-\BOOKMARK [2][-]{subsection.3.1}{Ipv4 Adresskonzept}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.2}{Ipv6 Adresskonzept}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.3}{Routingkonzept}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.4}{NAT Konzept}{section.3}% 9
-\BOOKMARK [3][-]{subsubsection.3.4.1}{IPv4}{subsection.3.4}% 10
-\BOOKMARK [3][-]{subsubsection.3.4.2}{IPv6}{subsection.3.4}% 11
-\BOOKMARK [2][-]{subsection.3.5}{Securitykonzept}{section.3}% 12
-\BOOKMARK [3][-]{subsubsection.3.5.1}{ACL}{subsection.3.5}% 13
-\BOOKMARK [3][-]{subsubsection.3.5.2}{Layer 2 Security}{subsection.3.5}% 14
-\BOOKMARK [2][-]{subsection.3.6}{Serverservices}{section.3}% 15
-\BOOKMARK [3][-]{subsubsection.3.6.1}{DHCP}{subsection.3.6}% 16
-\BOOKMARK [3][-]{subsubsection.3.6.2}{DNS}{subsection.3.6}% 17
-\BOOKMARK [2][-]{subsection.3.7}{Netzwerkplan}{section.3}% 18
-\BOOKMARK [2][-]{subsection.3.8}{weitere \334berlegungen}{section.3}% 19
-\BOOKMARK [2][-]{subsection.3.9}{Stack}{section.3}% 20
-\BOOKMARK [1][-]{section.4}{Planung}{}% 21
-\BOOKMARK [1][-]{section.5}{Umsetzung}{}% 22
-\BOOKMARK [2][-]{subsubsection.5.0.1}{Grundlegende Konfiguration Router}{section.5}% 23
-\BOOKMARK [3][-]{subsubsection.5.0.2}{Grundlegende Konfiguration access Switches}{subsubsection.5.0.1}% 24
-\BOOKMARK [3][-]{subsubsection.5.0.3}{Routing zwischen Standorten}{subsubsection.5.0.1}% 25
-\BOOKMARK [3][-]{subsubsection.5.0.4}{NAT}{subsubsection.5.0.1}% 26
-\BOOKMARK [3][-]{subsubsection.5.0.5}{ACL}{subsubsection.5.0.1}% 27
-\BOOKMARK [3][-]{subsubsection.5.0.6}{DHCP}{subsubsection.5.0.1}% 28
-\BOOKMARK [3][-]{subsubsection.5.0.7}{DNS}{subsubsection.5.0.1}% 29
-\BOOKMARK [3][-]{subsubsection.5.0.8}{Fazit}{subsubsection.5.0.1}% 30
-\BOOKMARK [1][-]{section.6}{Glossar}{}% 31
+\BOOKMARK [0][-]{chapter.1}{Abk\374rzungen}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Ausgangslage}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Fallbeispiel}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Praktikumsausr\374stung}{chapter.2}% 4
+\BOOKMARK [0][-]{chapter.3}{Konzept}{}% 5
+\BOOKMARK [1][-]{section.3.1}{Ipv4 Adresskonzept}{chapter.3}% 6
+\BOOKMARK [1][-]{section.3.2}{Ipv6 Adresskonzept}{chapter.3}% 7
+\BOOKMARK [1][-]{section.3.3}{Routingkonzept}{chapter.3}% 8
+\BOOKMARK [1][-]{section.3.4}{NAT Konzept}{chapter.3}% 9
+\BOOKMARK [2][-]{subsection.3.4.1}{IPv4}{section.3.4}% 10
+\BOOKMARK [2][-]{subsection.3.4.2}{IPv6}{section.3.4}% 11
+\BOOKMARK [1][-]{section.3.5}{Securitykonzept}{chapter.3}% 12
+\BOOKMARK [2][-]{subsection.3.5.1}{ACL}{section.3.5}% 13
+\BOOKMARK [2][-]{subsection.3.5.2}{Layer 2 Security}{section.3.5}% 14
+\BOOKMARK [1][-]{section.3.6}{Serverservices}{chapter.3}% 15
+\BOOKMARK [2][-]{subsection.3.6.1}{DHCP}{section.3.6}% 16
+\BOOKMARK [2][-]{subsection.3.6.2}{DNS}{section.3.6}% 17
+\BOOKMARK [1][-]{section.3.7}{Netzwerkplan}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.8}{weitere \334berlegungen}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.9}{Stack}{chapter.3}% 20
+\BOOKMARK [0][-]{chapter.4}{Planung}{}% 21
+\BOOKMARK [0][-]{chapter.5}{Umsetzung}{}% 22
+\BOOKMARK [1][-]{subsection.5.0.1}{Grundlegende Konfiguration Router}{chapter.5}% 23
+\BOOKMARK [2][-]{subsection.5.0.2}{Grundlegende Konfiguration access Switches}{subsection.5.0.1}% 24
+\BOOKMARK [2][-]{subsection.5.0.3}{Routing zwischen Standorten}{subsection.5.0.1}% 25
+\BOOKMARK [2][-]{subsection.5.0.4}{NAT}{subsection.5.0.1}% 26
+\BOOKMARK [2][-]{subsection.5.0.5}{ACL}{subsection.5.0.1}% 27
+\BOOKMARK [2][-]{subsection.5.0.6}{DHCP}{subsection.5.0.1}% 28
+\BOOKMARK [2][-]{subsection.5.0.7}{DNS}{subsection.5.0.1}% 29
+\BOOKMARK [0][-]{chapter.6}{Fazit}{}% 30

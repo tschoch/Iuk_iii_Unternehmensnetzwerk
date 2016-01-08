@@ -1,33 +1,25 @@
-\documentclass[12pt,a4paper,titlepage]{article}
+\documentclass[11pt,a4paper]{scrreprt}
 \usepackage{graphicx}
 \usepackage[ngerman]{babel} 
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc} 
 \usepackage{setspace}
 \usepackage{tabularx}
 \usepackage{acronym}
 \usepackage{hyperref}
 \usepackage{color}
-\usepackage{titlesec}
 \usepackage[a4paper,left=2cm,right=2cm,top=3cm,bottom=3cm]{geometry}
-\usepackage{wrapfig}
 \usepackage{float}
-\usepackage{fancyhdr}
 \usepackage{listings}
-\pagestyle{fancy} 
-\fancyhf{} 
-\renewcommand{\headrulewidth}{0.4pt} 
-\renewcommand{\footrulewidth}{0.4pt}
-\renewcommand{\sectionmark}[1]{\markright{#1}}
-\renewcommand{\subsectionmark}[1]{}
-\renewcommand{\subsubsectionmark}[1]{}
-\lhead{\nouppercase{\rightmark}}
-\rhead{\thepage}
-\lfoot{Benjamin Mosberger, Tobias Schoch}
-\lstdefinelanguage{CISCO} 
-{ 
-sensitive=true, 
-morekeywords=[1]{}, 
-} 
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
+\renewcommand*{\chapterheadstartvskip}{\vspace*{0.0\baselineskip}}
+\renewcommand{\chapterpagestyle}{scrheadings}
+\pagestyle{scrheadings}
+\clearscrheadfoot
+\ihead{\headmark}
+\ohead{\pagemark}
+\ifoot{Benjamin Mosberger, Tobias Schoch}
+\automark{chapter}
 
 
 %--------Titelseite----------
@@ -75,15 +67,19 @@ The goal of this project is to achieve a working corporate network. Beside redun
 
 %--------Abbildungsverzeichnis----------
 \listoffigures
-
+\renewcommand*\clearpage{}
 
 %--------Tabellenverzeichnis----------
 \listoftables 
+\renewcommand*\clearpage{}
+%--------listings----------
+\lstlistoflistings
 \newpage
 
 
+
 %--------Abkürzugsverzeichnis---------
-\section{Abkürzungen}
+\chapter{Abkürzungen}
 \begin{acronym}[Bash]
 \acro{LACP}{Link Aggreagtion Protocol}
 \acro{PagP}{Port Aggregation Protocol}
@@ -92,13 +88,13 @@ The goal of this project is to achieve a working corporate network. Beside redun
 
 
 %--------Inhalt----------
-\section{Ausgangslage} 
-\subsection{Fallbeispiel}
+\chapter{Ausgangslage} 
+\section{Fallbeispiel}
 Sie sollen ein neues Netzwek für die Mittelgrosse Firma HAC Home Audio Center AG aufbauen, welche 80 Mitarbeiter an den 3 Standorten Chur, Buchs, St. Gallen beschäftigt. Die Firma hat ihren Hauptsitz mit 70 Mitarbeitern in Chur und Niederlassungen mit je 5 Mitarbeitern in Buchs und St. Gallen. Die Standorte sind durch ein Layer-3 MPLS VPN miteinander verbunden(durch einen einfachen Switch simuliert).
 \newpage
 
 
-\subsection{Praktikumsausrüstung} 
+\section{Praktikumsausrüstung} 
 Die Netzwerkkomponenten sind bereits vorhanden, die physische Netzstruktur aufgrund der Gebäudetopographie und der Skalierbarkeit zu einem grossen Teil vorgegeben.\\
 \newline
 Die verfügbaren Komponenten sind:\\
@@ -126,8 +122,8 @@ Die vorgegebene Netzwerkstruktur ist in Abbildung \ref{abb: Netzwerksturktur} zu
 \end{figure}
 \newpage
 
-\section{Konzept}
-\subsection{Ipv4 Adresskonzept} 
+\chapter{Konzept}
+\section{Ipv4 Adresskonzept} 
 Das folgende Konzept gilt nur für IPv4, immer wenn von Adressen die Rede ist, sind nur IPv4 Adressen gemeint.
 Für das private Netz werde Adressen aus dem 10.0.0.0/8 Netz ausgewählt. Für jeden Standort und für die Netze welche nicht einem Standort zugeornet werden können wird ein /16 Netz ausgewählt, so hat jeder Standort 65534 Ip-Adressen. Dies sollte für die nahe Zukunft genügen.\\
 \newline
@@ -152,7 +148,7 @@ Für die Vlans werden die Netze der Standorte nochmals unterteilt, die gelben St
      Vlan 99 & Management & 10.\colorbox{yellow}{*}.\colorbox{green}{99}.0/24\\
 \end{tabular}
 \newpage
-\subsection{Ipv6 Adresskonzept} 
+\section{Ipv6 Adresskonzept} 
 Das folgende Konzept gilt nur für IPv6, immer wenn von Adressen die Rede ist, sind nur IPv6 Adressen gemeint.
 Die Aufgabenstellung besagt, dass ein /48 Netz zur Verfügung steht, das Ziel ist nun dies in einer ähnlichen Art wie bei IPv4 zu gestalten. \\
 \newline
@@ -180,29 +176,39 @@ Netze der Abteilungen: \\
 
 
 
-\subsection{Routingkonzept} 
+\section{Routingkonzept} 
 Innerhalb unseres Unternehmens werden die verschiedenen Standorte miteinander über OSPF geroutet. Am Hauptstandort in Chur wird ab dem Distributions-Switch (D) ebenfalls mit OSPF geroutet. Beim Interface mit dem Internetanschluss wird eine default-Route gesetzt, da diese immer die Gleiche ist. Damit die Clients immer den gleichen default-Gateway haben, ist auf R1 noch ein Loopback-Interface erstellt worden, dieses darf nicht vergessen werden bei der Konfiguration von OSPF.
-\subsection{NAT Konzept}
+\section{NAT Konzept}
 Meistens ist es für ein Unternehmen nicht rentabel sich die gesamte Anzahl benötigter IP-Adressen zu  kaufen. Deshalb werden private IP-Adressen verwendet und danach können mit einem NAT ganze Subnetze zu einer öffentlichen Adresse zugeordnet werden. Dies ist eine komfortable Lösung, ausserdem können dann die privaten Adressen so gestaltet werden, dass man nur schon beim anschauen weiss an welchem Standort und zu welchem Vlan die Adresse gehört.
 
-\subsubsection{IPv4}
+\subsection{IPv4}
 Für die öffentlichen Adressen steht ein /28 Netz zur Verfügung. Für die Verwendung von NAT können alle Adressen des Netzes benutzt werden, die Netz- und Broadcast-Adresse werden nicht benötigt. Somit stehen 16 öffentliche Adressen zur Benutzung, hier wurde für jeden Vlan an jedem Standort eine eigene Adresse verteilt. Dies ergibt 12 Adressen, die restlichen 4 Adressen sind für Reserven eingeplant.
 
-\subsubsection{IPv6}
+\subsection{IPv6}
 Bei IPv6 ist kein NAT notwendig, da ein öffentliches /48 Netz gebraucht wird. Es sind also mehr Adressen vorhanden als je in diesem Kleinunternehmen gebraucht werden.
 
 \newpage
-\subsection{Securitykonzept} 
-\subsubsection{ACL}
+\section{Securitykonzept} 
+\subsection{ACL}
 Mit ACL's wird der Zugriff der Abteilungen untereinander verhindert, lediglich das Management-Vlan hat auf alles Zugriff, da dies für die reibungslose Verwaltung des Netzes erforderlich ist.
 Die ACL's werden auf den Routern R2, R3 und auf dem Switch D konfiguriert, für die 3 Vlans der Abteilungen wird je der Zugriff der anderen Vlans verboten, danach werden alle anderen IP und TCP Pakete erlaubt. Dies wird für IPv4 und IPv6 gleich gemacht, als erstes wird eine ACL pro Vlan erstellt, danach wird diese ACL dem Vlan-Interface zugewiesen.
 
-\subsubsection{Layer 2 Security}
-\subsection{Serverservices}
-\subsubsection{DHCP}
-\subsubsection{DNS}
-\subsection{Netzwerkplan}
-\subsection{weitere Überlegungen}
+\subsection{Layer 2 Security}
+\section{Serverservices}
+\subsection{DHCP}
+\subsection{DNS}
+\section{Netzwerkplan}
+
+\begin{figure} [H]
+\centering
+\includegraphics[angle=0,scale=0.62]{Netzwerkplan}
+\caption{Netzwerkplan}
+\label{abb: Netzwerkplan}
+\end{figure}
+\newpage
+
+
+\section{weitere Überlegungen}
 
 Bei genügender Zeit hätte man noch einiges erreichen können. Einige Punkte welche wichtig sind werden nun erläutert:
 \begin{itemize}
@@ -213,12 +219,12 @@ Bei genügender Zeit hätte man noch einiges erreichen können. Einige Punkte we
 \item Device Backups: Wenn im Moment Device Backups gemacht werden müssen, muss jeder einzelne Router und Switch mittels kopieren der running-config gebackupt werden. Dabei könnte man mit einem Kron-Script die Backups zeitgesteuert auf einen TFTP Server speichern. So spart man sich wöchentliche Arbeit und man vergisst es auch sicher nicht.
 \end{itemize}
 
-\subsection{Stack}
+\section{Stack}
 Stacken ist das Zusammenschliessen zweier physischen Switches zu einem logischen. Dies ist nicht mit allen Switches möglich, doch in diesem Fall ist es bei den Beiden Distribution-Switches möglich, da diese ein Stack-Interface auf der Rückseite haben. Dies erspart eine Menge an Arbeit, wenn man weiss wie dies funktioniert. In diesem Fall war dies leider nicht der Fall, da noch nie mit gestackten Switches gearbeitet wurde, die Anweisungen zur Konfiguration des Stackes bezieht sich hier nur auf die Cisco Catalyst 3750 Switches, da nicht bekannt ist ob es noch Besonderheiten bei der Konfiguration anderer Switches gibt. Als erstes musste festgestellt werden, dass der 3750er nur \acs{LACP} und kein \acs{PagP} unterstützt.
 
 
 \newpage
-\section{Planung}
+\chapter{Planung}
 In Abbildung \ref{abb:Zeitplan} ist der geplante und der tatsächliche Ablauf des Projektes zu sehen. 
 \begin{figure}[H]
 \begin{center}
@@ -227,8 +233,9 @@ In Abbildung \ref{abb:Zeitplan} ist der geplante und der tatsächliche Ablauf de
 \label{abb:Zeitplan}
 \end{center}
 \end{figure}
-\section{Umsetzung}
-\subsubsection{Grundlegende Konfiguration Router}
+
+\chapter{Umsetzung}
+\subsection{Grundlegende Konfiguration Router}
 
  \begin{lstlisting}[frame=single, captionpos=b,caption= Router Grund Konfig]
 R1(config)#hostname R1
@@ -236,7 +243,7 @@ R1(config)#no ip domain lookup
 R1(config)#ipv6 unicast-routing
 \end{lstlisting}
 
-\subsubsection{Grundlegende Konfiguration access Switches}
+\subsection{Grundlegende Konfiguration access Switches}
  \begin{lstlisting}[frame=single, captionpos=b,caption= Switch Grund Konfig]
 S1(config)#hostname A1
 S1(config)#no ip domain lookup
@@ -246,25 +253,24 @@ S1(config)#ip http server
 S1(config)#ip http secure-server
 \end{lstlisting}
 
-\subsubsection{Routing zwischen Standorten}
+\subsection{Routing zwischen Standorten}
 
-\subsubsection{NAT}
+\subsection{NAT}
 
 
-\subsubsection{ACL}
-\subsubsection{DHCP}
-\subsubsection{DNS}
+\subsection{ACL}
+\subsection{DHCP}
+\subsection{DNS}
 \newpage
-\subsubsection{Fazit}
+\chapter{Fazit}
 Wir taten uns am Anfang schwer mit dem Addresskonzept. Als wir das Addresskonzept aufgestellt hatten, folgten weitere Probleme welche nicht zuletzt aufgrund der gestackten Switches auftraten, was zu Zeitverzögerungen führte. Dies ist auch auf dem Zeitplan in Abbildung \ref{abb:Zeitplan} zu sehen.
 
 \newpage
-
-\section {Glossar}
-\begin{acronym}[Bash]
-\acro{}{}
-\end{acronym}
-\newpage
+%\chapter{Glossar}
+%\begin{acronym}[Bash]
+%\acro{}{}
+%\end{acronym}
+%\newpage
 
 \end{document}
 
