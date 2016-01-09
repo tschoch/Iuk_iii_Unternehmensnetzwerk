@@ -20,11 +20,20 @@
 \BOOKMARK [1][-]{section.3.9}{Stack}{chapter.3}% 20
 \BOOKMARK [0][-]{chapter.4}{Planung}{}% 21
 \BOOKMARK [0][-]{chapter.5}{Umsetzung}{}% 22
-\BOOKMARK [1][-]{subsection.5.0.1}{Grundlegende Konfiguration Router}{chapter.5}% 23
-\BOOKMARK [2][-]{subsection.5.0.2}{Grundlegende Konfiguration access Switches}{subsection.5.0.1}% 24
-\BOOKMARK [2][-]{subsection.5.0.3}{Routing zwischen Standorten}{subsection.5.0.1}% 25
-\BOOKMARK [2][-]{subsection.5.0.4}{NAT}{subsection.5.0.1}% 26
-\BOOKMARK [2][-]{subsection.5.0.5}{ACL}{subsection.5.0.1}% 27
-\BOOKMARK [2][-]{subsection.5.0.6}{DHCP}{subsection.5.0.1}% 28
-\BOOKMARK [2][-]{subsection.5.0.7}{DNS}{subsection.5.0.1}% 29
-\BOOKMARK [0][-]{chapter.6}{Fazit}{}% 30
+\BOOKMARK [1][-]{section.5.1}{Grundlegende Konfiguration Router}{chapter.5}% 23
+\BOOKMARK [1][-]{section.5.2}{Grundlegende Konfiguration access Switches}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.3}{IP-Konfiguration}{chapter.5}% 25
+\BOOKMARK [2][-]{subsection.5.3.1}{Router}{section.5.3}% 26
+\BOOKMARK [2][-]{subsection.5.3.2}{Distribution}{section.5.3}% 27
+\BOOKMARK [2][-]{subsection.5.3.3}{Access-Switches}{section.5.3}% 28
+\BOOKMARK [1][-]{section.5.4}{Link-Aggregation}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.5}{OSPF}{chapter.5}% 30
+\BOOKMARK [2][-]{subsection.5.5.1}{IPv4}{section.5.5}% 31
+\BOOKMARK [2][-]{subsection.5.5.2}{IPv6}{section.5.5}% 32
+\BOOKMARK [1][-]{section.5.6}{NAT}{chapter.5}% 33
+\BOOKMARK [1][-]{section.5.7}{ACL}{chapter.5}% 34
+\BOOKMARK [1][-]{section.5.8}{DHCP}{chapter.5}% 35
+\BOOKMARK [2][-]{subsection.5.8.1}{IPv4}{section.5.8}% 36
+\BOOKMARK [2][-]{subsection.5.8.2}{IPv6}{section.5.8}% 37
+\BOOKMARK [1][-]{section.5.9}{DNS}{chapter.5}% 38
+\BOOKMARK [0][-]{chapter.6}{Fazit}{}% 39

@@ -5,6 +5,7 @@
 \usepackage[utf8]{inputenc} 
 \usepackage{setspace}
 \usepackage{tabularx}
+\usepackage{wrapfig}
 \usepackage{acronym}
 \usepackage{hyperref}
 \usepackage{color}
@@ -81,6 +82,7 @@ The goal of this project is to achieve a working corporate network. Beside redun
 %--------Abkürzugsverzeichnis---------
 \chapter{Abkürzungen}
 \begin{acronym}[Bash]
+\acro{ACL}{Access Control List}
 \acro{LACP}{Link Aggreagtion Protocol}
 \acro{PagP}{Port Aggregation Protocol}
 \end{acronym}
@@ -90,7 +92,7 @@ The goal of this project is to achieve a working corporate network. Beside redun
 %--------Inhalt----------
 \chapter{Ausgangslage} 
 \section{Fallbeispiel}
-Sie sollen ein neues Netzwek für die Mittelgrosse Firma HAC Home Audio Center AG aufbauen, welche 80 Mitarbeiter an den 3 Standorten Chur, Buchs, St. Gallen beschäftigt. Die Firma hat ihren Hauptsitz mit 70 Mitarbeitern in Chur und Niederlassungen mit je 5 Mitarbeitern in Buchs und St. Gallen. Die Standorte sind durch ein Layer-3 MPLS VPN miteinander verbunden(durch einen einfachen Switch simuliert).
+Es soll ein neues Netzwerk für die Mittelgrosse Firma HAC Home Audio Center AG aufgebaut werden, welche 80 Mitarbeiter an den 3 Standorten Chur, Buchs, St. Gallen beschäftigt. Die Firma hat ihren Hauptsitz mit 70 Mitarbeitern in Chur und Niederlassungen mit je 5 Mitarbeitern in Buchs und St. Gallen. Die Standorte sind durch ein Layer-3 MPLS VPN miteinander verbunden (was durch einen einfachen Switch simuliert wird).
 \newpage
 
 
@@ -101,16 +103,16 @@ Die verfügbaren Komponenten sind:\\
 \newline
 -Standort Chur:\\
 - 1x Router (Cisco 1941) mit 2x FastEthernet und 2x GigabitEthernet Anschlüssen\\
-- 2x Layer-3 Switch (Cisco 3750)\\
-- 2x Layer-3 Switch (Cisco 3560)\\
+- 2x Layer-3 Switch (Cisco 3750E)\\
+- 2x Layer-3 Switch (Cisco 3560G)\\
 - 2x Layer-2 Switch (Cisco 2960)\\
 \newline
 -Standort Buchs:\\
-- 1x Router (Cisco 1920)\\
+- 1x Router (Cisco 1921)\\
 - 1x Layer-2 Switch (Cisco 2960)\\
 \newline
 -Standort St.Gallen:\\
-- 1x Router (Cisco 1921)\\
+- 1x Router (Cisco 2901)\\
 - 1x Layer-2 Switch (Cisco 2960)\\
 \newline
 Die vorgegebene Netzwerkstruktur ist in Abbildung \ref{abb: Netzwerksturktur} zu sehen:
@@ -125,7 +127,7 @@ Die vorgegebene Netzwerkstruktur ist in Abbildung \ref{abb: Netzwerksturktur} zu
 \chapter{Konzept}
 \section{Ipv4 Adresskonzept} 
 Das folgende Konzept gilt nur für IPv4, immer wenn von Adressen die Rede ist, sind nur IPv4 Adressen gemeint.
-Für das private Netz werde Adressen aus dem 10.0.0.0/8 Netz ausgewählt. Für jeden Standort und für die Netze welche nicht einem Standort zugeornet werden können wird ein /16 Netz ausgewählt, so hat jeder Standort 65534 Ip-Adressen. Dies sollte für die nahe Zukunft genügen.\\
+Für das private Netz werde Adressen aus dem 10.0.0.0/8 Netz ausgewählt. Für jeden Standort und für die Netze welche nicht einem Standort zugeordnet werden können wird ein /16 Netz ausgewählt, so hat jeder Standort 65534 Ip-Adressen. Dies sollte für die nahe Zukunft genügen.\\
 \newline
 Die Aufteilung sieht folgendermassen aus: \\
 \newline
@@ -178,6 +180,7 @@ Netze der Abteilungen: \\
 
 \section{Routingkonzept} 
 Innerhalb unseres Unternehmens werden die verschiedenen Standorte miteinander über OSPF geroutet. Am Hauptstandort in Chur wird ab dem Distributions-Switch (D) ebenfalls mit OSPF geroutet. Beim Interface mit dem Internetanschluss wird eine default-Route gesetzt, da diese immer die Gleiche ist. Damit die Clients immer den gleichen default-Gateway haben, ist auf R1 noch ein Loopback-Interface erstellt worden, dieses darf nicht vergessen werden bei der Konfiguration von OSPF.
+
 \section{NAT Konzept}
 Meistens ist es für ein Unternehmen nicht rentabel sich die gesamte Anzahl benötigter IP-Adressen zu  kaufen. Deshalb werden private IP-Adressen verwendet und danach können mit einem NAT ganze Subnetze zu einer öffentlichen Adresse zugeordnet werden. Dies ist eine komfortable Lösung, ausserdem können dann die privaten Adressen so gestaltet werden, dass man nur schon beim anschauen weiss an welchem Standort und zu welchem Vlan die Adresse gehört.
 
@@ -189,11 +192,14 @@ Bei IPv6 ist kein NAT notwendig, da ein öffentliches /48 Netz gebraucht wird. E
 
 \newpage
 \section{Securitykonzept} 
-\subsection{ACL}
-Mit ACL's wird der Zugriff der Abteilungen untereinander verhindert, lediglich das Management-Vlan hat auf alles Zugriff, da dies für die reibungslose Verwaltung des Netzes erforderlich ist.
-Die ACL's werden auf den Routern R2, R3 und auf dem Switch D konfiguriert, für die 3 Vlans der Abteilungen wird je der Zugriff der anderen Vlans verboten, danach werden alle anderen IP und TCP Pakete erlaubt. Dies wird für IPv4 und IPv6 gleich gemacht, als erstes wird eine ACL pro Vlan erstellt, danach wird diese ACL dem Vlan-Interface zugewiesen.
+\subsection{\acs{ACL}} \label{acl}
+Mit \acs{ACL}'s wird der Zugriff der Abteilungen untereinander verhindert, lediglich das Management-Vlan hat auf alles Zugriff, da dies für die reibungslose Verwaltung des Netzes erforderlich ist.
+Die \acs{ACL}'s werden auf den Routern R2, R3 und auf dem Switch D konfiguriert, für die 3 Vlans der Abteilungen wird je der Zugriff der anderen Vlans verboten, danach werden alle anderen IP und TCP Pakete erlaubt. Dies wird für IPv4 und IPv6 gleich gemacht, als erstes wird eine ACL pro Vlan erstellt, danach wird diese \acs{ACL} dem Vlan-Interface zugewiesen.
 
 \subsection{Layer 2 Security}
+Port Security\\
+Ports abschalten\\
+switchport trunk allowed vlan 10,20,30,99
 \section{Serverservices}
 \subsection{DHCP}
 \subsection{DNS}
@@ -201,7 +207,7 @@ Die ACL's werden auf den Routern R2, R3 und auf dem Switch D konfiguriert, für 
 
 \begin{figure} [H]
 \centering
-\includegraphics[angle=0,scale=0.62]{Netzwerkplan}
+\includegraphics[angle=0,scale=0.43]{Netzwerkplan}
 \caption{Netzwerkplan}
 \label{abb: Netzwerkplan}
 \end{figure}
@@ -235,7 +241,9 @@ In Abbildung \ref{abb:Zeitplan} ist der geplante und der tatsächliche Ablauf de
 \end{figure}
 
 \chapter{Umsetzung}
-\subsection{Grundlegende Konfiguration Router}
+
+
+\section{Grundlegende Konfiguration Router}
 
  \begin{lstlisting}[frame=single, captionpos=b,caption= Router Grund Konfig]
 R1(config)#hostname R1
@@ -243,8 +251,19 @@ R1(config)#no ip domain lookup
 R1(config)#ipv6 unicast-routing
 \end{lstlisting}
 
-\subsection{Grundlegende Konfiguration access Switches}
- \begin{lstlisting}[frame=single, captionpos=b,caption= Switch Grund Konfig]
+\section{Grundlegende Konfiguration access Switches}
+Da auf den access Switches das Default Template kein IPv6 unterstützt, muss zuerst das Template gewechselt werden, um IPv6 nutzen zu können. Nach dem Template Wechsel ist ein Neustart des Switches nötig. der Template Wechsel wird wie folgt durchgeführt:
+\newline
+
+\begin{lstlisting}[frame=single, captionpos=b,caption= Switch Template Wechsel]
+Switch(config)#sdm prefer dual-ipv4-and-ipv6 default
+Switch(config)#reload
+\end{lstlisting}
+\noindent
+Danach kann die Grundkonfiguration vorgenommen werden. Das Default-Gateway ist die jeweilige IP-Adresse des Management Vlans des jeweiligen Routers oder Distribution-Switches.
+\newline
+
+\begin{lstlisting}[frame=single, captionpos=b,caption= Switch Grund Konfiguration]
 S1(config)#hostname A1
 S1(config)#no ip domain lookup
 S1(config)#spanning-tree mode pvst
@@ -252,15 +271,135 @@ S1(config)#ip default-gateway 10.2.99.1
 S1(config)#ip http server
 S1(config)#ip http secure-server
 \end{lstlisting}
+\newpage
+\section{IP-Konfiguration}
+\subsection{Router}
+Auf den Routern wurde auf das jeweilige GigabitEthernet-Interface die dazugehörige IPv4 und IPv6 Addresse zugewiesen. Zusätzlich wurde pro Router noch eine Link-Local Adresse zugewiesen, welche jedem genutztem GigabitEthernet-Interface zugewiesen werden muss. Des weiteren muss auf dem Interface noch IPv6 aktiviert werden.
+Auf den Routern R2 und R3 werden die Konfigurationen auf den Subinterfaces vorgenommen.
+\newline
+\begin{lstlisting}[frame=single, captionpos=b,caption= Router IP-Konfiguration]
+R1(config)#interface GigabitEthernet0/0
+R1(config-if)#ip address 10.1.40.1 255.255.255.252
+R1(config-if)#ipv6 address FE80::1 link-local
+R1(config-if)#ipv6 address 2001:620:3101:1040::1/64
+R1(config-if)#ipv6 enable
+\end{lstlisting}
 
-\subsection{Routing zwischen Standorten}
+\subsection{Distribution}
+Auf den Distribution-Switches wird gleich wie bei den Routern vorgegangen, allerdings werden die IP-Adressen, wenn vorhanden, auf den Port-Channel konfiguriert (siehe Kapitel \ref{linkaggre}. Zusätzlich müssen hier noch die Vlan-Interfaces mit den zugehörigen IP-Adressen definiert werden.
+\newline
+\begin{lstlisting}[frame=single, captionpos=b,caption= Distribution IP-Konfiguration]
+D(config)#interface Vlan10
+D(config-if)#description Geschaeftsleitung
+D(config-if)#ip address 10.1.10.1 255.255.255.0
+D(config-if)#ipv6 address FE80::6 link-local
+D(config-if)#ipv6 address 2001:620:3101:1010::1/64
+D(config-if)#ipv6 enable
+\end{lstlisting}
 
-\subsection{NAT}
+\subsection{Access-Switches}
+Auf den Acces-Switches wird eine IP-Adresse dem Management-Vlan zugewiesen.
+\newline
+\begin{lstlisting}[frame=single, captionpos=b,caption= Access-Switch IP-Konfiguration]
+interface Vlan99
+ ip address 10.1.99.10 255.255.255.0
+ ipv6 address 2001:620:3101:1099::11/64
+\end{lstlisting}
 
+\section{Link-Aggregation} \label{linkaggre}
+Bei der Konfiguration der Port-Channel war wichtig das zuerst der Port-Channel selbst definiert wird und erst danach die Zuweisung zum GigabitEthernet-Interface erfolgt. Des weiteren war darauf zu achten das sowohl der Port-Channel als auch das GigabitEthernet-Interface als no Switchport definiert wurden, sofern dies erwünscht ist.
+\newline
+\begin{lstlisting}[frame=single, captionpos=b,caption= Switch Grund Konfiguration]
+D(config)#interface Port-channel1
+D(config-if)#no switchport
+D(config-if)#ip address 10.1.40.18 255.255.255.252
+D(config-if)#ipv6 address FE80::6 link-local
+D(config-if)#ipv6 address 2001:620:3101:1043::2/64
+D(config-if)#ipv6 enable
+D(config)#interface GigabitEthernet2/0/22
+D(config-if)#no switchport
+D(config-if)#no ip address
+D(config-if)#channel-group 1 mode active
+\end{lstlisting}
 
-\subsection{ACL}
-\subsection{DHCP}
-\subsection{DNS}
+\section{OSPF}
+\subsection{IPv4}
+In Listing \ref{ospfipv4} ist die OSPF Konfiguration für IPv4 zu sehen. Dabei werden die angrenzenden Netzadressen angegeben. Access-Ports werden als Passive-Interface konfiguriert damit sie keine Hello-Packets empfangen.
+\newline
+\begin{lstlisting}[frame=single, captionpos=b,caption= OSPF IPv4, label=ospfipv4]
+R2(config)#router ospf 1
+R2(config-router)#passive-interface GigabitEthernet0/0.10
+R2(config-router)#passive-interface GigabitEthernet0/0.20
+R2(config-router)#passive-interface GigabitEthernet0/0.30
+R2(config-router)#passive-interface GigabitEthernet0/0.99
+R2(config-router)#network 10.2.10.0 0.0.0.255 area 0
+R2(config-router)#network 10.2.20.0 0.0.0.255 area 0
+R2(config-router)#network 10.2.30.0 0.0.0.255 area 0
+R2(config-router)#network 10.2.99.0 0.0.0.255 area 0
+R2(config-router)#network 10.4.40.0 0.0.0.3 area 0
+R2(config-router)#network 10.4.40.4 0.0.0.3 area 0
+\end{lstlisting}
+
+\subsection{IPv6}
+Bei IPv6 erfolgt die Konfiguration auf den einzelnen Interfaces.
+\newline
+\begin{lstlisting}[frame=single, captionpos=b,caption= OSPF IPv6]
+R2(config)#interface GigabitEthernet0/0.10
+R2(config-if)#ipv6 ospf 1 area 0
+\end{lstlisting}
+\section{NAT}
+Nat wird auf dem Router R1 konfiguriert. Hierzu werden die einzelnen Interfaces als ip nat outside oder inside konfiguriert. Zusätzlich werden noch pro VLAN und Standort NAT-Pools und \acs{ACL}'s definiert welche dann dem NAT zugewiesen werden. In Listing \ref{nat} sind die NAT-Pools und \acs{ACL}'s für das Vlan 10 definiert.
+\newline
+\begin{lstlisting}[frame=single, breaklines=true, captionpos=b,caption= NAT,label=nat ]
+R1(config)#interface FastEthernet0/0/0
+R1(config-if)#ip nat outside
+R1(config)#interface GigabitEthernet0/0
+R1(config-if)#ip nat inside
+R1(config)#interface GigabitEthernet0/1
+R1(config-if)#ip nat inside
+R1(config)#interface Serial0/1/0
+R1(config-if)#ip nat inside
+R1(config)#ip nat pool chur10 195.176.242.17 195.176.242.17 netmask 255.255.255.240
+R1(config)#ip nat pool buchs10 195.176.242.21 195.176.242.21 netmask 255.255.255.240
+R1(config)#ip nat pool stgallen10 195.176.242.25 195.176.242.25 netmask 255.255.255.240
+R1(config)#access-list 101 permit ip 10.1.10.0 0.0.0.255 any
+R1(config)#access-list 105 permit ip 10.2.10.0 0.0.0.255 any
+R1(config)#access-list 109 permit ip 10.3.10.0 0.0.0.255 any
+R1(config)#ip nat inside source list 101 pool chur10 overload
+R1(config)#ip nat inside source list 105 pool buchs10 overload
+R1(config)#ip nat inside source list 109 pool stgallen10 overload
+\end{lstlisting}
+\newpage
+
+\section{\acs{ACL}}
+Die Access-Listen werden wie in Kapitel \ref{acl} beschrieben konfiguriert. In Listing \ref{aclconf} ist die Konfiguration von R2 für das Vlan 10 zu sehen.
+\newline
+\begin{lstlisting}[frame=single, breaklines=true, captionpos=b,caption= ACL,label=aclconf]
+R2(config)#access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.1.20.0 0.0.0.255
+R2(config)#access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.1.30.0 0.0.0.255
+R2(config)#access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.2.20.0 0.0.0.255
+R2(config)#access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.2.30.0 0.0.0.255
+R2(config)#access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.3.20.0 0.0.0.255
+R2(config)#access-list 116 deny   ip 10.2.10.0 0.0.0.255 10.3.30.0 0.0.0.255
+R2(config)#access-list 116 permit ip any any
+R2(config)#access-list 116 permit tcp any any
+
+R2(config)#ipv6 access-list b10
+R2(config-ipv6-acl)#deny ipv6 2001:620:3101:2010::/64 2001:620:3101:1020::/64
+R2(config-ipv6-acl)#deny ipv6 2001:620:3101:2010::/64 2001:620:3101:1030::/64
+R2(config-ipv6-acl)#deny ipv6 2001:620:3101:2010::/64 2001:620:3101:2020::/64
+R2(config-ipv6-acl)#deny ipv6 2001:620:3101:2010::/64 2001:620:3101:2030::/64
+R2(config-ipv6-acl)#deny ipv6 2001:620:3101:2010::/64 2001:620:3101:3020::/64
+R2(config-ipv6-acl)#deny ipv6 2001:620:3101:2010::/64 2001:620:3101:3030::/64
+R2(config-ipv6-acl)#permit ipv6 any any
+R2(config-ipv6-acl)#permit tcp any any
+\end{lstlisting}
+
+\section{DHCP}
+\subsection{IPv4}
+
+\subsection{IPv6}
+\section{DNS}
 \newpage
 \chapter{Fazit}
 Wir taten uns am Anfang schwer mit dem Addresskonzept. Als wir das Addresskonzept aufgestellt hatten, folgten weitere Probleme welche nicht zuletzt aufgrund der gestackten Switches auftraten, was zu Zeitverzögerungen führte. Dies ist auch auf dem Zeitplan in Abbildung \ref{abb:Zeitplan} zu sehen.
