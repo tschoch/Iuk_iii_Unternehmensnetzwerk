@@ -37,13 +37,14 @@
 	\Large{NTB - Interstaatliche Hochschule für Technik Buchs}\\
 	\vspace{3cm}
 	\Huge{IuK\_III\_U-Konzeption und Aufbau eines Unternehmensnetzwerkes}\\
-	\vspace{8cm}
+	\vspace{6cm}
 	\Large{}
 	\doublespacing
 	\begin{tabular}{lll}
-		\textbf{Studierende:} & Benjamin Mosberger, &Tobias Schoch \\ 
-		\textbf{Dozent:} & Beat Bigger \\
-		\textbf{Datum:} & Herbstsemester 2015
+		\textbf{Studierende:} & Benjamin Mosberger, \href{mailto:benjamin.mosberger@ntb.ch} {benjamin.mosberger@ntb.ch}\\ 
+		& Tobias Schoch, \href{mailto:tobias.schoch@ntb.ch} {tobias.schoch@ntb.ch}\\
+		\textbf{Dozent:} & Beat Bigger, \href{mailto: beat.bigger@htwchur.ch}{beat.bigger@htwchur.ch} \\
+		\textbf{Datum:} & 18.9.2015 - 11.1.2016
 	\end{tabular}	
 \end{center}
 \KOMAoptions{fontsize=11pt}
@@ -313,7 +314,7 @@ R1(config-if)#ipv6 enable
 Auf den Distribution-Switches wird gleich wie bei den Routern vorgegangen, allerdings werden die IP-Adressen, wenn vorhanden, auf den Port-Channel konfiguriert (siehe Kapitel \ref{linkaggre}. Zusätzlich müssen hier noch die \acs{VLAN}-Interfaces mit den zugehörigen IP-Adressen definiert werden.
 \newline
 \begin{lstlisting}[frame=single, captionpos=b,caption= Distribution IP-Konfiguration]
-D(config)#interface \acs{VLAN}10
+D(config)#interface VLAN10
 D(config-if)#description Geschaeftsleitung
 D(config-if)#ip address 10.1.10.1 255.255.255.0
 D(config-if)#ipv6 address FE80::6 link-local
