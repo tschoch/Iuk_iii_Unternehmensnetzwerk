@@ -13,10 +13,10 @@
 \BOOKMARK [2][-]{subsection.3.5.1}{ACL}{section.3.5}% 13
 \BOOKMARK [2][-]{subsection.3.5.2}{Layer 2 Security}{section.3.5}% 14
 \BOOKMARK [1][-]{section.3.6}{Serverservices}{chapter.3}% 15
-\BOOKMARK [2][-]{subsection.3.6.1}{DHCP}{section.3.6}% 16
-\BOOKMARK [2][-]{subsection.3.6.2}{DNS}{section.3.6}% 17
+\BOOKMARK [2][-]{subsection.3.6.1}{IPv4}{section.3.6}% 16
+\BOOKMARK [2][-]{subsection.3.6.2}{IPv6}{section.3.6}% 17
 \BOOKMARK [1][-]{section.3.7}{Netzwerkplan}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.8}{weitere \334berlegungen}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.8}{Weitere \334berlegungen}{chapter.3}% 19
 \BOOKMARK [1][-]{section.3.9}{Stack}{chapter.3}% 20
 \BOOKMARK [0][-]{chapter.4}{Planung}{}% 21
 \BOOKMARK [0][-]{chapter.5}{Umsetzung}{}% 22
@@ -32,8 +32,18 @@
 \BOOKMARK [2][-]{subsection.5.5.2}{IPv6}{section.5.5}% 32
 \BOOKMARK [1][-]{section.5.6}{NAT}{chapter.5}% 33
 \BOOKMARK [1][-]{section.5.7}{ACL}{chapter.5}% 34
-\BOOKMARK [1][-]{section.5.8}{DHCP}{chapter.5}% 35
+\BOOKMARK [1][-]{section.5.8}{DHCP \046 DNS}{chapter.5}% 35
 \BOOKMARK [2][-]{subsection.5.8.1}{IPv4}{section.5.8}% 36
 \BOOKMARK [2][-]{subsection.5.8.2}{IPv6}{section.5.8}% 37
-\BOOKMARK [1][-]{section.5.9}{DNS}{chapter.5}% 38
-\BOOKMARK [0][-]{chapter.6}{Fazit}{}% 39
+\BOOKMARK [0][-]{chapter.6}{Fazit}{}% 38
+\BOOKMARK [0][-]{appendix*.6}{Anhang}{}% 39
+\BOOKMARK [1][-]{section.A.1}{R1}{appendix*.6}% 40
+\BOOKMARK [1][-]{section.A.2}{R2}{appendix*.6}% 41
+\BOOKMARK [1][-]{section.A.3}{R3}{appendix*.6}% 42
+\BOOKMARK [1][-]{section.A.4}{C1}{appendix*.6}% 43
+\BOOKMARK [1][-]{section.A.5}{C2}{appendix*.6}% 44
+\BOOKMARK [1][-]{section.A.6}{D}{appendix*.6}% 45
+\BOOKMARK [1][-]{section.A.7}{A1}{appendix*.6}% 46
+\BOOKMARK [1][-]{section.A.8}{A2}{appendix*.6}% 47
+\BOOKMARK [1][-]{section.A.9}{S1}{appendix*.6}% 48
+\BOOKMARK [1][-]{section.A.10}{S2}{appendix*.6}% 49
