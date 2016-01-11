@@ -216,8 +216,8 @@ Die \acs{ACL}'s werden auf den Routern R2, R3 und auf dem Switch D konfiguriert,
 
 \subsection{Layer 2 Security}
 \begin{itemize}
-\item Port Security: 
-\item Ports abschalten: 
+\item Port Security
+\item Ports abschalten: Alle nicht aktiven Ports down schalten, so kann nicht irgendwer sein Gerät einstecken und Unfug treiben.
 \item Trunk: switchport trunk allowed \acs{VLAN} 10,20,30,99
 \end{itemize}
 
@@ -227,7 +227,7 @@ Die \acs{ACL}'s werden auf den Routern R2, R3 und auf dem Switch D konfiguriert,
 \acs{DHCP} wird auf dem Router R1 konfiguriert. Dazu wird pro Standort und \acs{VLAN} ein Pool eingerichtet. Ein Pool beinhaltet jeweils das Netz, von welchem IP-Adressen vergeben werden, die \acs{DNS}-Server und den Default-Router. Weiter werden auf dem distribution Switch und den Routern R1 und R2 noch Relays eingerichtet.
 \subsection{IPv6}
 Bei IPv6 werden die Adressen via \acs{SLAAC} vergeben. Um allerdings das Internet nutzen zu können muss der \acs{DNS}-Server bekannt sein. Dafür muss auf dem Router R1 ein \acs{DHCP}-Pool erstellt werden und den Interfaces zugewiesen werden. Weiter muss auf den Interfaces der Router das \acs{RA}-Flag gesetzt werden. Um eine schnelle Verteilung der IPv6 Adressen 
-zu erreichen, wird das \acs{RA}-Intervall eingestellt werden. Damit auch die Router R2 und R3 den \acs{DHCP}-Pool erreichen können muss auf den Interfaces ein Relay eingerichtet werden. Statische Route  um R1???
+zu erreichen, wird das \acs{RA}-Intervall eingestellt werden. Damit auch die Router R2 und R3 den \acs{DHCP}-Pool erreichen können muss auf den Interfaces ein Relay eingerichtet werden.
 \section{Netzwerkplan}
 
 \begin{figure} [H]
@@ -251,7 +251,7 @@ Bei genügender Zeit hätte man noch einiges erreichen können. Einige Punkte we
 \end{itemize}
 
 \section{Stack}
-Stacken ist das Zusammenschliessen zweier physischen Switches zu einem logischen. Dies ist nicht mit allen Switches möglich, doch in diesem Fall ist es bei den Beiden Distribution-Switches möglich, da diese ein Stack-Interface auf der Rückseite haben. Dies erspart eine Menge an Arbeit, wenn man weiss wie dies funktioniert. In diesem Fall war dies leider nicht der Fall, da noch nie mit gestackten Switches gearbeitet wurde, die Anweisungen zur Konfiguration des Stackes bezieht sich hier nur auf die Cisco Catalyst 3750 Switches, da nicht bekannt ist ob es noch Besonderheiten bei der Konfiguration anderer Switches gibt. Als erstes musste festgestellt werden, dass der 3750er nur \acs{LACP} und kein \acs{PagP} unterstützt.
+Stacken ist das Zusammenschliessen zweier physischen Switches zu einem logischen. Dies ist nicht mit allen Switches möglich, doch in diesem Fall ist es bei den Beiden Distribution-Switches möglich, da diese ein Stack-Interface auf der Rückseite haben. Dies erspart eine Menge an Arbeit, wenn man weiss wie dies funktioniert. In diesem Fall war dies leider nicht der Fall, da noch nie mit gestackten Switches gearbeitet wurde, die Anweisungen zur Konfiguration des Stackes bezieht sich hier nur auf die Cisco Catalyst 3750 Switches, da nicht bekannt ist ob es noch Besonderheiten bei der Konfiguration anderer Switches gibt. Das Gröste Problem war, dass der 3750er nur \acs{LACP} und kein \acs{PagP} unterstützt.
 
 
 \newpage
@@ -293,8 +293,6 @@ S1(config)#hostname A1
 S1(config)#no ip domain lookup
 S1(config)#spanning-tree mode pvst
 S1(config)#ip default-gateway 10.2.99.1
-S1(config)#ip http server
-S1(config)#ip http secure-server
 \end{lstlisting}
 \newpage
 \section{IP-Konfiguration}
@@ -311,10 +309,10 @@ R1(config-if)#ipv6 enable
 \end{lstlisting}
 
 \subsection{Distribution}
-Auf den Distribution-Switches wird gleich wie bei den Routern vorgegangen, allerdings werden die IP-Adressen, wenn vorhanden, auf den Port-Channel konfiguriert (siehe Kapitel \ref{linkaggre}. Zusätzlich müssen hier noch die \acs{VLAN}-Interfaces mit den zugehörigen IP-Adressen definiert werden.
+Auf den Distribution-Switches wird gleich wie bei den Routern vorgegangen, allerdings werden die IP-Adressen, wenn vorhanden, auf den Port-Channel konfiguriert (siehe Kapitel \ref{linkaggre}). Zusätzlich müssen hier noch die \acs{VLAN}-Interfaces mit den zugehörigen IP-Adressen definiert werden.
 \newline
 \begin{lstlisting}[frame=single, captionpos=b,caption= Distribution IP-Konfiguration]
-D(config)#interface VLAN10
+D(config)#interface VLAN 10
 D(config-if)#description Geschaeftsleitung
 D(config-if)#ip address 10.1.10.1 255.255.255.0
 D(config-if)#ipv6 address FE80::6 link-local
@@ -326,7 +324,7 @@ D(config-if)#ipv6 enable
 Auf den Acces-Switches wird eine IP-Adresse dem Management-\acs{VLAN} zugewiesen.
 \newline
 \begin{lstlisting}[frame=single, captionpos=b,caption= Access-Switch IP-Konfiguration]
-interface \acs{VLAN}99
+interface VLAN 99
  ip address 10.1.99.10 255.255.255.0
  ipv6 address 2001:620:3101:1099::11/64
 \end{lstlisting}
@@ -471,7 +469,7 @@ R2(config-if)#ipv6 dhcp relay destination 2001:620:3101:1001::1 Serial0/0/0
 
 \newpage
 \chapter{Fazit}
-Wir taten uns am Anfang schwer mit dem Start und dem Addresskonzept. Als wir das Adresskonzept aufgestellt hatten, folgten Weitere Probleme welche nicht zuletzt aufgrund der gestackten Switches auftraten, was zu Zeitverzögerungen führte. Dies ist auch auf dem Zeitplan in Abbildung \ref{abb:Zeitplan} zu sehen. Ein weiteres Problem stellte die Organisation mit GitHub dar, dies weil wir nicht die aktuelle Konfiguration auf GitHub geladen haben sonder einfach immer die neuen Konfigurations Befehle ergäntzt hatten, was dazu führte das Befehle vorhanden waren die gar nicht existieren.
+Wir taten uns am Anfang schwer mit dem Start und dem Addresskonzept. Als wir das Adresskonzept aufgestellt hatten, folgten weitere Probleme welche nicht zuletzt aufgrund der gestackten Switches auftraten, was zu Zeitverzögerungen führte. Dies ist auch auf dem Zeitplan in Abbildung \ref{abb:Zeitplan} zu sehen. Alles in Allem sind wir aber zufrieden dass wir uns für die gestackte Variante entschieden haben und so mal etwas anderes sehen konnten, was im Unterricht noch nicht vorgekommen ist. Ein weiteres Problem stellte die Organisation mit GitHub dar, dies weil wir nicht die aktuelle Konfiguration auf GitHub geladen haben sondern einfach immer die neuen Konfigurations Befehle ergäntzt hatten, was dazu führte das Befehle vorhanden waren die gar nicht existieren. Deshalb haben wir zum Schluss auch noch die aktuellen Konfigurationen der Switches ausgelesen und so weiterbearbeitet, was für kommende Projekte erneut so gemacht werden sollte. Die Verwaltung mit GitHub ansich war jedoch eine gefreute Sache und man konnte sich immer mal eine alte Version zurückholen.
 
 %-----Anhang
 \appendix
