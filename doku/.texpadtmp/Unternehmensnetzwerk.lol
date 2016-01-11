@@ -3,9 +3,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {lstlisting}{\numberline {5.1}Router Grund Konfig}{16}{lstlisting.5.1}
+\contentsline {lstlisting}{\numberline {5.1}Router Grundkonfiguration}{16}{lstlisting.5.1}
 \contentsline {lstlisting}{\numberline {5.2}Switch Template Wechsel}{16}{lstlisting.5.2}
-\contentsline {lstlisting}{\numberline {5.3}Switch Grund Konfiguration}{16}{lstlisting.5.3}
+\contentsline {lstlisting}{\numberline {5.3}Switch Grundkonfiguration}{16}{lstlisting.5.3}
 \contentsline {lstlisting}{\numberline {5.4}Router IP-Konfiguration}{17}{lstlisting.5.4}
 \contentsline {lstlisting}{\numberline {5.5}Distribution IP-Konfiguration}{17}{lstlisting.5.5}
 \contentsline {lstlisting}{\numberline {5.6}Access-Switch IP-Konfiguration}{17}{lstlisting.5.6}
