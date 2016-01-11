@@ -21,10 +21,10 @@
 \BOOKMARK [0][-]{chapter.4}{Planung}{}% 21
 \BOOKMARK [0][-]{chapter.5}{Umsetzung}{}% 22
 \BOOKMARK [1][-]{section.5.1}{Grundlegende Konfiguration Router}{chapter.5}% 23
-\BOOKMARK [1][-]{section.5.2}{Grundlegende Konfiguration access Switches}{chapter.5}% 24
+\BOOKMARK [1][-]{section.5.2}{Grundlegende Konfiguration Access-Switches}{chapter.5}% 24
 \BOOKMARK [1][-]{section.5.3}{IP-Konfiguration}{chapter.5}% 25
 \BOOKMARK [2][-]{subsection.5.3.1}{Router}{section.5.3}% 26
-\BOOKMARK [2][-]{subsection.5.3.2}{Distribution}{section.5.3}% 27
+\BOOKMARK [2][-]{subsection.5.3.2}{Distribution-Switch}{section.5.3}% 27
 \BOOKMARK [2][-]{subsection.5.3.3}{Access-Switches}{section.5.3}% 28
 \BOOKMARK [1][-]{section.5.4}{Link-Aggregation}{chapter.5}% 29
 \BOOKMARK [1][-]{section.5.5}{OSPF}{chapter.5}% 30

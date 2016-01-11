@@ -56,7 +56,7 @@
 \onehalfspacing 
 
 \section*{Zusammenfassung}
-Die Aufgabe dieser Projektarbeit ist ein Unternehmensnetzwerk im Labor der HTW Chur zu planen, aufzubauen und zu Dokumentieren. Das ganze Netzwerk soll redundant aufgebaut werden, um ausfallsicher zu sein, und ausserdem wird IPv4 und IPv6 verwendet.
+Die Aufgabe dieser Projektarbeit ist ein Unternehmensnetzwerk im Labor der HTW Chur zu planen, aufzubauen und zu Dokumentieren. Das ganze Netzwerk soll redundant aufgebaut werden, um ausfallsicher zu sein, ausserdem wird IPv4 und IPv6 verwendet.
 
 
 \vspace{4cm}
@@ -147,7 +147,7 @@ Die vorgegebene Netzwerkstruktur ist in Abbildung \ref{abb: Netzwerksturktur} zu
 In den Kapiteln \ref{ipv4} und \ref{ipv6} sind die IP-Konzepte beschrieben. In Abbildung \ref{abb: IP-Addressplan} ist die Verteilung der IP-Adressen aufgeführt.
 \section{Ipv4 Adresskonzept} \label{ipv4}
 Das folgende Konzept gilt nur für IPv4, immer wenn von Adressen die Rede ist, sind nur IPv4 Adressen gemeint.
-Für das private Netz werde Adressen aus dem 10.0.0.0/8 Netz ausgewählt. Für jeden Standort und für die Netze welche nicht einem Standort zugeordnet werden können wird ein /16 Netz ausgewählt, so hat jeder Standort 65534 Ip-Adressen. Dies sollte für die nahe Zukunft genügen.\\
+Für das private Netz werden Adressen aus dem 10.0.0.0/8 Netz ausgewählt. Für jeden Standort und für die Netze welche nicht einem Standort zugeordnet werden können, wird ein /16 Netz ausgewählt, so hat jeder Standort 65534 Ip-Adressen. Dies sollte für die nahe Zukunft genügen.\\
 \newline
 Die Aufteilung sieht folgendermassen aus: \\
 \newline
@@ -206,10 +206,10 @@ Netze der Abteilungen: \\
 
 
 \section{Routingkonzept} 
-Innerhalb unseres Unternehmens werden die verschiedenen Standorte miteinander über OSPF geroutet. Am Hauptstandort in Chur wird ab dem Distributions-Switch (D) ebenfalls mit OSPF geroutet. Beim Interface mit dem Internetanschluss wird eine default-Route gesetzt, da diese immer die Gleiche ist. Damit die Clients immer den gleichen default-Gateway haben, ist auf R1 noch ein Loopback-Interface erstellt worden, dieses darf nicht vergessen werden bei der Konfiguration von OSPF.
+Innerhalb unseres Unternehmens werden die verschiedenen Standorte miteinander über OSPF geroutet. Am Hauptstandort in Chur wird ab dem Distribution-Switch (D) ebenfalls mit OSPF geroutet. Beim Interface mit dem Internetanschluss wird eine default-Route gesetzt, da diese immer die Gleiche ist. Damit die Clients immer den gleichen default-Gateway haben, ist auf R1 noch ein Loopback-Interface erstellt worden, dieses darf nicht vergessen werden bei der Konfiguration von OSPF.
 
 \section{NAT Konzept}
-Meistens ist es für ein Unternehmen nicht rentabel sich die gesamte Anzahl benötigter IP-Adressen zu  kaufen. Deshalb werden private IP-Adressen verwendet und danach können mit einem \acs{NAT} ganze Subnetze zu einer öffentlichen Adresse zugeordnet werden. Dies ist eine komfortable Lösung, ausserdem können dann die privaten Adressen so gestaltet werden, dass man nur schon beim anschauen weiss an welchem Standort und zu welchem \acs{VLAN} die Adresse gehört.
+Meistens ist es für ein Unternehmen nicht rentabel sich die gesamte Anzahl benötigter IP-Adressen zu  kaufen. Deshalb werden private IP-Adressen verwendet und danach können mit einem \acs{NAT} ganze Subnetze zu einer öffentlichen Adresse zugeordnet werden. Dies ist eine komfortable Lösung, ausserdem können dann die privaten Adressen so gestaltet werden, dass man nur schon beim anschauen weiss, an welchem Standort und zu welchem \acs{VLAN} die Adresse gehört.
 
 \subsection{IPv4}
 Für die öffentlichen Adressen steht ein /28 Netz zur Verfügung. Für die Verwendung von \acs{NAT} können alle Adressen des Netzes benutzt werden, die Netz- und Broadcast-Adresse werden nicht benötigt. Somit stehen 16 öffentliche Adressen zur Benutzung, hier wurde für jeden \acs{VLAN} an jedem Standort eine eigene Adresse verteilt. Dies ergibt 12 Adressen, die restlichen 4 Adressen sind für Reserven eingeplant.
@@ -224,7 +224,7 @@ Mit \acs{ACL}'s wird der Zugriff der Abteilungen untereinander verhindert, ledig
 Die \acs{ACL}'s werden auf den Routern R2, R3 und auf dem Switch D konfiguriert, für die 3 \acs{VLAN}s der Abteilungen wird je der Zugriff der anderen \acs{VLAN}s verboten, danach werden alle anderen IP und TCP Pakete erlaubt. Dies wird für IPv4 und IPv6 gleich gemacht, als erstes wird eine ACL pro \acs{VLAN} erstellt, danach wird diese \acs{ACL} dem \acs{VLAN}-Interface zugewiesen.
 
 \subsection{Layer 2 Security}
-Leider konnte das Layer 2 Sicherheitskonzept aufgrund von verzögerungen nicht umgesetzt werden. Folgende Punkte waren als Sicherheitsmassnahmen gedacht: 
+Leider konnte das Layer 2 Sicherheitskonzept aufgrund von zeitlichen Verzögerungen nicht umgesetzt werden. Folgende Punkte waren als Sicherheitsmassnahmen gedacht: 
 \begin{itemize}
 \item Port Security: Um MAC-Spoofing zu verhindern, wird ein Interface fest mit einer MAC-Adresse verknüpft, dies geschieht mit der Konfiguration von Port Security.
 \item Ports abschalten: Alle nicht aktiven Ports down schalten, so kann nicht irgendwer sein Gerät einstecken und Unfug treiben.
@@ -234,7 +234,7 @@ Leider konnte das Layer 2 Sicherheitskonzept aufgrund von verzögerungen nicht u
 \newpage
 \section{Serverservices}
 \subsection{IPv4}
-\acs{DHCP} wird auf dem Router R1 konfiguriert. Dazu wird pro Standort und \acs{VLAN} ein Pool eingerichtet. Ein Pool beinhaltet jeweils das Netz, von welchem IP-Adressen vergeben werden, die \acs{DNS}-Server und den Default-Router. Weiter werden auf dem distribution Switch und den Routern R1 und R2 noch Relays eingerichtet.
+\acs{DHCP} wird auf dem Router R1 konfiguriert. Dazu wird pro Standort und \acs{VLAN} ein Pool eingerichtet. Ein Pool beinhaltet jeweils das Netz, von welchem IP-Adressen vergeben werden, die \acs{DNS}-Server und den Default-Router. Weiter werden auf dem Distribution-Switch und den Routern R1 und R2 noch Relays eingerichtet.
 \subsection{IPv6}
 Bei IPv6 werden die Adressen via \acs{SLAAC} vergeben. Um allerdings das Internet nutzen zu können muss der \acs{DNS}-Server bekannt sein. Dafür muss auf dem Router R1 ein \acs{DHCP}-Pool erstellt werden und den Interfaces zugewiesen werden. Weiter muss auf den Interfaces der Router das \acs{RA}-Flag gesetzt werden. Um eine schnelle Verteilung der IPv6 Adressen 
 zu erreichen, wird das \acs{RA}-Intervall eingestellt werden. Damit auch die Router R2 und R3 den \acs{DHCP}-Pool erreichen können muss auf den Interfaces ein Relay eingerichtet werden.
@@ -255,13 +255,13 @@ Bei genügender Zeit hätte man noch einiges erreichen können. Einige Punkte we
 \begin{itemize}
 \item Passwort setzen: Im Moment ist auf keinem Gerät ein Passwort gesetzt, da es während der Konfiguration mühsam ist immer wieder das Passwort einzugeben, deshalb sollte dies ganz am Schluss geschehen.
 \item Fernwartung: Auf allen Geräten ist eine Management Adresse konfiguriert. Wenn jetzt der Fernzugriff aktiviert würde, müssten die Anzahl Zugriffe aus dem Internet begrenzt werden, damit nicht mit Bruteforce das Passwort geknackt werden kann.
-\item OSPF Areas: Die einzelnen Standorte hätten noch mit einem eigenen OSPF Area konfiguriert werden können, dies hätte den Vorteil dass nicht alle über OSPF Teilnehmer über das ganze Netz bescheid wissen müssen und so bedeutend weniger Traffic auf den Leitungen ist.
+\item OSPF Areas: Die einzelnen Standorte hätten noch mit einem eigenen OSPF Area konfiguriert werden können, dies hätte den Vorteil dass nicht alle OSPF Teilnehmer über das ganze Netz bescheid wissen müssen und so bedeutend weniger Traffic auf den Leitungen ist.
 \item \acs{VLAN}: Es hätte noch ein Gäste\acs{VLAN} eingerichtet werden können, welches nur zum Internet zugriff hat, dies ist jedoch nicht Teil der Aufgabenstellung und könne im Bedarfsfall schnell nachgerüstet werden.
 \item Device Backups: Wenn im Moment Device Backups gemacht werden müssen, muss jeder einzelne Router und Switch mittels kopieren der running-config gebackupt werden. Dabei könnte man mit einem Kron-Script die Backups zeitgesteuert auf einen TFTP Server speichern. So spart man sich wöchentliche Arbeit und man vergisst es auch sicher nicht.
 \end{itemize}
 
 \section{Stack}
-Stacken ist das Zusammenschliessen zweier physischen Switches zu einem logischen. Dies ist nicht mit allen Switches möglich, doch in diesem Fall ist es bei den Beiden Distribution-Switches möglich, da diese ein Stack-Interface auf der Rückseite haben. Dies erspart eine Menge an Arbeit, wenn man weiss wie dies funktioniert. In diesem Fall war dies leider nicht der Fall, da noch nie mit gestackten Switches gearbeitet wurde, die Anweisungen zur Konfiguration des Stackes bezieht sich hier nur auf die Cisco Catalyst 3750 Switches, da nicht bekannt ist ob es noch Besonderheiten bei der Konfiguration anderer Switches gibt. Das Gröste Problem war, dass der 3750er nur \acs{LACP} und kein \acs{PagP} unterstützt.
+Stacken ist das Zusammenschliessen zweier physischen Switches zu einem logischen. Dies ist nicht mit allen Switches möglich, doch in diesem Fall ist es bei den Beiden Distribution-Switches möglich, da diese ein Stack-Interface auf der Rückseite haben. Dies erspart eine Menge an Arbeit, wenn man weiss wie dies funktioniert. In diesem Fall war dies leider nicht der Fall, da noch nie mit gestackten Switches gearbeitet wurde, die Anweisungen zur Konfiguration des Stackes bezieht sich hier nur auf die Cisco Catalyst 3750 Switches, da nicht bekannt ist ob es noch Besonderheiten bei der Konfiguration anderer Switches gibt. Das gröste Problem war, dass der 3750er nur \acs{LACP} und kein \acs{PagP} unterstützt.
 
 
 \newpage
@@ -286,8 +286,8 @@ R1(config)#no ip domain lookup
 R1(config)#ipv6 unicast-routing
 \end{lstlisting}
 
-\section{Grundlegende Konfiguration access Switches}
-Da auf den access Switches das Default Template kein IPv6 unterstützt, muss zuerst das Template gewechselt werden, um IPv6 nutzen zu können. Nach dem Template Wechsel ist ein Neustart des Switches nötig. der Template Wechsel wird wie folgt durchgeführt:
+\section{Grundlegende Konfiguration Access-Switches}
+Da auf den Access-Switches das Default Template kein IPv6 unterstützt, muss zuerst das Template gewechselt werden, um IPv6 nutzen zu können. Nach dem Template Wechsel ist ein Neustart des Switches nötig. Der Template Wechsel wird wie folgt durchgeführt:
 \newline
 
 \begin{lstlisting}[frame=single, captionpos=b,caption= Switch Template Wechsel]
@@ -307,7 +307,7 @@ S1(config)#ip default-gateway 10.2.99.1
 \newpage
 \section{IP-Konfiguration}
 \subsection{Router}
-Auf den Routern wurde auf das jeweilige GigabitEthernet-Interface die dazugehörige IPv4 und IPv6 Addresse zugewiesen. Zusätzlich wurde pro Router noch eine Link-Local Adresse zugewiesen, welche jedem genutztem GigabitEthernet-Interface zugewiesen werden muss. Des Weiteren muss auf dem Interface noch IPv6 aktiviert werden.
+Auf den Routern wurde auf das jeweilige GigabitEthernet-Interface die dazugehörige IPv4 und IPv6 Adresse zugewiesen. Zusätzlich wurde pro Router noch eine Link-Local Adresse zugewiesen, welche jedem genutztem GigabitEthernet-Interface zugewiesen werden muss. Des Weiteren muss auf dem Interface noch IPv6 aktiviert werden.
 Auf den Routern R2 und R3 werden die Konfigurationen auf den Subinterfaces vorgenommen.
 \newline
 \begin{lstlisting}[frame=single, captionpos=b,caption= Router IP-Konfiguration]
@@ -318,7 +318,7 @@ R1(config-if)#ipv6 address 2001:620:3101:1040::1/64
 R1(config-if)#ipv6 enable
 \end{lstlisting}
 
-\subsection{Distribution}
+\subsection{Distribution-Switch}
 Auf den Distribution-Switches wird gleich wie bei den Routern vorgegangen, allerdings werden die IP-Adressen, wenn vorhanden, auf den Port-Channel konfiguriert (siehe Kapitel \ref{linkaggre}). Zusätzlich müssen hier noch die \acs{VLAN}-Interfaces mit den zugehörigen IP-Adressen definiert werden.
 \newline
 \begin{lstlisting}[frame=single, captionpos=b,caption= Distribution IP-Konfiguration]
@@ -445,7 +445,7 @@ R1(dhcp-config)#dns-server 195.176.242.202 195.176.242.233
 R1(dhcp-config)#default-router 10.1.10.1
 \end{lstlisting}
 \noindent
-Des Weiteren werden auf dem distribution Switch, den Routern R2 und R3 noch ein DHCP-Relay konfiguriert. In Listing \ref{dhcpipv4relay} wird das Relay auf einem Interface von R2 Konfiguriert.
+Des Weiteren werden auf dem Distribution-Switch, den Routern R2 und R3 noch ein DHCP-Relay konfiguriert. In Listing \ref{dhcpipv4relay} wird das Relay auf einem Interface von R2 Konfiguriert.
 \newline
 \begin{lstlisting}[frame=single, breaklines=true, captionpos=b,caption= IPv4 \acs{DHCP}-relay, label=dhcpipv4relay]
 R1(config)#interface GigabitEthernet0/0.10
@@ -479,7 +479,7 @@ R2(config-if)#ipv6 dhcp relay destination 2001:620:3101:1001::1 Serial0/0/0
 
 \newpage
 \chapter{Fazit}
-Wir taten uns am Anfang schwer mit dem Start und dem Addresskonzept. Als wir das Adresskonzept aufgestellt hatten, folgten weitere Probleme welche nicht zuletzt aufgrund der gestackten Switches auftraten, was zu Zeitverzögerungen führte. Dies ist auch auf dem Zeitplan in Abbildung \ref{abb:Zeitplan} zu sehen. Alles in Allem sind wir aber zufrieden dass wir uns für die gestackte Variante entschieden haben und so mal etwas anderes sehen konnten, was im Unterricht noch nicht vorgekommen ist. Ein weiteres Problem stellte die Organisation mit GitHub dar, dies weil wir nicht die aktuelle Konfiguration auf GitHub geladen haben sondern einfach immer die neuen Konfigurations Befehle ergäntzt hatten, was dazu führte das Befehle vorhanden waren die gar nicht existieren. Deshalb haben wir zum Schluss auch noch die aktuellen Konfigurationen der Switches ausgelesen und so weiterbearbeitet, was für kommende Projekte erneut so gemacht werden sollte. Die Verwaltung mit GitHub ansich war jedoch eine gefreute Sache und man konnte sich immer mal eine alte Version zurückholen.
+Wir taten uns am Anfang schwer mit dem Start und dem Addresskonzept. Als wir das Adresskonzept aufgestellt hatten, folgten weitere Probleme welche nicht zuletzt aufgrund der gestackten Switches auftraten, was zu Zeitverzögerungen führte. Dies ist auch auf dem Zeitplan in Abbildung \ref{abb:Zeitplan} zu sehen. Alles in Allem sind wir aber zufrieden dass wir uns für die gestackte Variante entschieden haben und so mal etwas anderes sehen konnten, was im Unterricht noch nicht vorgekommen ist. Ein weiteres Problem stellte die Organisation mit GitHub dar, dies weil wir nicht die aktuelle Konfiguration auf GitHub geladen haben sondern einfach immer die neuen Konfigurations Befehle ergänzt hatten, was dazu führte das Befehle vorhanden waren, die gar nicht existieren. Deshalb haben wir zum Schluss auch noch die aktuellen Konfigurationen der Switches ausgelesen und so weiterbearbeitet, was für kommende Projekte erneut so gemacht werden sollte. Die Verwaltung mit GitHub an sich war jedoch eine gefreute Sache und man konnte sich immer mal eine alte Version zurückholen.
 
 %-----Anhang
 \appendix

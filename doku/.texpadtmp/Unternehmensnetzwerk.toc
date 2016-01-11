@@ -22,10 +22,10 @@
 \contentsline {chapter}{\numberline {4}Planung}{15}{chapter.4}
 \contentsline {chapter}{\numberline {5}Umsetzung}{16}{chapter.5}
 \contentsline {section}{\numberline {5.1}Grundlegende Konfiguration Router}{16}{section.5.1}
-\contentsline {section}{\numberline {5.2}Grundlegende Konfiguration access Switches}{16}{section.5.2}
+\contentsline {section}{\numberline {5.2}Grundlegende Konfiguration Access-Switches}{16}{section.5.2}
 \contentsline {section}{\numberline {5.3}IP-Konfiguration}{17}{section.5.3}
 \contentsline {subsection}{\numberline {5.3.1}Router}{17}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Distribution}{17}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.2}Distribution-Switch}{17}{subsection.5.3.2}
 \contentsline {subsection}{\numberline {5.3.3}Access-Switches}{17}{subsection.5.3.3}
 \contentsline {section}{\numberline {5.4}Link-Aggregation}{18}{section.5.4}
 \contentsline {section}{\numberline {5.5}OSPF}{18}{section.5.5}
