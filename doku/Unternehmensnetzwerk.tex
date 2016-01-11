@@ -224,10 +224,11 @@ Mit \acs{ACL}'s wird der Zugriff der Abteilungen untereinander verhindert, ledig
 Die \acs{ACL}'s werden auf den Routern R2, R3 und auf dem Switch D konfiguriert, für die 3 \acs{VLAN}s der Abteilungen wird je der Zugriff der anderen \acs{VLAN}s verboten, danach werden alle anderen IP und TCP Pakete erlaubt. Dies wird für IPv4 und IPv6 gleich gemacht, als erstes wird eine ACL pro \acs{VLAN} erstellt, danach wird diese \acs{ACL} dem \acs{VLAN}-Interface zugewiesen.
 
 \subsection{Layer 2 Security}
+Leider konnte das Layer 2 Sicherheitskonzept aufgrund von verzögerungen nicht umgesetzt werden. Folgende Punkte waren als Sicherheitsmassnahmen gedacht: 
 \begin{itemize}
-\item Port Security
+\item Port Security: Um MAC-Spoofing zu verhindern, wird ein Interface fest mit einer MAC-Adresse verknüpft, dies geschieht mit der Konfiguration von Port Security.
 \item Ports abschalten: Alle nicht aktiven Ports down schalten, so kann nicht irgendwer sein Gerät einstecken und Unfug treiben.
-\item Trunk: switchport trunk allowed \acs{VLAN} 10,20,30,99
+\item Trunk: Auf den Trunkports sollen nur die \acs{VLAN}s zugelassen werden, welche auch effektiv gebraucht werden.
 \end{itemize}
 
 \newpage
